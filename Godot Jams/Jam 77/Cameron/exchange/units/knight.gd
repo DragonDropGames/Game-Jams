@@ -10,6 +10,7 @@ var Speed = 50
 
 func _ready():
 	set_selected(selected)
+	add_to_group("Units", true)
 	
 func set_selected(value):
 	selected = value

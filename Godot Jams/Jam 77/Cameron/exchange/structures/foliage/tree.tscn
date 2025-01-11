@@ -9,10 +9,10 @@ size = Vector2(16, 6)
 [sub_resource type="CircleShape2D" id="CircleShape2D_lgyev"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6j35c"]
-bg_color = Color(2.79158e-06, 0.712819, 0.444199, 1)
+bg_color = Color(0.0311346, 0.0244192, 0.0162925, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htf4h"]
-bg_color = Color(0.729689, 0.580823, 0.0458823, 1)
+bg_color = Color(1, 1, 1, 1)
 
 [node name="Tree" type="StaticBody2D"]
 script = ExtResource("1_7ns8n")

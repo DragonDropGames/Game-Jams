@@ -18,12 +18,13 @@ func _process(delta: float) -> void:
 		treeChopped()
 
 func _on_chop_area_body_entered(body: Node2D) -> void:
-	if "Knight" in body.name:
+	print(body)
+	if body.is_in_group("Units"):
 		units += 1
 		startChopping()
 
 func _on_chop_area_body_exited(body: Node2D) -> void:
-	if "Knight" in body.name:
+	if body.is_in_group("Units"):
 		units -= 1
 		if units <= 0:
 			timer.stop()

@@ -15,7 +15,7 @@ border_width_bottom = 2
 border_color = Color(0, 0.913725, 0.909804, 1)
 border_blend = true
 
-[node name="Knight" type="CharacterBody2D" groups=["Units"]]
+[node name="Knight" type="CharacterBody2D"]
 script = ExtResource("1_o4m8b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

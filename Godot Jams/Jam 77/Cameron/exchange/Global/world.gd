@@ -3,9 +3,11 @@ extends Node2D
 var units = []
 
 func _ready():
-	units = get_tree().get_nodes_in_group("Units")
-	print(units)
+	get_units()
 
+func get_units():
+	units = null
+	units = get_tree().get_nodes_in_group("Units")
 
 func _on_area_selected(object):
 	var start = object.start
