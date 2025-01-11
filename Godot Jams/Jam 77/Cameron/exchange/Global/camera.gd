@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 			draw_area(false)
 			emit_signal("area_selected", self)
 		else:
-			end = start
+			end = start 
 			isDragging = false
 			draw_area(false)
 		
@@ -48,5 +48,6 @@ func draw_area(s=true):
 	var pos = Vector2()
 	pos.x = min(startV.x, endV.x)
 	pos.y = min(startV.y, endV.y)
+	box.visible = s
 	box.position = pos
 	box.size *= int(s)

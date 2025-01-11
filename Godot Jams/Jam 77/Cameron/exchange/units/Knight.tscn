@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://cymp35b4jgg1f"]
 
 [ext_resource type="Script" path="res://units/knight.gd" id="1_o4m8b"]
-[ext_resource type="Texture2D" uid="uid://dbxorrh207rop" path="res://Knight.png" id="1_qf10s"]
+[ext_resource type="Texture2D" uid="uid://dbxorrh207rop" path="res://Assets/Knight.png" id="1_qf10s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4n4pg"]
-size = Vector2(15, 15)
+size = Vector2(15, 13)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bl31e"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -15,11 +15,11 @@ border_width_bottom = 2
 border_color = Color(0, 0.913725, 0.909804, 1)
 border_blend = true
 
-[node name="Knight" type="CharacterBody2D"]
+[node name="Knight" type="CharacterBody2D" groups=["Units"]]
 script = ExtResource("1_o4m8b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -0.5)
+position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_4n4pg")
 
 [node name="Knight" type="Sprite2D" parent="."]
