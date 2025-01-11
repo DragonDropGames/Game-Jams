@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkm8b7evrllvg"]
+
+[ext_resource type="Script" path="res://ui/camera.gd" id="1_esj04"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sreyj"]
+bg_color = Color(0, 0, 0, 0.282353)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0.333333, 0.498039, 0.796078)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Camera" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+script = ExtResource("1_esj04")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sreyj")
