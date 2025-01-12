@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b6rgn7ekr5neg"]
 
-[ext_resource type="Script" path="res://Global/SpawnUnit.gd" id="1_1xvab"]
+[ext_resource type="Script" path="res://World/SpawnUnit.gd" id="1_1xvab"]
 [ext_resource type="Texture2D" uid="uid://dbxorrh207rop" path="res://Assets/Knight.png" id="2_gm0i1"]
 
 [node name="SpawnUnit" type="Node2D"]

@@ -1,8 +1,9 @@
 extends Node
 
 var Wood = 0
+var Coin = 0
 
-@onready var spawn = preload("res://Global/SpawnUnit.tscn")
+@onready var spawn = preload("res://World/SpawnUnit.tscn")
 
 func spawnUnit(pos):
 	var path = get_tree().get_root().get_node("World/UI")

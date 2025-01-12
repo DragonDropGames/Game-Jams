@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://yjdbd5modsiy"]
+
+[ext_resource type="Script" path="res://structures/buildings/resourceBuilding.gd" id="1_2s8ij"]
+[ext_resource type="Texture2D" uid="uid://c23hncsfe3v73" path="res://Assets/ResourceBuilding.png" id="2_pi0wg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14vjy"]
+size = Vector2(80, 64)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pf6v3"]
+bg_color = Color(0.0311346, 0.0244192, 0.0162925, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3oib"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="ResourceBuilding" type="StaticBody2D"]
+script = ExtResource("1_2s8ij")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_14vjy")
+
+[node name="ResourceBuilding" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_pi0wg")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+offset_bottom = -56.0
+theme_override_styles/background = SubResource("StyleBoxFlat_pf6v3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e3oib")
+value = 50.0
+show_percentage = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

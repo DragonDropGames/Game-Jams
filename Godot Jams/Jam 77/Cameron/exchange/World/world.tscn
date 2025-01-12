@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://btdn1101t73ky"]
+
+[ext_resource type="Script" path="res://World/world.gd" id="1_4x7c3"]
+[ext_resource type="Texture2D" uid="uid://b83vdop21cr4f" path="res://Assets/Grass.png" id="2_rr4w5"]
+[ext_resource type="Script" path="res://World/camera.gd" id="3_p64gx"]
+[ext_resource type="PackedScene" uid="uid://cymp35b4jgg1f" path="res://units/Knight.tscn" id="4_nnvem"]
+[ext_resource type="PackedScene" uid="uid://um0fqh8oaqlv" path="res://structures/foliage/tree.tscn" id="5_ehvlq"]
+[ext_resource type="PackedScene" uid="uid://27u3fboevwx8" path="res://structures/buildings/building.tscn" id="6_3mojl"]
+[ext_resource type="PackedScene" uid="uid://bkm8b7evrllvg" path="res://ui/UI.tscn" id="7_0bb50"]
+[ext_resource type="PackedScene" uid="uid://yjdbd5modsiy" path="res://structures/buildings/resourceBuilding.tscn" id="8_uxc0f"]
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_4x7c3")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1154.0
+offset_bottom = 645.0
+texture = ExtResource("2_rr4w5")
+stretch_mode = 1
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(231, 130)
+zoom = Vector2(2.5, 2.5)
+script = ExtResource("3_p64gx")
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="Knight" parent="Units" instance=ExtResource("4_nnvem")]
+position = Vector2(93, 45)
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Tree" parent="Objects" instance=ExtResource("5_ehvlq")]
+position = Vector2(46, 212)
+
+[node name="Tree2" parent="Objects" instance=ExtResource("5_ehvlq")]
+position = Vector2(427, 109)
+
+[node name="Tree3" parent="Objects" instance=ExtResource("5_ehvlq")]
+position = Vector2(188, 61)
+
+[node name="Tree4" parent="Objects" instance=ExtResource("5_ehvlq")]
+position = Vector2(423, 50)
+
+[node name="Buildings" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Building" parent="Buildings" instance=ExtResource("6_3mojl")]
+position = Vector2(377, 268)
+
+[node name="UI" parent="." instance=ExtResource("7_0bb50")]
+
+[node name="ResourceBuilding" parent="." instance=ExtResource("8_uxc0f")]
+position = Vector2(152, 267)
