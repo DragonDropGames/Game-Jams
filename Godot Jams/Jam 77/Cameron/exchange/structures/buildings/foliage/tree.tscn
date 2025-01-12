@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://um0fqh8oaqlv"]
 
-[ext_resource type="Script" path="res://structures/foliage/tree.gd" id="1_7ns8n"]
+[ext_resource type="Script" path="res://structures/buildings/foliage/tree.gd" id="1_7ns8n"]
 [ext_resource type="Texture2D" uid="uid://cumjq4ak7eqe2" path="res://Assets/Tree.png" id="2_gw6ib"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rqtdg"]

@@ -9,6 +9,7 @@ var units = 0
 
 
 func _ready() -> void:
+	add_to_group("Tree", true)
 	currTime = totalTime
 	bar.max_value = totalTime
 	
@@ -18,7 +19,6 @@ func _process(delta: float) -> void:
 		treeChopped()
 
 func _on_chop_area_body_entered(body: Node2D) -> void:
-	print(body)
 	if body.is_in_group("Units"):
 		units += 1
 		startChopping()
@@ -40,4 +40,6 @@ func startChopping():
 
 func treeChopped():
 	Game.Wood += 1
+	var miniMap = get_tree().get_root().get_node("World/UI/MiniMap/SubViewportContainer/SubViewport")
+	miniMap._ready()
 	queue_free()

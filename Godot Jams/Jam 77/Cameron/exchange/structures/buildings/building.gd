@@ -5,6 +5,9 @@ var selected = false
 
 @onready var select = get_node("Selected")
 
+func _ready() -> void:
+	add_to_group("Building", true)
+
 func _process(delta: float) -> void:
 	select.visible = selected
 

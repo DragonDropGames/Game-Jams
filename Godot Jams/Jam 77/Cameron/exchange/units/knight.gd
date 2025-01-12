@@ -11,7 +11,8 @@ var Speed = 50
 func _ready():
 	set_selected(selected)
 	add_to_group("Units", true)
-	
+	add_to_group("Knight", true)
+
 func set_selected(value):
 	selected = value
 	box.visible = value

@@ -9,6 +9,7 @@ var totalTime = 50
 var currTime
 
 func _ready() -> void:
+	add_to_group("ResourceBuilding", true)
 	currTime = totalTime
 	bar.max_value = totalTime
 	timer.start()

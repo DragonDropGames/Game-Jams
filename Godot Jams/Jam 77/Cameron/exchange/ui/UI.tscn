@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkm8b7evrllvg"]
+[gd_scene load_steps=4 format=3 uid="uid://bkm8b7evrllvg"]
 
 [ext_resource type="Script" path="res://ui/ui.gd" id="1_465eh"]
+[ext_resource type="PackedScene" uid="uid://b33pjyrrrwtrn" path="res://ui/MiniMap.tscn" id="2_fejn1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sreyj"]
 bg_color = Color(0, 0, 0, 0.282353)
@@ -25,11 +26,19 @@ offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_sreyj")
 
 [node name="Label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 1028.0
+offset_top = 5.0
+offset_right = 1143.0
+offset_bottom = 28.0
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 1.0
-offset_top = 33.0
-offset_right = 41.0
-offset_bottom = 56.0
+offset_left = 985.0
+offset_top = 34.0
+offset_right = 1147.0
+offset_bottom = 57.0
+
+[node name="MiniMap" parent="." instance=ExtResource("2_fejn1")]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 5.0
+offset_bottom = 5.0
