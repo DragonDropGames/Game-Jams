@@ -33,7 +33,7 @@ func _on_timer_timeout() -> void:
 	var chopSpeed = 1 * units
 	currTime -= chopSpeed
 	var tween = get_tree().create_tween()
-	tween.tween_property(bar, "value", currTime, 0.5).set_trans(Tween.TRANS_LINEAR)
+	tween.tween_property(bar, "value", currTime, 0.5).set_trans(Tween.TRANS_QUAD)
 	
 func startChopping():
 	timer.start()

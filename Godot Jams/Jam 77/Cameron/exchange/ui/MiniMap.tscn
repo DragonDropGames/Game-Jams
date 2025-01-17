@@ -1,34 +1,33 @@
 [gd_scene load_steps=4 format=3 uid="uid://b33pjyrrrwtrn"]
 
 [ext_resource type="Script" path="res://ui/subViewport.gd" id="1_6oomw"]
+[ext_resource type="Texture2D" uid="uid://cs1jpu4aocmmg" path="res://Assets/UI/Square_Thick.png" id="1_28epx"]
 [ext_resource type="Texture2D" uid="uid://b83vdop21cr4f" path="res://Assets/Grass.png" id="1_p2tfa"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6j2b5"]
-bg_color = Color(0, 0.635294, 0.964706, 0.231373)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 1, 1, 0.858824)
-border_blend = true
 
 [node name="MiniMap" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 120.0
-offset_bottom = 120.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 216.0
+offset_bottom = 216.0
+
+[node name="Tile0000" type="Sprite2D" parent="."]
+position = Vector2(96, 96)
+scale = Vector2(6.2, 6.358)
+texture = ExtResource("1_28epx")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 clip_contents = true
 layout_mode = 0
-offset_right = 112.0
-offset_bottom = 112.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 168.0
+offset_bottom = 168.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 handle_input_locally = false
-size = Vector2i(112, 112)
+size = Vector2i(144, 144)
 render_target_update_mode = 4
 script = ExtResource("1_6oomw")
 
@@ -40,16 +39,13 @@ texture = ExtResource("1_p2tfa")
 stretch_mode = 1
 
 [node name="Camera" type="Camera2D" parent="SubViewportContainer/SubViewport"]
-position = Vector2(231, 130)
 zoom = Vector2(2.5, 2.5)
+limit_left = -5
+limit_top = -5
+limit_right = 6955
+limit_bottom = 4905
+editor_draw_limits = true
 
 [node name="Units" type="Node2D" parent="SubViewportContainer/SubViewport"]
 
 [node name="Other" type="Node2D" parent="SubViewportContainer/SubViewport"]
-
-[node name="BG" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 112.0
-offset_bottom = 112.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_6j2b5")
-metadata/_edit_lock_ = true

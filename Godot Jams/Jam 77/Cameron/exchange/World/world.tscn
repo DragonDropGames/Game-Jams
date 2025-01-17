@@ -13,47 +13,53 @@
 y_sort_enabled = true
 script = ExtResource("1_4x7c3")
 
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+limit_left = -5
+limit_top = -5
+limit_right = 6955
+limit_bottom = 4905
+editor_draw_limits = true
+script = ExtResource("3_p64gx")
+
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 1155.0
-offset_bottom = 646.0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 6956.0
+offset_bottom = 4892.0
 texture = ExtResource("2_rr4w5")
 stretch_mode = 1
-
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2(231, 130)
-zoom = Vector2(2.5, 2.5)
-script = ExtResource("3_p64gx")
 
 [node name="Units" type="Node2D" parent="."]
 y_sort_enabled = true
 
 [node name="Knight" parent="Units" instance=ExtResource("4_nnvem")]
-position = Vector2(292, 93)
+position = Vector2(448, 241)
 
 [node name="Objects" type="Node2D" parent="."]
 y_sort_enabled = true
+metadata/_edit_lock_ = true
 
 [node name="Tree" parent="Objects" instance=ExtResource("5_ehvlq")]
-position = Vector2(46, 212)
+position = Vector2(959, 591)
 
 [node name="Tree2" parent="Objects" instance=ExtResource("5_ehvlq")]
-position = Vector2(427, 109)
+position = Vector2(1660, 264)
 
 [node name="Tree3" parent="Objects" instance=ExtResource("5_ehvlq")]
-position = Vector2(188, 61)
+position = Vector2(1210, 501)
 
 [node name="Tree4" parent="Objects" instance=ExtResource("5_ehvlq")]
-position = Vector2(423, 50)
+position = Vector2(1656, 205)
 
 [node name="Buildings" type="Node2D" parent="."]
 y_sort_enabled = true
+metadata/_edit_lock_ = true
 
 [node name="ResourceBuilding" parent="Buildings" instance=ExtResource("8_uxc0f")]
-position = Vector2(152, 267)
+position = Vector2(512, 980)
 
 [node name="Building" parent="Buildings" instance=ExtResource("6_3mojl")]
-position = Vector2(377, 268)
+position = Vector2(1133, 759)
 
 [node name="UI" parent="." instance=ExtResource("7_0bb50")]

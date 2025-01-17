@@ -17,5 +17,3 @@ func spawnUnit(pos):
 		var spawnUnit = spawn.instantiate()
 		spawnUnit.spawnLocation = pos
 		path.add_child(spawnUnit)
-	
-	

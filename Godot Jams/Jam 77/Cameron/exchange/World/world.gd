@@ -15,9 +15,11 @@ func _on_area_selected(object):
 	var area = []
 	area.append(Vector2(min(start.x, end.x), min(start.y, end.y)))
 	area.append(Vector2(max(start.x, end.x), max(start.y, end.y)))
+	#print(area)
 	var unitsInArea = get_units_in_area(area)
-
+	#print(unitsInArea)
 	for unit in units:
+		print(unit.position)
 		unit.set_selected(false)
 		
 	for unit in unitsInArea:

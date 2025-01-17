@@ -15,7 +15,7 @@ func _ready():
 func _process(delta: float) -> void:
 	var cameraPath = get_tree().get_root().get_node("World/Camera")
 	camera.position = cameraPath.position / 2 
-	camera.zoom = cameraPath.zoom / 2 
+	camera.zoom = cameraPath.zoom / 5 
 	
 	updateUnitPos()
 	

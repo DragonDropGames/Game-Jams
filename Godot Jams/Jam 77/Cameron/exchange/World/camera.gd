@@ -33,6 +33,8 @@ func _process(delta: float) -> void:
 func handleCameraMovement(delta: float):
 	var inputX = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
 	var inputY = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+	print(inputX)
+	print(inputY)
 	
 	position.x = lerp(position.x, position.x + (inputX * SPEED * zoom.x), SPEED * delta)
 	position.y = lerp(position.y, position.y + (inputY * SPEED * zoom.y), SPEED * delta)
@@ -49,6 +51,8 @@ func handleUnitSelection():
 	if Input.is_action_just_pressed("Left Click"):
 		start = mousePosGlobal
 		startV = mousePos
+		print(start)
+		print(startV)
 		isDragging = true
 	
 	if isDragging:
