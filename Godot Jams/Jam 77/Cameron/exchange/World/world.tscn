@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://btdn1101t73ky"]
+
+[ext_resource type="Script" path="res://World/world.gd" id="1_4x7c3"]
+[ext_resource type="Texture2D" uid="uid://b83vdop21cr4f" path="res://Assets/Grass.png" id="2_rr4w5"]
+[ext_resource type="Script" path="res://World/camera.gd" id="3_p64gx"]
+[ext_resource type="PackedScene" uid="uid://cymp35b4jgg1f" path="res://units/Knight.tscn" id="4_nnvem"]
+[ext_resource type="PackedScene" uid="uid://um0fqh8oaqlv" path="res://structures/buildings/foliage/tree.tscn" id="5_ehvlq"]
+[ext_resource type="PackedScene" uid="uid://27u3fboevwx8" path="res://structures/buildings/building.tscn" id="6_3mojl"]
+[ext_resource type="PackedScene" uid="uid://bkm8b7evrllvg" path="res://ui/UI.tscn" id="7_0bb50"]
+[ext_resource type="PackedScene" uid="uid://yjdbd5modsiy" path="res://structures/buildings/resourceBuilding.tscn" id="8_uxc0f"]
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_4x7c3")
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+limit_left = -5
+limit_top = -5
+limit_right = 6955
+limit_bottom = 4905
+editor_draw_limits = true
+script = ExtResource("3_p64gx")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 6956.0
+offset_bottom = 4892.0
+texture = ExtResource("2_rr4w5")
+stretch_mode = 1
+
+[node name="Units" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Knight" parent="Units" instance=ExtResource("4_nnvem")]
+position = Vector2(448, 241)
+
+[node name="Objects" type="Node2D" parent="."]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="Tree" parent="Objects" instance=ExtResource("5_ehvlq")]
+position = Vector2(959, 591)
+
+[node name="Tree2" parent="Objects" instance=ExtResource("5_ehvlq")]
+position = Vector2(1660, 264)
+
+[node name="Tree3" parent="Objects" instance=ExtResource("5_ehvlq")]
+position = Vector2(1210, 501)
+
+[node name="Tree4" parent="Objects" instance=ExtResource("5_ehvlq")]
+position = Vector2(1656, 205)
+
+[node name="Buildings" type="Node2D" parent="."]
+y_sort_enabled = true
+metadata/_edit_lock_ = true
+
+[node name="ResourceBuilding" parent="Buildings" instance=ExtResource("8_uxc0f")]
+position = Vector2(512, 980)
+
+[node name="Building" parent="Buildings" instance=ExtResource("6_3mojl")]
+position = Vector2(1133, 759)
+
+[node name="UI" parent="." instance=ExtResource("7_0bb50")]

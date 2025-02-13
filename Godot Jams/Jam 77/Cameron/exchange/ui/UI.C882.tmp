@@ -1,0 +1,129 @@
+[gd_scene load_steps=11 format=3 uid="uid://bkm8b7evrllvg"]
+
+[ext_resource type="Script" path="res://ui/ui.gd" id="1_465eh"]
+[ext_resource type="PackedScene" uid="uid://b33pjyrrrwtrn" path="res://ui/MiniMap.tscn" id="2_fejn1"]
+[ext_resource type="Texture2D" uid="uid://c23hncsfe3v73" path="res://Assets/ResourceBuilding.png" id="3_gxvuk"]
+[ext_resource type="Texture2D" uid="uid://5hc50pk8akyr" path="res://Assets/UI/SquareGrid.png" id="4_7hu68"]
+[ext_resource type="Texture2D" uid="uid://6osbqym7beb1" path="res://Assets/Building.png" id="5_bakyg"]
+[ext_resource type="Texture2D" uid="uid://bofrof7y8neq5" path="res://Assets/UI/tile_0006.png" id="6_8yeba"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sreyj"]
+bg_color = Color(0, 0, 0, 0.282353)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0.333333, 0.498039, 0.796078)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gasn"]
+bg_color = Color(0, 0.67451, 0.752941, 0.282353)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pualt"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ho2lb"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="UINode" type="Node2D"]
+script = ExtResource("1_465eh")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="UI"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sreyj")
+
+[node name="MiniMap" parent="UI" instance=ExtResource("2_fejn1")]
+offset_left = 1616.0
+offset_top = 774.0
+offset_right = 1616.0
+offset_bottom = 774.0
+scale = Vector2(1.5, 1.5)
+metadata/_edit_use_anchors_ = true
+
+[node name="Build" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1653.0
+offset_top = 531.0
+offset_right = 1873.0
+offset_bottom = 754.0
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Tile0026" type="Sprite2D" parent="UI/Build"]
+position = Vector2(110, 111)
+scale = Vector2(7, 7)
+texture = ExtResource("4_7hu68")
+
+[node name="ResourceBuilding" type="Sprite2D" parent="UI/Build"]
+position = Vector2(111, 63)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_gxvuk")
+
+[node name="Building" type="Control" parent="UI/Build"]
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 44.0
+offset_right = 80.0
+offset_bottom = 84.0
+
+[node name="Selected" type="Panel" parent="UI/Build/Building"]
+visible = false
+layout_mode = 0
+offset_top = -3.0
+offset_right = 42.0
+offset_bottom = 39.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8gasn")
+
+[node name="Building" type="Sprite2D" parent="UI/Build/Building"]
+position = Vector2(20, 18)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_bakyg")
+
+[node name="Resources" type="Node" parent="UI"]
+
+[node name="Coin" type="Node" parent="UI/Resources"]
+
+[node name="Tile0006" type="Sprite2D" parent="UI/Resources/Coin"]
+physics_interpolation_mode = 2
+position = Vector2(1572, 880)
+scale = Vector2(2, 2)
+texture = ExtResource("6_8yeba")
+metadata/_edit_use_anchors_ = true
+
+[node name="CoinLabel" type="Label" parent="UI/Resources/Coin"]
+offset_left = 1554.0
+offset_top = 862.0
+offset_right = 1590.0
+offset_bottom = 898.0
+label_settings = SubResource("LabelSettings_pualt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Wood" type="Node" parent="UI/Resources"]
+
+[node name="Tile0009" type="Sprite2D" parent="UI/Resources/Wood"]
+position = Vector2(1573, 808)
+scale = Vector2(2, 2)
+texture = ExtResource("6_8yeba")
+
+[node name="Label" type="Label" parent="UI/Resources/Wood"]
+offset_left = 1555.0
+offset_top = 789.0
+offset_right = 1591.0
+offset_bottom = 826.0
+label_settings = SubResource("LabelSettings_ho2lb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="gui_input" from="UI/Build/Building" to="UI" method="_on_building_gui_input"]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://um0fqh8oaqlv"]
+
+[ext_resource type="Script" path="res://structures/buildings/foliage/tree.gd" id="1_7ns8n"]
+[ext_resource type="Texture2D" uid="uid://cumjq4ak7eqe2" path="res://Assets/Tree.png" id="2_gw6ib"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rqtdg"]
+size = Vector2(16, 6)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lgyev"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6j35c"]
+bg_color = Color(0.0311346, 0.0244192, 0.0162925, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htf4h"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Tree" type="StaticBody2D"]
+script = ExtResource("1_7ns8n")
+
+[node name="Tree" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_gw6ib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_rqtdg")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -7)
+scale = Vector2(2.5, 2.5)
+shape = SubResource("CircleShape2D_lgyev")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -9.0
+offset_top = -29.0
+offset_right = 8.0
+offset_bottom = -27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6j35c")
+theme_override_styles/fill = SubResource("StyleBoxFlat_htf4h")
+value = 50.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_chop_area_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_chop_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://b33pjyrrrwtrn"]
+
+[ext_resource type="Script" path="res://ui/subViewport.gd" id="1_6oomw"]
+[ext_resource type="Texture2D" uid="uid://cs1jpu4aocmmg" path="res://Assets/UI/Square_Thick.png" id="1_28epx"]
+[ext_resource type="Texture2D" uid="uid://b83vdop21cr4f" path="res://Assets/Grass.png" id="1_p2tfa"]
+
+[node name="MiniMap" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 216.0
+offset_bottom = 216.0
+
+[node name="Tile0000" type="Sprite2D" parent="."]
+position = Vector2(96, 96)
+scale = Vector2(6.2, 6.358)
+texture = ExtResource("1_28epx")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+clip_contents = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 168.0
+offset_bottom = 168.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(144, 144)
+render_target_update_mode = 4
+script = ExtResource("1_6oomw")
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport"]
+offset_right = 1154.0
+offset_bottom = 645.0
+scale = Vector2(2, 2)
+texture = ExtResource("1_p2tfa")
+stretch_mode = 1
+
+[node name="Camera" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+zoom = Vector2(2.5, 2.5)
+limit_left = -5
+limit_top = -5
+limit_right = 6955
+limit_bottom = 4905
+editor_draw_limits = true
+
+[node name="Units" type="Node2D" parent="SubViewportContainer/SubViewport"]
+
+[node name="Other" type="Node2D" parent="SubViewportContainer/SubViewport"]
