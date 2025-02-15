@@ -5,16 +5,17 @@ var speed = 10
 var followCursor = false
 @export var isSelected = false
 @onready var target = position
+@onready var selectedPanel = get_node("SelectedPanel")
 
 # Wagon Customization Properties
 @onready var bowWagonImage = get_node("CollisionShape2D/BowWagon")
 @onready var mainWagonImage = get_node("CollisionShape2D/MainWagon")
 @onready var resourceWagonImage = get_node("CollisionShape2D/ResourceWagon")
 @onready var swordWagonImage = get_node("CollisionShape2D/SwordWagon")
-var isMainWagon = false
-var isSwordWagon = false
-var isBowWagon = false
-var isResourceWagon = false
+@export var isMainWagon = false
+@export var isSwordWagon = false
+@export var isBowWagon = false
+@export var isResourceWagon = false
 var lightRadius = 0
 
 func _ready():
@@ -38,21 +39,23 @@ func _physics_process(delta: float) -> void:
 
 func setSelected(value):
 	isSelected = value
+	selectedPanel.visible = value
+	
 
 func setProperties():
 	if isMainWagon:
 		speed = 5
-		mainWagonImage.visibility = true
+		mainWagonImage.visible = true
 		lightRadius = 30
 	elif isSwordWagon:
 		speed = 10
-		swordWagonImage.visibility = true
+		swordWagonImage.visible = true
 		lightRadius = 15
 	elif isBowWagon:
 		speed = 10
-		bowWagonImage.visibility = true
+		bowWagonImage.visible = true
 		lightRadius = 15
 	elif isResourceWagon:
 		speed = 15
-		resourceWagonImage.visibility = true
+		resourceWagonImage.visible = true
 		lightRadius = 20

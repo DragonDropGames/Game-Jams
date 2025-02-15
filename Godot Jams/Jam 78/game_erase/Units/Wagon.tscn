@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy7232f5xniil"]
+[gd_scene load_steps=8 format=3 uid="uid://cy7232f5xniil"]
 
 [ext_resource type="Script" path="res://Units/wagon.gd" id="1_24qf5"]
 [ext_resource type="Texture2D" uid="uid://bq3bbh6en201i" path="res://Assets/Wagon/BowWagon.png" id="2_fgr36"]
@@ -6,11 +6,30 @@
 [ext_resource type="Texture2D" uid="uid://cj7smce3ci5g7" path="res://Assets/Wagon/ResourceWagon.png" id="4_xl4qy"]
 [ext_resource type="Texture2D" uid="uid://ds5deyb62h55" path="res://Assets/Wagon/SwordWagon.png" id="5_3ieid"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kfxd"]
+bg_color = Color(0, 0.658824, 0.854902, 0.227451)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0, 0.658824, 0.854902, 0.752941)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agtqq"]
 size = Vector2(122, 120)
 
 [node name="Wagon" type="CharacterBody2D"]
 script = ExtResource("1_24qf5")
+
+[node name="SelectedPanel" type="Panel" parent="."]
+offset_left = -70.0
+offset_top = -69.0
+offset_right = 70.0
+offset_bottom = 70.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kfxd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_agtqq")

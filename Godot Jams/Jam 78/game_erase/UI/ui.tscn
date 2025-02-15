@@ -1,16 +1,21 @@
 [gd_scene load_steps=2 format=3 uid="uid://vys72xs8cl6y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn0pl"]
-bg_color = Color(0.6, 0.6, 0.6, 0.552941)
+bg_color = Color(0.6, 0.6, 0.6, 0.313726)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0, 0, 0, 0.494118)
+border_color = Color(0, 0, 0, 0.345098)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="UI" type="CanvasLayer"]
 
 [node name="SelectionPanel" type="Panel" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_nn0pl")

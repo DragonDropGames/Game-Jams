@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bltd0m6dat5d4"]
+[gd_scene load_steps=4 format=3 uid="uid://bltd0m6dat5d4"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_qqdj6"]
 [ext_resource type="Script" path="res://World/camera.gd" id="2_7m5te"]
+[ext_resource type="PackedScene" uid="uid://vys72xs8cl6y" path="res://UI/ui.tscn" id="2_h5dbn"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_qqdj6")
 
+[node name="UI" parent="." instance=ExtResource("2_h5dbn")]
+
 [node name="Camera" type="Camera2D" parent="."]
+position = Vector2(575, 324)
 script = ExtResource("2_7m5te")
 
 [node name="Units" type="Node2D" parent="."]
