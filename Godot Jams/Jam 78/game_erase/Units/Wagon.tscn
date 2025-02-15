@@ -1,10 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://de75qkcuh78q2"]
+[gd_scene load_steps=7 format=3 uid="uid://cy7232f5xniil"]
 
 [ext_resource type="Script" path="res://Units/wagon.gd" id="1_24qf5"]
-[ext_resource type="Texture2D" path="res://Assets/Wagon/BowWagon.png" id="2_fgr36"]
-[ext_resource type="Texture2D" path="res://Assets/Wagon/MainWagon.png" id="3_74cm7"]
-[ext_resource type="Texture2D" path="res://Assets/Wagon/ResourceWagon.png" id="4_xl4qy"]
-[ext_resource type="Texture2D" path="res://Assets/Wagon/SwordWagon.png" id="5_3ieid"]
+[ext_resource type="Texture2D" uid="uid://bq3bbh6en201i" path="res://Assets/Wagon/BowWagon.png" id="2_fgr36"]
+[ext_resource type="Texture2D" uid="uid://bxbrf5wu4ksfw" path="res://Assets/Wagon/MainWagon.png" id="3_74cm7"]
+[ext_resource type="Texture2D" uid="uid://cj7smce3ci5g7" path="res://Assets/Wagon/ResourceWagon.png" id="4_xl4qy"]
+[ext_resource type="Texture2D" uid="uid://ds5deyb62h55" path="res://Assets/Wagon/SwordWagon.png" id="5_3ieid"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agtqq"]
 size = Vector2(122, 120)
