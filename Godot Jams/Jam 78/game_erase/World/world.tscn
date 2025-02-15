@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bltd0m6dat5d4"]
+
+[ext_resource type="Script" path="res://World/world.gd" id="1_qqdj6"]
+[ext_resource type="Script" path="res://World/camera.gd" id="2_7m5te"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_qqdj6")
+
+[node name="Camera" type="Camera2D" parent="."]
+script = ExtResource("2_7m5te")
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Resources" type="Node2D" parent="."]
