@@ -1,13 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://bj68p12cthhye"]
+[gd_scene load_steps=23 format=3 uid="uid://bj68p12cthhye"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_37q7v"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="1_g5w0v"]
+[ext_resource type="PackedScene" uid="uid://vys72xs8cl6y" path="res://UI/ui.tscn" id="2_aawxf"]
+[ext_resource type="Script" path="res://World/camera.gd" id="2_js0y7"]
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/modifier_2d.gd" id="2_vip6i"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_settings.gd" id="3_dcj0b"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd" id="4_ogk7w"]
 [ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="5_vsthn"]
 [ext_resource type="Script" path="res://addons/gaea/renderers/2D/threaded_tilemap_gaea_renderer.gd" id="6_7mnyf"]
 [ext_resource type="Texture2D" uid="uid://bbcrltgn4k240" path="res://Assets/tilemap.png" id="7_x855d"]
+[ext_resource type="PackedScene" uid="uid://cy7232f5xniil" path="res://Units/Wagon.tscn" id="9_yikqd"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_o0uva"]
 noise_type = 0
@@ -300,6 +303,12 @@ light_mode = 2
 [node name="World" type="Node2D"]
 script = ExtResource("1_37q7v")
 
+[node name="UI" parent="." instance=ExtResource("2_aawxf")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(578, 323)
+script = ExtResource("2_js0y7")
+
 [node name="NoiseGenerator" type="Node" parent="."]
 script = ExtResource("1_g5w0v")
 settings = SubResource("Resource_omemv")
@@ -318,3 +327,19 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608,
 [node name="Fog" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_43ash")
 centered = false
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="Wagons" type="Node2D" parent="."]
+
+[node name="Wagon" parent="Wagons" instance=ExtResource("9_yikqd")]
+position = Vector2(683, 363)
+isMainWagon = true
+
+[node name="Wagon2" parent="Wagons" instance=ExtResource("9_yikqd")]
+position = Vector2(167, 358)
+isSwordWagon = true
+
+[node name="Resources" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]

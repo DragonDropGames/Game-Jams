@@ -31,9 +31,10 @@ func _ready():
 	fogImage.fill(Color.BLACK)
 	lightImage.convert(Image.FORMAT_RGBAH)
 	fog.scale *= GRID_SIZE
-	
-	update_fog(Vector2(0,0))
-	
+
+func _process(delta: float) -> void:
+	for wagon in wagons:
+		update_fog(wagon.position/GRID_SIZE)
 	
 func _on_area_selected(object):
 	var start = object.start
@@ -89,7 +90,3 @@ func update_fog(new_grid_position):
 func update_fog_image_texture():
 	fogTexture= ImageTexture.create_from_image(fogImage)
 	fog.texture = fogTexture
-
-func _input(event):
-	#change mouse position to unit position
-	update_fog(get_local_mouse_position()/GRID_SIZE)
