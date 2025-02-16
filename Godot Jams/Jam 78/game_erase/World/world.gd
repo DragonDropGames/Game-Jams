@@ -32,6 +32,8 @@ func _ready():
 	lightImage.convert(Image.FORMAT_RGBAH)
 	fog.scale *= GRID_SIZE
 	
+	update_fog(Vector2(0,0))
+	
 	
 func _on_area_selected(object):
 	var start = object.start
