@@ -8,44 +8,48 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kfxd"]
 bg_color = Color(0, 0.658824, 0.854902, 0.227451)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0, 0.658824, 0.854902, 0.752941)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agtqq"]
-size = Vector2(122, 120)
+size = Vector2(34, 32)
 
 [node name="Wagon" type="CharacterBody2D"]
 script = ExtResource("1_24qf5")
 
 [node name="SelectedPanel" type="Panel" parent="."]
-offset_left = -70.0
-offset_top = -69.0
-offset_right = 70.0
-offset_bottom = 70.0
+visible = false
+offset_left = -21.0
+offset_top = -20.0
+offset_right = 21.0
+offset_bottom = 20.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_2kfxd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_agtqq")
 
-[node name="SwordWagon" type="Sprite2D" parent="CollisionShape2D"]
-visible = false
+[node name="SwordWagon" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_3ieid")
 
-[node name="ResourceWagon" type="Sprite2D" parent="CollisionShape2D"]
+[node name="ResourceWagon" type="Sprite2D" parent="."]
 visible = false
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_xl4qy")
 
-[node name="MainWagon" type="Sprite2D" parent="CollisionShape2D"]
+[node name="MainWagon" type="Sprite2D" parent="."]
 visible = false
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_74cm7")
 
-[node name="BowWagon" type="Sprite2D" parent="CollisionShape2D"]
+[node name="BowWagon" type="Sprite2D" parent="."]
 visible = false
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_fgr36")
