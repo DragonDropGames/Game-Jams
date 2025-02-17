@@ -1,11 +1,19 @@
 extends CharacterBody2D
 
+class_name Wagon
 # All Wagon Properties
 var speed = 20
 var followCursor = false
 @export var isSelected = false
+@export var showingUI = false
+@export var maxHealth = 100
+
+signal healthChanged(value);
+var health: int;
+
 @onready var target = position
 @onready var selectedPanel = get_node("SelectedPanel")
+@onready var wagonUI = get_node("SelectedPanel")
 
 # Wagon Customization Properties
 @onready var bowWagonImage = get_node("BowWagon")
@@ -21,6 +29,8 @@ var lightRadius = 0
 func _ready():
 	add_to_group("Wagons", true)
 	setProperties()
+	health = maxHealth
+	healthChanged.emit(health)
 
 func _input(event):
 	if event.is_action_pressed("RightClick"):
@@ -41,6 +51,20 @@ func setSelected(value):
 	isSelected = value
 	selectedPanel.visible = value
 	
+func showUI(value):
+	showingUI = value
+	wagonUI.visible = value
+
+func takeDamage(value):
+	health -= value
+	healthChanged.emit(health)
+	if health <=0:
+		die()
+		
+
+func die():
+	queue_free()
+
 func setProperties():
 	if isMainWagon:
 		speed = 15

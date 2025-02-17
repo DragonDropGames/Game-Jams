@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8pq3eid4sodk"]
+
+[ext_resource type="Texture2D" uid="uid://blayfs3wyr2ol" path="res://Assets/UI/buttonLong_blue.png" id="1_rt3j8"]
+[ext_resource type="Texture2D" uid="uid://lt5m7hgfcq8i" path="res://Assets/UI/barRed_horizontalMid.png" id="2_42alq"]
+[ext_resource type="Script" path="res://UI/Health Bar/health_bar.gd" id="3_lhxh5"]
+
+[node name="HealthBar" type="TextureProgressBar"]
+texture_under = ExtResource("1_rt3j8")
+texture_progress = ExtResource("2_42alq")
+script = ExtResource("3_lhxh5")

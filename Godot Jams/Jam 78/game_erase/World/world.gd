@@ -55,10 +55,12 @@ func updateUnitSelectedStatus(items, isSelected):
 
 func get_units_in_area(area):
 	var unitsInArea = []
+	
 	for unit in units:
 		if (unit.position.x > area[0].x) and (unit.position.x < area[1].x):
 			if (unit.position.y > area[0].y) and (unit.position.y < area[1].y):
 				unitsInArea.append(unit)
+				unit.showUI(true)
 	
 	for wagon in wagons:
 		if (wagon.position.x > area[0].x) and (wagon.position.x < area[1].x):

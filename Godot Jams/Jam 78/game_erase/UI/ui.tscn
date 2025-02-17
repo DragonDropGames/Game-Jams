@@ -13,6 +13,7 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [node name="UI" type="CanvasLayer"]
+layer = 3
 
 [node name="SelectionPanel" type="Panel" parent="."]
 visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bj68p12cthhye"]
+[gd_scene load_steps=24 format=3 uid="uid://bj68p12cthhye"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_37q7v"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="1_g5w0v"]
@@ -11,10 +11,12 @@
 [ext_resource type="Script" path="res://addons/gaea/renderers/2D/threaded_tilemap_gaea_renderer.gd" id="6_7mnyf"]
 [ext_resource type="Texture2D" uid="uid://bbcrltgn4k240" path="res://Assets/tilemap.png" id="7_x855d"]
 [ext_resource type="PackedScene" uid="uid://cy7232f5xniil" path="res://Units/Wagon.tscn" id="9_yikqd"]
+[ext_resource type="PackedScene" uid="uid://b2ugvqlcsbrw6" path="res://UI/Health Bar/HealthBar.tscn" id="12_ewjel"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_o0uva"]
 noise_type = 0
 seed = -975846560
+frequency = 0.1039
 
 [sub_resource type="Resource" id="Resource_4u7qr"]
 script = ExtResource("5_vsthn")
@@ -343,3 +345,18 @@ isSwordWagon = true
 [node name="Resources" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Node2D2" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="HealthBar" parent="CanvasLayer" node_paths=PackedStringArray("wagon") instance=ExtResource("12_ewjel")]
+offset_left = 147.0
+offset_top = 34.0
+offset_right = 345.0
+offset_bottom = 83.0
+value = 45.0
+wagon = NodePath("../../Wagons/Wagon")
