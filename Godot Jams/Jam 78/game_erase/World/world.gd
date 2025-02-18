@@ -17,7 +17,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	for wagon in wagons:
-		emit_signal("update_fog",wagon.position)
+		emit_signal("update_fog",wagon.position, wagon.lightScale)
 	
 func _on_area_selected(object):
 	var start = object.start
