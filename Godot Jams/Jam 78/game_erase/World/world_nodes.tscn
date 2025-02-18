@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0w78bkfx426i"]
+[gd_scene load_steps=5 format=3 uid="uid://c0w78bkfx426i"]
 
 [ext_resource type="PackedScene" uid="uid://byf4nkgylxsx8" path="res://Units/combatUnit.tscn" id="1_es40y"]
 [ext_resource type="PackedScene" uid="uid://cy7232f5xniil" path="res://Units/Wagon.tscn" id="2_2776d"]
+[ext_resource type="PackedScene" uid="uid://cd2syih2mid6q" path="res://Units/resourceUnit.tscn" id="2_ml6ot"]
+[ext_resource type="PackedScene" uid="uid://cgp5eivo4vtgt" path="res://Structures/resource.tscn" id="4_m4483"]
 
 [node name="WorldNodes" type="Node2D"]
 
@@ -9,6 +11,9 @@
 
 [node name="CombatUnit" parent="Units" instance=ExtResource("1_es40y")]
 position = Vector2(261, 399)
+
+[node name="ResourceUnit" parent="Units" instance=ExtResource("2_ml6ot")]
+position = Vector2(222, 370)
 
 [node name="Wagons" type="Node2D" parent="."]
 
@@ -20,5 +25,8 @@ position = Vector2(167, 358)
 wagon = 1
 
 [node name="Resources" type="Node2D" parent="."]
+
+[node name="Resource" parent="Resources" instance=ExtResource("4_m4483")]
+position = Vector2(373, 243)
 
 [node name="Enemies" type="Node2D" parent="."]
