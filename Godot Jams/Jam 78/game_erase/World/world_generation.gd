@@ -6,11 +6,7 @@ const REVEAL_SIZE = 25
 @onready var fog = $Fog
 
 var map_rect: Rect2
-
 var darkness_image = Image.new()
-
-#var fog_image = Image.new()
-
 var light_image = LightTexture.get_image()
 var light_offset = Vector2(LightTexture.get_width() / 2, LightTexture.get_height() / 2)
 
@@ -37,7 +33,7 @@ func update_fog(new_grid_position, light_scale):
 		darkness_image.blend_rect(light_image, Rect2(Vector2.ZERO, reveal), clear_pos)
 		
 		cleared.append(clear_pos)
-
+	
 		update_fog_image_texture()
 	
 func update_fog_image_texture():
