@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vsp4jupipdag"]
+
+[ext_resource type="Texture2D" uid="uid://chtae0fox8nre" path="res://Assets/2d_lights_and_shadows_neutral_point_light.webp" id="1_qiwu1"]
+
+[node name="PointLight" type="PointLight2D"]
+texture = ExtResource("1_qiwu1")
