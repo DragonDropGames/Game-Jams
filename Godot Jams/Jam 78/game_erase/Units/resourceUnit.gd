@@ -17,6 +17,7 @@ var ARMOR_SCALER = .5
 
 func _ready():
 	add_to_group("Units")
+	add_to_group("Villagers")
 
 func _process(delta: float) -> void:
 	if !isInLight:
