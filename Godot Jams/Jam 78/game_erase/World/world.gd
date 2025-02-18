@@ -13,8 +13,6 @@ var fogTexture = ImageTexture.new()
 var lightImage = LightTexture.get_image()
 var light_offset = Vector2(LightTexture.get_width()/2, LightTexture.get_height()/2)
 
-
-
 var units = []
 var wagons = []
 var enemies = []
@@ -81,7 +79,6 @@ func load_resources():
 	resources = get_tree().get_nodes_in_group("Resources")
 	
 func update_fog(new_grid_position):
-	
 	var light_rect = Rect2(Vector2.ZERO, Vector2(lightImage.get_width(), lightImage.get_height()))
 	fogImage.blend_rect(lightImage, light_rect, new_grid_position - light_offset)
 
