@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0w78bkfx426i"]
+
+[ext_resource type="PackedScene" uid="uid://byf4nkgylxsx8" path="res://Units/combatUnit.tscn" id="1_es40y"]
+[ext_resource type="PackedScene" uid="uid://cy7232f5xniil" path="res://Units/Wagon.tscn" id="2_2776d"]
+
+[node name="WorldNodes" type="Node2D"]
+
+[node name="Units" type="Node2D" parent="."]
+
+[node name="CombatUnit" parent="Units" instance=ExtResource("1_es40y")]
+position = Vector2(261, 399)
+
+[node name="Wagons" type="Node2D" parent="."]
+
+[node name="Wagon" parent="Wagons" instance=ExtResource("2_2776d")]
+position = Vector2(683, 363)
+
+[node name="Wagon2" parent="Wagons" instance=ExtResource("2_2776d")]
+position = Vector2(167, 358)
+wagon = 1
+
+[node name="Resources" type="Node2D" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]
