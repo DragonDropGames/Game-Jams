@@ -1,7 +1,7 @@
 extends Node2D
 
 const LightTexture = preload("res://Assets/Light.png")
-const GRID_SIZE = 16
+const GRID_SIZE = 25
 
 @onready var fog = $Fog
 
