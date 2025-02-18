@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://byf4nkgylxsx8"]
+
+[ext_resource type="Texture2D" uid="uid://ouq187lr8hq4" path="res://Assets/Units/SwordUnit.png" id="1_a2t47"]
+[ext_resource type="Script" path="res://Units/combatUnit.gd" id="1_riq1d"]
+[ext_resource type="Texture2D" uid="uid://cgrahgwsscpw8" path="res://Assets/Units/BowUnit.png" id="3_b5br5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avdxd"]
+radius = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4s4rt"]
+bg_color = Color(0, 0.658824, 0.854902, 0.227451)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0.658824, 0.854902, 0.752941)
+corner_radius_top_left = 1
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_o23ut"]
+font_size = 10
+
+[node name="CombatUnit" type="CharacterBody2D"]
+script = ExtResource("1_riq1d")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_avdxd")
+
+[node name="SwordUnit" type="Sprite2D" parent="Collision"]
+visible = false
+position = Vector2(0, -1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_a2t47")
+
+[node name="BowUnit" type="Sprite2D" parent="Collision"]
+visible = false
+position = Vector2(0, -1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_b5br5")
+
+[node name="SelectedPanel" type="Panel" parent="."]
+visible = false
+offset_left = -8.0
+offset_top = -15.0
+offset_right = 11.0
+offset_bottom = 14.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4s4rt")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -13.0
+offset_top = -28.0
+offset_right = 13.0
+offset_bottom = -14.0
+text = "SAFE"
+label_settings = SubResource("LabelSettings_o23ut")

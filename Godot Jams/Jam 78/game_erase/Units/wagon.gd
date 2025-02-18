@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+enum WAGON_TYPE { MAIN, SWORD, BOW, RESOURCE }
+
 # All Wagon Properties
 var speed = 20
 var followCursor = false
@@ -8,15 +10,14 @@ var followCursor = false
 @onready var selectedPanel = get_node("SelectedPanel")
 
 # Wagon Customization Properties
-@onready var bowWagonImage = get_node("BowWagon")
-@onready var mainWagonImage = get_node("MainWagon")
-@onready var resourceWagonImage = get_node("ResourceWagon")
-@onready var swordWagonImage = get_node("SwordWagon")
-@export var isMainWagon = false
-@export var isSwordWagon = false
-@export var isBowWagon = false
-@export var isResourceWagon = false
-var lightRadius = 0
+@onready var bowWagonImage = get_node("WagonCollision/BowWagon")
+@onready var mainWagonImage = get_node("WagonCollision/MainWagon")
+@onready var resourceWagonImage = get_node("WagonCollision/ResourceWagon")
+@onready var swordWagonImage = get_node("WagonCollision/SwordWagon")
+@onready var lightImage = get_node("LightCollision/Light")
+@onready var lightArea = get_node("LightArea/CollisionShape2D")
+@export var wagon: WAGON_TYPE
+var lightScale = Vector2(10, 10)
 
 func _ready():
 	add_to_group("Wagons", true)
@@ -42,23 +43,35 @@ func setSelected(value):
 	selectedPanel.visible = value
 	
 func setProperties():
-	if isMainWagon:
-		speed = 15
-		mainWagonImage.visible = true
-		lightRadius = 30
-		add_to_group("MainWagon", true)
-	elif isSwordWagon:
-		speed = 20
-		swordWagonImage.visible = true
-		lightRadius = 15
-		add_to_group("SwordWagon", true)
-	elif isBowWagon:
-		speed = 20
-		bowWagonImage.visible = true
-		lightRadius = 15
-		add_to_group("BowWagon", true)
-	elif isResourceWagon:
-		speed = 15
-		resourceWagonImage.visible = true
-		lightRadius = 20
-		add_to_group("ResourceWagon", true)
+	match wagon:
+		WAGON_TYPE.MAIN:
+			speed = 15
+			mainWagonImage.visible = true
+			lightScale = Vector2(30, 30)
+			add_to_group("MainWagon", true)
+		WAGON_TYPE.SWORD:
+			speed = 20
+			swordWagonImage.visible = true
+			lightScale = Vector2(15, 15)
+			add_to_group("SwordWagon", true)
+		WAGON_TYPE.BOW:
+			speed = 20
+			bowWagonImage.visible = true
+			lightScale = Vector2(15, 15)
+			add_to_group("BowWagon", true)
+		WAGON_TYPE.RESOURCE:
+			speed = 15
+			resourceWagonImage.visible = true
+			lightScale = Vector2(15, 15)
+			add_to_group("ResourceWagon", true)
+	
+	lightArea.scale = lightScale
+	lightImage.scale = lightScale
+
+func _on_light_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Units"):
+		body.isInLight = true
+
+func _on_light_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Units"):
+		body.isInLight = false
