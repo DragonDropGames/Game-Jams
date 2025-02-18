@@ -2,6 +2,7 @@ extends Camera2D
 
 # Camera config
 @export var ZOOM_MARGIN = 0.1
+@export var SPEED = 20.0
 
 # Unit Selection Variables
 var mousePos = Vector2()
@@ -19,8 +20,19 @@ signal start_move_selection
 func _ready():
 	connect("area_selected", Callable(get_parent(), "_on_area_selected"))
 
-func _process(delat:float) -> void:
+func _process(delta:float) -> void:
 	handleUnitSelection()
+	handleCameraMovement(delta)
+
+func handleCameraMovement(delta: float) -> void:
+	var inputX = int(Input.is_action_pressed("ui_right")) - int(Input.is_action_pressed("ui_left"))
+	var inputY = int(Input.is_action_pressed("ui_down")) - int(Input.is_action_pressed("ui_up"))
+	
+	if position.x >= self.limit_left && position.x < self.limit_right:
+		position.x = lerp(position.x, position.x + (inputX * SPEED * zoom.x), SPEED * delta)
+	
+	if position.y >= self.limit_top && position.x < self.limit_bottom:
+		position.y = lerp(position.y, position.y + (inputY * SPEED * zoom.y), SPEED * delta)
 
 func handleUnitSelection():
 	if Input.is_action_just_pressed("LeftClick"):
