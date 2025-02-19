@@ -134,5 +134,9 @@ offset_right = 17.0
 offset_bottom = -16.0
 value = 100.0
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="body_entered" from="LightArea" to="." method="_on_light_area_body_entered"]
 [connection signal="body_exited" from="LightArea" to="." method="_on_light_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer"]

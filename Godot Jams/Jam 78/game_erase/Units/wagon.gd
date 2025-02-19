@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 enum WAGON_TYPE { MAIN, SWORD, BOW, RESOURCE }
 
+const LIGHT_DIM_RATE = 0.99
+
 # All Wagon Properties
 var speed = 20
 var followCursor = false
@@ -68,11 +70,9 @@ func setProperties():
 			lightScale = Vector2(15, 15)
 			add_to_group("ResourceWagon", true)
 	
-	lightArea.scale = lightScale
-	lightImage.scale = lightScale
 	
 	point_light.energy = 1
-	point_light.scale = lightScale / 25
+	scale_lights()
 
 func _on_light_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Units"):
@@ -81,3 +81,23 @@ func _on_light_area_body_entered(body: Node2D) -> void:
 func _on_light_area_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Units"):
 		body.isInLight = false
+
+func _on_timer() -> void:
+	if lightScale < Vector2(5, 5):
+		extinguish()
+	else:
+		lightScale = lightScale * LIGHT_DIM_RATE
+		scale_lights()
+
+func extinguish() -> void:
+	if lightScale <= Vector2.ZERO:
+		return
+	
+	lightScale = Vector2.ZERO
+	
+	scale_lights()
+	
+func scale_lights() -> void:
+	lightArea.scale = lightScale
+	lightImage.scale = lightScale
+	point_light.scale = lightScale / 25
