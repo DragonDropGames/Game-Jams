@@ -4,6 +4,9 @@ extends Camera2D
 @export var ZOOM_MARGIN = 0.1
 @export var SPEED = 20.0
 
+
+
+
 # Unit Selection Variables
 var mousePos = Vector2()
 var mousePosGlobal = Vector2()
@@ -16,6 +19,12 @@ signal area_selected
 signal start_move_selection
 @onready var box = get_node("../UI/SelectionPanel")
 
+@export var zoom_speed: float = 0.1
+@export var min_zoom: float = 0.5
+@export var max_zoom: float = 2.0
+@export var drag_sensitivity: float = 1.0  # Adjust for smoother dragging
+
+var dragging: bool = false
 
 func _ready():
 	connect("area_selected", Callable(get_parent(), "_on_area_selected"))
@@ -70,3 +79,17 @@ func drawArea(s=true):
 	box.visible = s
 	box.position = pos
 	box.size *= int(s)
+
+func _unhandled_input(event):
+# Zooming
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			zoom = (zoom + Vector2(zoom_speed, zoom_speed)).clamp(Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			zoom = (zoom - Vector2(zoom_speed, zoom_speed)).clamp(Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
+		elif event.button_index == MOUSE_BUTTON_MIDDLE:
+			dragging = event.pressed  # Start or stop dragging
+
+	# Dragging (smooth movement)
+	elif event is InputEventMouseMotion and dragging:
+		position -= event.relative * zoom * drag_sensitivity
