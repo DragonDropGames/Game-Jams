@@ -6,8 +6,9 @@ enum RESOURCE_TYPE { Iron, Food, Wood }
 var totalTime = 5
 var currTime
 var units = 0
+var type;
 
-@onready var bar = $ProgressBar
+@onready var bar = $TextureProgressBar
 @onready var timer = $Timer
 @onready var iron = $Iron
 @onready var wood = $Wood
@@ -17,6 +18,7 @@ func _ready() -> void:
 	setProperties()
 	currTime = totalTime
 	bar.max_value = totalTime
+	bar.value = totalTime
 
 func _process(delta: float) -> void:
 	if currTime <= 0:
@@ -25,15 +27,15 @@ func _process(delta: float) -> void:
 func setProperties() -> void:
 	match resourceType:
 		RESOURCE_TYPE.Iron:
-			iron.visible = true
+			type = 'iron'
 			totalTime = 15
 			pass
 		RESOURCE_TYPE.Food:
-			food.visible = true
+			type = 'food'
 			pass
 		RESOURCE_TYPE.Wood:
 			totalTime = 10
-			wood.visible = true
+			type = 'wood'
 			pass	
 
 func resourceCollected():
@@ -55,3 +57,10 @@ func _on_timer_timeout() -> void:
 	currTime -= chopSpeed
 	var tween = get_tree().create_tween()
 	tween.tween_property(bar, "value", currTime, 0.5).set_trans(Tween.TRANS_QUAD)
+	
+	if type == 'iron':
+		Global_Resources.iron_label += 8
+	if type == 'wood':
+		Global_Resources.wood_label += 8
+	if type == 'food':
+		Global_Resources.food_label += 8

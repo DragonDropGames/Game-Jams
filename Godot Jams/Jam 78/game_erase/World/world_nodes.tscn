@@ -27,6 +27,6 @@ wagon = 1
 [node name="Resources" type="Node2D" parent="."]
 
 [node name="Resource" parent="Resources" instance=ExtResource("4_m4483")]
-position = Vector2(373, 243)
+position = Vector2(259, 281)
 
 [node name="Enemies" type="Node2D" parent="."]

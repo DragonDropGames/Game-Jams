@@ -21,6 +21,7 @@ bg_color = Color(0.793007, 0.706038, 0.258018, 1)
 script = ExtResource("1_8pkao")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(-0.5, 5.5)
 shape = SubResource("RectangleShape2D_ji682")
 
@@ -37,13 +38,16 @@ visible = false
 texture = ExtResource("3_a10wp")
 
 [node name="InteractionArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+visible = false
 shape = SubResource("CircleShape2D_482wa")
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
 offset_left = -48.0
 offset_top = -59.0
 offset_right = 47.0
@@ -52,6 +56,17 @@ theme_override_styles/background = SubResource("StyleBoxFlat_r5f3l")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ikjdm")
 value = 50.0
 show_percentage = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = -60.0
+offset_top = -59.0
+offset_right = 60.0
+offset_bottom = 59.0
+step = 0.01
+fill_mode = 3
+nine_patch_stretch = true
+texture_progress = ExtResource("1_dls75")
+tint_under = Color(1, 1, 1, 0.0784314)
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_body_exited"]
