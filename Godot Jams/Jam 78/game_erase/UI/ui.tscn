@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://vys72xs8cl6y"]
+[gd_scene load_steps=3 format=3 uid="uid://vys72xs8cl6y"]
+
+[ext_resource type="PackedScene" uid="uid://yofk1e5vynqt" path="res://UI/resourceTracker.tscn" id="1_u4lcu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn0pl"]
 bg_color = Color(0.6, 0.6, 0.6, 0.313726)
@@ -19,3 +21,40 @@ visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_nn0pl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ResourceTracker" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("1_u4lcu")]
+layout_mode = 2
+text = "Wood:"
+
+[node name="Wood Count" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("1_u4lcu")]
+layout_mode = 2
+text = ""
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ResourceTracker" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_u4lcu")]
+layout_mode = 2
+text = "Iron:"
+
+[node name="Iron Count" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_u4lcu")]
+layout_mode = 2
+text = ""
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ResourceTracker" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("1_u4lcu")]
+layout_mode = 2
+text = "Meat:"
+
+[node name="Meat Count" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("1_u4lcu")]
+layout_mode = 2
+text = ""
