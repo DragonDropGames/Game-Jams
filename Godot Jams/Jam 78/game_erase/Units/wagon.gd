@@ -16,6 +16,9 @@ var followCursor = false
 @onready var swordWagonImage = get_node("WagonCollision/SwordWagon")
 @onready var lightImage = get_node("LightCollision/Light")
 @onready var lightArea = get_node("LightArea/CollisionShape2D")
+@onready var point_light = $PointLight
+
+
 @export var wagon: WAGON_TYPE
 var lightScale = Vector2(10, 10)
 
@@ -67,6 +70,9 @@ func setProperties():
 	
 	lightArea.scale = lightScale
 	lightImage.scale = lightScale
+	
+	point_light.energy = 1
+	point_light.scale = lightScale / 25
 
 func _on_light_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Units"):
