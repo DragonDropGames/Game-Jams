@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy7232f5xniil"]
+[gd_scene load_steps=15 format=3 uid="uid://cy7232f5xniil"]
 
 [ext_resource type="Script" path="res://Units/wagon.gd" id="1_24qf5"]
 [ext_resource type="Texture2D" uid="uid://bq3bbh6en201i" path="res://Assets/Wagon/BowWagon.png" id="2_fgr36"]
@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://ds5deyb62h55" path="res://Assets/Wagon/SwordWagon.png" id="5_3ieid"]
 [ext_resource type="Texture2D" uid="uid://c32qotvsq2u70" path="res://Assets/Light.png" id="6_6sh04"]
 [ext_resource type="PackedScene" uid="uid://vsp4jupipdag" path="res://Global/Point Light/PointLight.tscn" id="7_ca87i"]
+[ext_resource type="PackedScene" uid="uid://cvs8b61nwwc1" path="res://Global/Health Bars/basic health bar.tscn" id="8_ic13h"]
+[ext_resource type="Texture2D" uid="uid://cdhksv0yj7c4n" path="res://Assets/buttonLong_blue_pressed.png" id="9_jxewo"]
+[ext_resource type="Texture2D" uid="uid://5lmrptw51dw7" path="res://Assets/barRed_horizontalMid.png" id="10_3eort"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kfxd"]
 bg_color = Color(0, 0.658824, 0.854902, 0.227451)
@@ -30,6 +33,7 @@ size = Vector2(34, 32)
 radius = 5.0
 
 [node name="Wagon" type="CharacterBody2D"]
+z_index = 2
 script = ExtResource("1_24qf5")
 
 [node name="SelectedPanel" type="Panel" parent="."]
@@ -80,6 +84,16 @@ self_modulate = Color(0.980392, 0.85098, 0.380392, 0.4)
 texture = ExtResource("6_6sh04")
 
 [node name="PointLight" parent="." instance=ExtResource("7_ca87i")]
+
+[node name="BasicHealthBar" parent="." instance=ExtResource("8_ic13h")]
+offset_left = -13.0
+offset_top = -17.0
+offset_right = 13.0
+offset_bottom = -16.0
+value = 88.0
+nine_patch_stretch = true
+texture_under = ExtResource("9_jxewo")
+texture_progress = ExtResource("10_3eort")
 
 [connection signal="body_entered" from="LightArea" to="." method="_on_light_area_body_entered"]
 [connection signal="body_exited" from="LightArea" to="." method="_on_light_area_body_exited"]
