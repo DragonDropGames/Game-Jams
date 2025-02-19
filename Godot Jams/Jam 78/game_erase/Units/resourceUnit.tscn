@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd2syih2mid6q"]
+[gd_scene load_steps=7 format=3 uid="uid://cd2syih2mid6q"]
 
 [ext_resource type="Script" path="res://Units/resourceUnit.gd" id="1_mn5vq"]
 [ext_resource type="Texture2D" uid="uid://rw1ikx8gguev" path="res://Assets/Units/ResourceUnit.png" id="2_rpq0c"]
+[ext_resource type="PackedScene" uid="uid://dyewi7ipnw4vu" path="res://Global/Health Bars/BasicHealthBar.tscn" id="3_d5gbx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3hq66"]
 radius = 8.0
@@ -48,3 +49,11 @@ offset_right = 13.0
 offset_bottom = -14.0
 text = "SAFE"
 label_settings = SubResource("LabelSettings_7u5il")
+
+[node name="BasicHealthBar" parent="." instance=ExtResource("3_d5gbx")]
+z_index = 20
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 1.0
+value = 100.0
