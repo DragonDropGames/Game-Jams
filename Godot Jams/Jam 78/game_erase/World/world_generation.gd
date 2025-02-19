@@ -7,6 +7,7 @@ const LightTexture = preload("res://Assets/Light.png")
 const CLEARED_BUFFER: int = 10
 
 @onready var fog = $Fog
+@onready var fog_toggle = get_node("../UI/FogToggle")  # Reference to the CheckBox node
 
 var map_rect: Rect2
 var darkness_image: Image = Image.new()
@@ -21,6 +22,12 @@ func _ready() -> void:
 	darkness_image.fill(Color.BLACK)
 	
 	light_image.convert(Image.FORMAT_RGBAH)
+	
+	# Create an initial texture from the fog
+	update_fog_image_texture()
+
+	# Connect the checkbox signal to toggle fog visibility
+	fog_toggle.connect("toggled", Callable(self, "_on_fog_toggle"))
 
 func update_fog(new_grid_position: Vector2, light_scale: Vector2):
 	var clear_pos = floor(new_grid_position)
@@ -48,3 +55,11 @@ func update_fog(new_grid_position: Vector2, light_scale: Vector2):
 
 func update_fog_image_texture():
 	fog.texture = ImageTexture.create_from_image(darkness_image)
+
+# Function called when the checkbox is toggled
+func _on_fog_toggle(checked: bool) -> void:
+	# If the checkbox is checked, enable the fog
+	if checked:
+		fog.visible = false
+	else:
+		fog.visible = true
