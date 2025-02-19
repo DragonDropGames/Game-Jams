@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyewi7ipnw4vu"]
+
+[ext_resource type="Texture2D" uid="uid://mm66mxqop7cf" path="res://Assets/buttonLong_blue.png" id="1_6uj73"]
+[ext_resource type="Texture2D" uid="uid://d3d57g5awares" path="res://Assets/barRed_horizontalMid.png" id="2_y0aoj"]
+
+[node name="BasicHealthBar" type="TextureProgressBar"]
+nine_patch_stretch = true
+texture_under = ExtResource("1_6uj73")
+texture_progress = ExtResource("2_y0aoj")

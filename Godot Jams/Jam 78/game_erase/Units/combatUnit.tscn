@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://byf4nkgylxsx8"]
+[gd_scene load_steps=10 format=3 uid="uid://byf4nkgylxsx8"]
 
 [ext_resource type="Texture2D" uid="uid://ouq187lr8hq4" path="res://Assets/Units/SwordUnit.png" id="1_a2t47"]
 [ext_resource type="Script" path="res://Units/combatUnit.gd" id="1_riq1d"]
 [ext_resource type="Texture2D" uid="uid://cgrahgwsscpw8" path="res://Assets/Units/BowUnit.png" id="3_b5br5"]
+[ext_resource type="PackedScene" uid="uid://dyewi7ipnw4vu" path="res://Global/Health Bars/BasicHealthBar.tscn" id="4_vx3ww"]
+[ext_resource type="Texture2D" uid="uid://mm66mxqop7cf" path="res://Assets/buttonLong_blue.png" id="5_oqqst"]
+[ext_resource type="Texture2D" uid="uid://d3d57g5awares" path="res://Assets/barRed_horizontalMid.png" id="6_0iuu7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avdxd"]
 radius = 8.0
@@ -56,3 +59,14 @@ offset_right = 13.0
 offset_bottom = -14.0
 text = "SAFE"
 label_settings = SubResource("LabelSettings_o23ut")
+
+[node name="BasicHealthBar" parent="." instance=ExtResource("4_vx3ww")]
+z_index = 20
+offset_left = -8.0
+offset_top = -1.0
+offset_right = 8.0
+offset_bottom = 1.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_oqqst")
+texture_progress = ExtResource("6_0iuu7")
