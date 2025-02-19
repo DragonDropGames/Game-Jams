@@ -298,6 +298,7 @@ sources/0 = SubResource("TileSetAtlasSource_a3f2k")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nq3e6"]
 blend_mode = 3
+light_mode = 2
 
 [node name="WorldGeneration" type="Node2D"]
 self_modulate = Color(0, 0, 0, 1)
