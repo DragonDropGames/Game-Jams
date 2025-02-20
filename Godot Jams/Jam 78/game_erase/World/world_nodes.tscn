@@ -25,6 +25,9 @@ position = Vector2(83, 290)
 [node name="CombatUnit2" parent="Units" instance=ExtResource("1_es40y")]
 position = Vector2(261, 399)
 
+[node name="ResourceUnit2" parent="Units" instance=ExtResource("2_ml6ot")]
+position = Vector2(262, 346)
+
 [node name="Wagons" type="Node2D" parent="."]
 position = Vector2(0, 1)
 
@@ -32,7 +35,7 @@ position = Vector2(0, 1)
 position = Vector2(683, 363)
 
 [node name="Wagon2" parent="Wagons" instance=ExtResource("2_2776d")]
-position = Vector2(159, 358)
+position = Vector2(157, 373)
 wagon = 1
 
 [node name="Resources" type="Node2D" parent="."]

@@ -133,7 +133,6 @@ texture = ExtResource("2_fgr36")
 shape = SubResource("CircleShape2D_tun6p")
 
 [node name="PointLight" parent="." instance=ExtResource("7_ca87i")]
-visible = false
 color = Color(1, 1, 0.737255, 0.607843)
 script = SubResource("GDScript_nni02")
 
