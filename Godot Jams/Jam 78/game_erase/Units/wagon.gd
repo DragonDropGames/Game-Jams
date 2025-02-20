@@ -9,6 +9,9 @@ var followCursor = false
 @export var isSelected = false
 @onready var target = position
 @onready var selectedPanel = get_node("SelectedPanel")
+var menu = preload("res://UI/wagon_menu.tscn")
+var menuInstance
+var mouseEntered = false
 
 # Wagon Customization Properties
 @onready var bowWagonImage = get_node("WagonCollision/BowWagon")
@@ -19,6 +22,7 @@ var followCursor = false
 @onready var point_light = $PointLight
 
 
+
 @export var wagon: WAGON_TYPE
 var lightScale: Vector2 = Vector2(10, 10)
 var light_depletion_rate: int = 1
@@ -26,7 +30,7 @@ var light_depletion_rate: int = 1
 func _ready():
 	add_to_group("Wagons", true)
 	setProperties()
-
+	
 func _input(event):
 	if event.is_action_pressed("RightClick"):
 		followCursor = true
@@ -48,25 +52,25 @@ func setSelected(value):
 	
 func setProperties():
 	match wagon:
-		WAGON_TYPE.MAIN:
+		Enums.WAGON_TYPE.MAIN:
 			speed = 15
 			mainWagonImage.visible = true
 			lightScale = Vector2(30, 30)
 			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE
 			add_to_group("MainWagon", true)
-		WAGON_TYPE.SWORD:
+		Enums.WAGON_TYPE.SWORD:
 			speed = 20
 			swordWagonImage.visible = true
 			lightScale = Vector2(15, 15)
 			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE + 0.1
 			add_to_group("SwordWagon", true)
-		WAGON_TYPE.BOW:
+		Enums.WAGON_TYPE.BOW:
 			speed = 20
 			bowWagonImage.visible = true
 			lightScale = Vector2(15, 15)
 			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE +  0.2
 			add_to_group("BowWagon", true)
-		WAGON_TYPE.RESOURCE:
+		Enums.WAGON_TYPE.RESOURCE:
 			speed = 15
 			resourceWagonImage.visible = true
 			lightScale = Vector2(15, 15)
@@ -103,3 +107,23 @@ func extinguish() -> void:
 func scale_lights() -> void:
 	lightArea.scale = lightScale
 	point_light.scale = lightScale / 25
+
+func _on_interaction_panel_mouse_entered() -> void:
+	print("here")
+	mouseEntered = true
+
+func _on_interaction_panel_mouse_exited() -> void:
+	mouseEntered = false
+
+func _on_interaction_panel_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("LeftClick"):
+		if mouseEntered:
+			print(menuInstance)
+			if menuInstance == null:
+				setSelected(true)
+				menuInstance = menu.instantiate()
+				menuInstance.showMenu(wagon, 10, position)
+				add_child(menuInstance)
+			else:
+				setSelected(false)
+				menuInstance.queue_free()

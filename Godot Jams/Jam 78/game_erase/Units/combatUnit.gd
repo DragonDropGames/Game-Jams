@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-enum UNIT_TYPE { SWORD, BOW }
+
 
 # ALL UNIT PROPERTIES
 var followCursor = false
@@ -15,7 +15,7 @@ var followCursor = false
 var speed = 10
 var health = 100
 var ARMOR_SCALER = .5
-@export var unit: UNIT_TYPE
+@export var unit: Enums.UNIT_TYPE
 @onready var swordImage = get_node("Collision/SwordUnit")
 @onready var bowImage = get_node("Collision/BowUnit")
 
@@ -51,10 +51,10 @@ func setSelected(value):
 
 func setProperties():
 	match unit: 
-		UNIT_TYPE.SWORD: 
+		Enums.UNIT_TYPE.SWORD: 
 			swordImage.visible = true
 			speed = 15
-		UNIT_TYPE.BOW:
+		Enums.UNIT_TYPE.BOW:
 			bowImage.visible = true
 			speed = 10 
 	

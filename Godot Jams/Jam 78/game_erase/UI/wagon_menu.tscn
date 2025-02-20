@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkgvlb16qe6ut"]
+
+[ext_resource type="Texture2D" uid="uid://ouq187lr8hq4" path="res://Assets/Units/SwordUnit.png" id="1_lgk2c"]
+[ext_resource type="Script" path="res://UI/wagon_menu.gd" id="1_qm4lx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4yl20"]
+font_size = 10
+
+[node name="WagonMenu" type="Node2D"]
+script = ExtResource("1_qm4lx")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -43.0
+offset_right = 85.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 164.0
+offset_bottom = 39.0
+
+[node name="Label" type="Label" parent="Panel/Panel"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 2.0
+offset_right = 111.0
+offset_bottom = 17.0
+text = "Wagon Fuel"
+label_settings = SubResource("LabelSettings_4yl20")
+horizontal_alignment = 1
+
+[node name="WagonFuel" type="Label" parent="Panel/Panel"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 18.0
+offset_right = 111.0
+offset_bottom = 33.0
+text = "12 / 50"
+label_settings = SubResource("LabelSettings_4yl20")
+horizontal_alignment = 1
+
+[node name="Buildable" type="Node2D" parent="Panel"]
+
+[node name="Sword" type="Panel" parent="Panel/Buildable"]
+visible = false
+offset_left = 6.0
+offset_top = 42.0
+offset_right = 46.0
+offset_bottom = 82.0
+
+[node name="SwordUnit" type="Sprite2D" parent="Panel/Buildable/Sword"]
+position = Vector2(20, 20)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_lgk2c")
+
+[node name="Bow" type="Panel" parent="Panel/Buildable"]
+visible = false
+offset_left = 66.0
+offset_top = 42.0
+offset_right = 106.0
+offset_bottom = 82.0
+
+[node name="Main" type="Panel" parent="Panel/Buildable"]
+visible = false
+offset_left = 124.0
+offset_top = 42.0
+offset_right = 164.0
+offset_bottom = 82.0
+
+[node name="Resource" type="Panel" parent="Panel/Buildable"]
+visible = false
+offset_left = 124.0
+offset_top = 42.0
+offset_right = 164.0
+offset_bottom = 82.0
+
+[connection signal="gui_input" from="Panel/Buildable/Sword" to="." method="_on_sword_gui_input"]
+[connection signal="gui_input" from="Panel/Buildable/Bow" to="." method="_on_bow_gui_input"]
+[connection signal="gui_input" from="Panel/Buildable/Main" to="." method="_on_main_gui_input"]
+[connection signal="gui_input" from="Panel/Buildable/Resource" to="." method="_on_resource_gui_input"]
