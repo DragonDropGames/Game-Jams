@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 enum WAGON_TYPE { MAIN, SWORD, BOW, RESOURCE }
-
+const BASE_LIGHT_DEPLITION_RATE: int = 0.1
 
 # All Wagon Properties
 var speed = 20
@@ -52,25 +52,25 @@ func setProperties():
 			speed = 15
 			mainWagonImage.visible = true
 			lightScale = Vector2(30, 30)
-			light_depletion_rate = 0.1
+			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE
 			add_to_group("MainWagon", true)
 		WAGON_TYPE.SWORD:
 			speed = 20
 			swordWagonImage.visible = true
 			lightScale = Vector2(15, 15)
-			light_depletion_rate = 0.12
+			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE + 0.1
 			add_to_group("SwordWagon", true)
 		WAGON_TYPE.BOW:
 			speed = 20
 			bowWagonImage.visible = true
 			lightScale = Vector2(15, 15)
-			light_depletion_rate = 0.14
+			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE +  0.2
 			add_to_group("BowWagon", true)
 		WAGON_TYPE.RESOURCE:
 			speed = 15
 			resourceWagonImage.visible = true
 			lightScale = Vector2(15, 15)
-			light_depletion_rate = 0.16
+			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE +  0.3
 			add_to_group("ResourceWagon", true)
 	
 	
