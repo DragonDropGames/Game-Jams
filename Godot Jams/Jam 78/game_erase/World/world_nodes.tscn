@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b42t76jchxqwh"]
+[gd_scene load_steps=6 format=3 uid="uid://b42t76jchxqwh"]
 
-[ext_resource type="PackedScene" path="res://Units/combatUnit.tscn" id="1_es40y"]
+[ext_resource type="PackedScene" uid="uid://byf4nkgylxsx8" path="res://Units/combatUnit.tscn" id="1_es40y"]
 [ext_resource type="PackedScene" uid="uid://cy7232f5xniil" path="res://Units/Wagon.tscn" id="2_2776d"]
-[ext_resource type="PackedScene" path="res://Units/resourceUnit.tscn" id="2_ml6ot"]
-[ext_resource type="PackedScene" path="res://Structures/resource.tscn" id="4_m4483"]
+[ext_resource type="PackedScene" uid="uid://cd2syih2mid6q" path="res://Units/resourceUnit.tscn" id="2_ml6ot"]
+[ext_resource type="PackedScene" uid="uid://cgp5eivo4vtgt" path="res://Structures/resource.tscn" id="4_m4483"]
+[ext_resource type="PackedScene" uid="uid://ckmkx8imypqy7" path="res://Units/enemies/enemy.tscn" id="5_fsb3k"]
 
 [node name="WorldNodes" type="Node2D"]
 
@@ -30,3 +31,14 @@ wagon = 1
 position = Vector2(259, 281)
 
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource("5_fsb3k")]
+position = Vector2(124, 314)
+enemy = 1
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource("5_fsb3k")]
+position = Vector2(117, 350)
+enemy = 2
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource("5_fsb3k")]
+position = Vector2(162, 314)
