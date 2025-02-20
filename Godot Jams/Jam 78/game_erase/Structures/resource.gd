@@ -28,13 +28,13 @@ func setProperties() -> void:
 	match resourceType:
 		RESOURCE_TYPE.Iron:
 			type = 'iron'
-			totalTime = 15
+			totalTime = 300
 			pass
 		RESOURCE_TYPE.Food:
 			type = 'food'
 			pass
 		RESOURCE_TYPE.Wood:
-			totalTime = 10
+			totalTime = 60
 			type = 'wood'
 			pass	
 
@@ -59,8 +59,8 @@ func _on_timer_timeout() -> void:
 	tween.tween_property(bar, "value", currTime, 0.5).set_trans(Tween.TRANS_QUAD)
 	
 	if type == 'iron':
-		Global_Resources.iron_label += 8
+		Global_Resources.iron_label += 2
 	if type == 'wood':
 		Global_Resources.wood_label += 8
 	if type == 'food':
-		Global_Resources.food_label += 8
+		Global_Resources.food_label += 3
