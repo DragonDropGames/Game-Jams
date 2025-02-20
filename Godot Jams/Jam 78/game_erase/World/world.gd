@@ -1,6 +1,5 @@
 extends Node2D
 
-
 var units = []
 var wagons = []
 var enemies = []
@@ -13,7 +12,6 @@ func _ready():
 	load_enemies()
 	load_resources()
 	connect("update_fog", Callable(get_tree().get_root().get_node("World/WorldGeneration"), "update_fog"))
-
 
 func _process(delta: float) -> void:
 	for wagon in wagons:

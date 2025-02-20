@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bxbrf5wu4ksfw" path="res://Assets/Wagon/MainWagon.png" id="3_74cm7"]
 [ext_resource type="Texture2D" uid="uid://cj7smce3ci5g7" path="res://Assets/Wagon/ResourceWagon.png" id="4_xl4qy"]
 [ext_resource type="Texture2D" uid="uid://ds5deyb62h55" path="res://Assets/Wagon/SwordWagon.png" id="5_3ieid"]
+[ext_resource type="Texture2D" uid="uid://c32qotvsq2u70" path="res://Assets/Light.png" id="6_6sh04"]
 [ext_resource type="PackedScene" uid="uid://vsp4jupipdag" path="res://Global/Point Light/PointLight.tscn" id="7_ca87i"]
 [ext_resource type="PackedScene" uid="uid://dyewi7ipnw4vu" path="res://Global/Health Bars/BasicHealthBar.tscn" id="8_f21ow"]
 
@@ -19,8 +20,6 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1jnf0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_il25i"]
 radius = 5.0
@@ -87,21 +86,14 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_2kfxd")
 
 [node name="InteractionPanel" type="Panel" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -23.0
 offset_top = -22.0
 offset_right = 23.0
 offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxEmpty_1jnf0")
 
 [node name="LightArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LightArea"]
 shape = SubResource("CircleShape2D_il25i")
@@ -130,7 +122,14 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_fgr36")
 
 [node name="LightCollision" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_tun6p")
+
+[node name="Light" type="Sprite2D" parent="LightCollision"]
+visible = false
+modulate = Color(1, 1, 0, 0.4)
+self_modulate = Color(0.980392, 0.85098, 0.380392, 0.4)
+texture = ExtResource("6_6sh04")
 
 [node name="PointLight" parent="." instance=ExtResource("7_ca87i")]
 color = Color(1, 1, 0.737255, 0.607843)
@@ -147,7 +146,6 @@ value = 100.0
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="gui_input" from="InteractionPanel" to="." method="_on_interaction_panel_gui_input"]
 [connection signal="mouse_entered" from="InteractionPanel" to="." method="_on_interaction_panel_mouse_entered"]
 [connection signal="mouse_exited" from="InteractionPanel" to="." method="_on_interaction_panel_mouse_exited"]
 [connection signal="body_entered" from="LightArea" to="." method="_on_light_area_body_entered"]

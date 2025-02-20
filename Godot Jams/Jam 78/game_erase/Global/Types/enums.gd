@@ -1,0 +1,4 @@
+extends Node
+
+enum WAGON_TYPE { MAIN, SWORD, BOW, RESOURCE }
+enum UNIT_TYPE { SWORD, BOW }
