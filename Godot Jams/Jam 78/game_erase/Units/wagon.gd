@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-const LIGHT_DIM_RATE = 0.99
+enum WAGON_TYPE { MAIN, SWORD, BOW, RESOURCE }
+const BASE_LIGHT_DEPLITION_RATE: int = 0.1
 
 # All Wagon Properties
 var speed = 20
@@ -21,8 +22,10 @@ var mouseEntered = false
 @onready var point_light = $PointLight
 
 
-@export var wagon: Enums.WAGON_TYPE
-var lightScale = Vector2(10, 10)
+
+@export var wagon: WAGON_TYPE
+var lightScale: Vector2 = Vector2(10, 10)
+var light_depletion_rate: int = 1
 
 func _ready():
 	add_to_group("Wagons", true)
@@ -53,21 +56,25 @@ func setProperties():
 			speed = 15
 			mainWagonImage.visible = true
 			lightScale = Vector2(30, 30)
+			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE
 			add_to_group("MainWagon", true)
 		Enums.WAGON_TYPE.SWORD:
 			speed = 20
 			swordWagonImage.visible = true
 			lightScale = Vector2(15, 15)
+			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE + 0.1
 			add_to_group("SwordWagon", true)
 		Enums.WAGON_TYPE.BOW:
 			speed = 20
 			bowWagonImage.visible = true
 			lightScale = Vector2(15, 15)
+			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE +  0.2
 			add_to_group("BowWagon", true)
 		Enums.WAGON_TYPE.RESOURCE:
 			speed = 15
 			resourceWagonImage.visible = true
 			lightScale = Vector2(15, 15)
+			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE +  0.3
 			add_to_group("ResourceWagon", true)
 	
 	
@@ -86,7 +93,7 @@ func _on_timer() -> void:
 	if lightScale < Vector2(5, 5):
 		extinguish()
 	else:
-		lightScale = lightScale * LIGHT_DIM_RATE
+		lightScale -= Vector2(light_depletion_rate, light_depletion_rate)
 		scale_lights()
 
 func extinguish() -> void:

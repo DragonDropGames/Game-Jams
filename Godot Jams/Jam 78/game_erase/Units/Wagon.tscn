@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cy7232f5xniil"]
+[gd_scene load_steps=13 format=3 uid="uid://cy7232f5xniil"]
 
 [ext_resource type="Script" path="res://Units/wagon.gd" id="1_24qf5"]
 [ext_resource type="Texture2D" uid="uid://bq3bbh6en201i" path="res://Assets/Wagon/BowWagon.png" id="2_fgr36"]

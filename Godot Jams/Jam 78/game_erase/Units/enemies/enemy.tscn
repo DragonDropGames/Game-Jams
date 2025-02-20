@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckmkx8imypqy7"]
+
+[ext_resource type="Texture2D" uid="uid://bu14tiue01h7h" path="res://Assets/Units/tile_0110.png" id="1_3ipdr"]
+[ext_resource type="Script" path="res://Units/enemies/enemies.gd" id="1_qnt0y"]
+[ext_resource type="Texture2D" uid="uid://e1ykh5v2dhub" path="res://Assets/Units/tile_0122.png" id="2_yav15"]
+[ext_resource type="Texture2D" uid="uid://bu31mnixrdq46" path="res://Assets/Units/tile_0109.png" id="3_tmiu0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0nikx"]
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_qnt0y")
+
+[node name="EnemyCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0nikx")
+
+[node name="BasicEnemy" type="Sprite2D" parent="EnemyCollision"]
+visible = false
+texture = ExtResource("1_3ipdr")
+
+[node name="MediumEnemy" type="Sprite2D" parent="EnemyCollision"]
+visible = false
+texture = ExtResource("2_yav15")
+
+[node name="BigBoy" type="Sprite2D" parent="EnemyCollision"]
+visible = false
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_tmiu0")
