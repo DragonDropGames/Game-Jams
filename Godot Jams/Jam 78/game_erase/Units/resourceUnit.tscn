@@ -1,11 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://cd2syih2mid6q"]
 
 [ext_resource type="Script" path="res://Units/resourceUnit.gd" id="1_mn5vq"]
-[ext_resource type="Texture2D" uid="uid://rw1ikx8gguev" path="res://Assets/Units/ResourceUnit.png" id="2_rpq0c"]
+[ext_resource type="Texture2D" uid="uid://qqik5o353746" path="res://Assets/Units/tile_0088.png" id="2_1bdwn"]
 [ext_resource type="PackedScene" uid="uid://dyewi7ipnw4vu" path="res://Global/Health Bars/BasicHealthBar.tscn" id="3_d5gbx"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3hq66"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iy3cv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7p378"]
 bg_color = Color(0, 0.658824, 0.854902, 0.227451)
@@ -26,19 +25,18 @@ font_size = 10
 script = ExtResource("1_mn5vq")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_3hq66")
+shape = SubResource("RectangleShape2D_iy3cv")
 
 [node name="ResourceUnit" type="Sprite2D" parent="Collision"]
-position = Vector2(0, -1)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_rpq0c")
+position = Vector2(0, 1)
+texture = ExtResource("2_1bdwn")
 
 [node name="SelectedPanel" type="Panel" parent="."]
 visible = false
-offset_left = -8.0
-offset_top = -15.0
-offset_right = 11.0
-offset_bottom = 14.0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7p378")
 
 [node name="Label" type="Label" parent="."]
@@ -53,7 +51,7 @@ label_settings = SubResource("LabelSettings_7u5il")
 [node name="BasicHealthBar" parent="." instance=ExtResource("3_d5gbx")]
 z_index = 20
 offset_left = -8.0
-offset_top = -1.0
+offset_top = -8.0
 offset_right = 8.0
-offset_bottom = 1.0
+offset_bottom = -6.0
 value = 100.0
