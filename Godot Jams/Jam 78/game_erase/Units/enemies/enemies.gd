@@ -6,6 +6,7 @@ enum ENEMY_TYPE { BASIC, MEDIUM, BIGBOY, BOSS }
 var speed = 20
 
 @export var enemy: ENEMY_TYPE
+@export var health = 100
 
 @onready var basicEnemyImage = get_node("EnemyCollision/BasicEnemy")
 @onready var mediumEnemyImage = get_node("EnemyCollision/MediumEnemy")
@@ -16,10 +17,8 @@ func _ready():
 	add_to_group("Enemies", true)
 	setProperties()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
 
 func setProperties():
 	match enemy:
@@ -37,3 +36,7 @@ func setProperties():
 			add_to_group("BigBoys", true)
 		ENEMY_TYPE.BOSS:
 			speed = 15
+
+func _on_health_check_timer_timeout() -> void:
+	if health <= 0:
+		self.queue_free()
