@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ds455vbi5e36t"]
+[gd_scene load_steps=10 format=3 uid="uid://ds455vbi5e36t"]
 
 [ext_resource type="Texture2D" uid="uid://d1hkexhqy5g6s" path="res://Assets/Units/tile_0087.png" id="1_bxx1n"]
 [ext_resource type="Script" path="res://Units/hero/hero.gd" id="1_vckm5"]
@@ -63,6 +63,9 @@ func _flicker() -> void:
 		await get_tree().create_timer(flicker_interval).timeout
 "
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8soft"]
+radius = 5.0
+
 [node name="Hero" type="CharacterBody2D"]
 script = ExtResource("1_vckm5")
 
@@ -100,3 +103,8 @@ horizontal_alignment = 1
 [node name="PointLight" parent="." instance=ExtResource("4_2gn03")]
 color = Color(1, 1, 0.737255, 0.607843)
 script = SubResource("GDScript_5kjvm")
+
+[node name="LightArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LightArea"]
+shape = SubResource("CircleShape2D_8soft")

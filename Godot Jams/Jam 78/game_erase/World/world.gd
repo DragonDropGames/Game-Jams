@@ -1,12 +1,12 @@
 extends Node2D
 
 
-var units = []
-var wagons = []
-var enemies = []
-var resources = []
+var units: Array[Node] = []
+var wagons: Array[Node] = []
+var enemies: Array[Node] = []
+var resources: Array[Node] = []
 
-signal clear_fog(Vector2, float)
+signal clear_fog(CollisionShape2D)
 
 func _ready():
 	load_units()
@@ -16,8 +16,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	for wagon in wagons:
-		#$WorldGeneration/Fpg_layer.clear_fog(wagon.position, wagon.lightScale)
-		emit_signal("clear_fog", wagon.position, wagon.lightScale)
+		emit_signal("clear_fog", wagon.light_collision)
 	
 func _on_area_selected(object):
 	var start = object.start
@@ -52,14 +51,11 @@ func get_units_in_area(area):
 	return unitsInArea
 
 func load_units():
-	units = null
 	units = get_tree().get_nodes_in_group("Units")
 	wagons = get_tree().get_nodes_in_group("Wagons")
-	
+
 func load_enemies():
-	enemies = null
 	enemies = get_tree().get_nodes_in_group("Enemies")
 	
 func load_resources():
-	resources = null
 	resources = get_tree().get_nodes_in_group("Resources")
