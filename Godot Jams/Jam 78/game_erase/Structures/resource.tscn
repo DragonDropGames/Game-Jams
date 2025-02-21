@@ -38,10 +38,8 @@ visible = false
 texture = ExtResource("3_a10wp")
 
 [node name="InteractionArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-visible = false
 shape = SubResource("CircleShape2D_482wa")
 
 [node name="Timer" type="Timer" parent="."]
