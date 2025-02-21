@@ -1,35 +1,37 @@
 extends CharacterBody2D
 
-var speed = 20
-var maxHealth = 1200
-
+# ALL UNIT PROPERTIES
 var followCursor = false
 @export var isSelected = false
 @onready var target = position
 @onready var selectedPanel = get_node("SelectedPanel")
-@onready var healthBar = get_node("BasicHealthBar")
-@onready var hplabel = $Label
-@onready var point_light: PointLight2D = $PointLight
-@onready var light_collision: Area2D = $LightArea
+@onready var label = get_node("Label")
+@export var isInLight = false
 
-var lightScale: float = 10
-var light_depletion_rate: int = 0
+
+# UNIT CONFIG
+var speed = 10
+var health = 100
+var ARMOR_SCALER = .5
+@onready var resourceImage = get_node("Collision/ResourceUnit")
 
 func _ready():
-	add_to_group("Wagons", true)
-	healthBar.max_value = maxHealth
-	hplabel.text= str(healthBar.max_value)
-	
+	add_to_group("Units")
+	add_to_group("Villagers")
+
 func _process(delta: float) -> void:
-	
-	pass
+	if !isInLight:
+		label.visible = false
+		health -= 10 * ARMOR_SCALER
+	else:
+		label.visible = true
 	
 func _input(event):
 	if event.is_action_pressed("RightClick"):
 		followCursor = true
 	elif event.is_action_released("RightClick"):
 		followCursor = false
-		
+
 func _physics_process(delta: float) -> void:
 	if followCursor && isSelected:
 		target = get_global_mouse_position()
@@ -42,3 +44,4 @@ func _physics_process(delta: float) -> void:
 func setSelected(value):
 	isSelected = value
 	selectedPanel.visible = value
+	

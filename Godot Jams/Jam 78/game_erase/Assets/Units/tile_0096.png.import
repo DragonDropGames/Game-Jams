@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://775n3mhwmvtl"
-path="res://.godot/imported/MiniPrinceMan.png-8491327cc89997072d56160082c7013e.ctex"
+uid="uid://gj6oxdy6j3vw"
+path="res://.godot/imported/tile_0096.png-80f35336f438130919e3329507268d54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Units/MiniPrinceMan.png"
-dest_files=["res://.godot/imported/MiniPrinceMan.png-8491327cc89997072d56160082c7013e.ctex"]
+source_file="res://Assets/Units/tile_0096.png"
+dest_files=["res://.godot/imported/tile_0096.png-80f35336f438130919e3329507268d54.ctex"]
 
 [params]
 

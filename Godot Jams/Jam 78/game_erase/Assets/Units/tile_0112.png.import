@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjla63mij0mo0"
-path="res://.godot/imported/MiniSwordMan.png-866f1da9897efb3fd8a9b3c3df517dbf.ctex"
+uid="uid://cd7k7sm337pnn"
+path="res://.godot/imported/tile_0112.png-54542c6bec40c09af44d3267a4109ec9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Units/MiniSwordMan.png"
-dest_files=["res://.godot/imported/MiniSwordMan.png-866f1da9897efb3fd8a9b3c3df517dbf.ctex"]
+source_file="res://Assets/Units/tile_0112.png"
+dest_files=["res://.godot/imported/tile_0112.png-54542c6bec40c09af44d3267a4109ec9.ctex"]
 
 [params]
 
