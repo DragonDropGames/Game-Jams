@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://b42t76jchxqwh"]
 
-[ext_resource type="PackedScene" uid="uid://byf4nkgylxsx8" path="res://Units/combatUnit.tscn" id="1_es40y"]
+[ext_resource type="PackedScene" uid="uid://byf4nkgylxsx8" path="res://Units/Combat/combatUnit.tscn" id="1_es40y"]
 [ext_resource type="PackedScene" uid="uid://cy7232f5xniil" path="res://Units/Wagon.tscn" id="2_2776d"]
-[ext_resource type="PackedScene" uid="uid://cd2syih2mid6q" path="res://Units/resourceUnit.tscn" id="2_ml6ot"]
+[ext_resource type="PackedScene" uid="uid://cd2syih2mid6q" path="res://Units/Resource Collector/resourceUnit.tscn" id="2_ml6ot"]
 [ext_resource type="PackedScene" uid="uid://ds455vbi5e36t" path="res://Units/hero/hero.tscn" id="3_a6o1l"]
 [ext_resource type="PackedScene" uid="uid://cgp5eivo4vtgt" path="res://Structures/resource.tscn" id="4_m4483"]
 [ext_resource type="PackedScene" uid="uid://ckmkx8imypqy7" path="res://Units/enemies/enemy.tscn" id="5_fsb3k"]
@@ -12,21 +12,21 @@
 [node name="Units" type="Node2D" parent="."]
 position = Vector2(0, 1)
 
-[node name="CombatUnit" parent="Units" instance=ExtResource("1_es40y")]
-visible = false
-position = Vector2(261, 399)
-
 [node name="ResourceUnit" parent="Units" instance=ExtResource("2_ml6ot")]
 position = Vector2(216, 347)
 
 [node name="Hero" parent="Units" instance=ExtResource("3_a6o1l")]
 position = Vector2(83, 290)
 
-[node name="CombatUnit2" parent="Units" instance=ExtResource("1_es40y")]
-position = Vector2(261, 399)
-
 [node name="ResourceUnit2" parent="Units" instance=ExtResource("2_ml6ot")]
-position = Vector2(262, 346)
+position = Vector2(302, 352)
+
+[node name="CombatUnit" parent="Units" instance=ExtResource("1_es40y")]
+position = Vector2(61, 382)
+
+[node name="CombatUnit2" parent="Units" instance=ExtResource("1_es40y")]
+position = Vector2(96, 415)
+unit = 1
 
 [node name="Wagons" type="Node2D" parent="."]
 position = Vector2(0, 1)
@@ -35,14 +35,14 @@ position = Vector2(0, 1)
 position = Vector2(683, 363)
 
 [node name="Wagon2" parent="Wagons" instance=ExtResource("2_2776d")]
-position = Vector2(157, 373)
-wagon = 1
+position = Vector2(76, 421)
+wagon = 2
 
 [node name="Resources" type="Node2D" parent="."]
 position = Vector2(0, 1)
 
 [node name="Resource" parent="Resources" instance=ExtResource("4_m4483")]
-position = Vector2(259, 281)
+position = Vector2(236, 227)
 
 [node name="Enemies" type="Node2D" parent="."]
 position = Vector2(0, 1)

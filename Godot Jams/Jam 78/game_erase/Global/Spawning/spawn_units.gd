@@ -1,6 +1,6 @@
 extends Node
 
-var combatUnit = preload("res://Units/combatUnit.tscn")
+var combatUnit = preload("res://Units/Combat/combatUnit.tscn")
 
 
 func spawn(type: Enums.UNIT_TYPE, position: Vector2) -> void:

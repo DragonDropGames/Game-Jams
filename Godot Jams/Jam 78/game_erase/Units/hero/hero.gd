@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
-var speed = 20
+var speed = 60
 var maxHealth = 1200
-
+var health = maxHealth
+var alive = true
+@onready var heroSprite = $CollisionShape2D/AnimatedSprite2D
 var followCursor = false
 @export var isSelected = false
 @onready var target = position
@@ -15,11 +17,19 @@ var light_depletion_rate: int = 0
 func _ready():
 	add_to_group("Wagons", true)
 	healthBar.max_value = maxHealth
+	healthBar.value = maxHealth
 	hplabel.text= str(healthBar.max_value)
 	
 func _process(delta: float) -> void:
+	if alive &&  healthBar.value != healthBar.max_value:
+		healthBar.visible = true
+		if healthBar.value <= 0:
+			alive = false
+			heroSprite.play("die")
+	else:
+		healthBar.visible = false
+		
 	
-	pass
 	
 func _input(event):
 	if event.is_action_pressed("RightClick"):
@@ -34,8 +44,10 @@ func _physics_process(delta: float) -> void:
 	velocity = position.direction_to(target) * speed
 	
 	if position.distance_to(target) > 10:
+		heroSprite.play('run')
 		move_and_slide()
-
+	else:
+		heroSprite.play('idle')
 func setSelected(value):
 	isSelected = value
 	selectedPanel.visible = value

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1hkexhqy5g6s"
-path="res://.godot/imported/tile_0087.png-8516194aef3da13929b6aa6594a8e419.ctex"
+uid="uid://cg5niopp6jfxp"
+path="res://.godot/imported/MiniWorker.png-b6340a9b4ec7d7719c78ac5199951ca6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Units/tile_0087.png"
-dest_files=["res://.godot/imported/tile_0087.png-8516194aef3da13929b6aa6594a8e419.ctex"]
+source_file="res://Assets/Units/MiniWorker.png"
+dest_files=["res://.godot/imported/MiniWorker.png-b6340a9b4ec7d7719c78ac5199951ca6.ctex"]
 
 [params]
 
