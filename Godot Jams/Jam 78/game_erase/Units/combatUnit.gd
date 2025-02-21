@@ -27,6 +27,9 @@ func _ready():
 	setProperties()
 
 func _process(delta: float) -> void:
+	if health <= 0:
+		self.queue_free()
+		
 	if !isInLight:
 		label.visible = false
 		health -= 10 * ARMOR_SCALER
@@ -63,6 +66,5 @@ func setProperties():
 	
 func _on_timer_timeout() -> void:
 	var foodConsumed = Game.consumeFood()
-	print(foodConsumed)
 	if !foodConsumed:
 		health -= 10
