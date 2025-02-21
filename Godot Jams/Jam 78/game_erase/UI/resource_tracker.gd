@@ -12,11 +12,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if name == 'Wood Count':
-		value = str(Global_Resources.wood_label)
+		value = str(Game.wood_label)
 	if name == 'Iron Count':
-		value = str(Global_Resources.iron_label)
+		value = str(Game.iron_label)
 	if name == 'Meat Count':
-		value = str(Global_Resources.food_label)
+		value = str(Game.food_label)
 		
 	text = value
 	pass
