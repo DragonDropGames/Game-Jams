@@ -1,7 +1,7 @@
 extends Node
 
 static var iron_label: int = 10;
-static var wood_label: int = 10;
+static var wood_label: int = 2;
 static var food_label: int = 10;
 
 func updateResource(type: Enums.RESOURCES_TYPE,value):
@@ -24,4 +24,8 @@ func consumeFood():
 		return false
 
 func consumeWood():
-	pass
+	if wood_label > 0:
+		wood_label -= 1
+		return true
+	else:
+		return false

@@ -147,9 +147,13 @@ value = 100.0
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[node name="FoodTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="gui_input" from="InteractionPanel" to="." method="_on_interaction_panel_gui_input"]
 [connection signal="mouse_entered" from="InteractionPanel" to="." method="_on_interaction_panel_mouse_entered"]
 [connection signal="mouse_exited" from="InteractionPanel" to="." method="_on_interaction_panel_mouse_exited"]
 [connection signal="body_entered" from="LightArea" to="." method="_on_light_area_body_entered"]
 [connection signal="body_exited" from="LightArea" to="." method="_on_light_area_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer"]
+[connection signal="timeout" from="FoodTimer" to="." method="_on_food_timer_timeout"]
