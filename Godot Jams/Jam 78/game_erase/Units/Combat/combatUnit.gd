@@ -9,6 +9,11 @@ var followCursor = false
 @onready var selectedPanel = get_node("SelectedPanel")
 @onready var label = get_node("Label")
 @export var isInLight = false
+@export var alive = true
+
+var image;
+var FOOD_CONSUMPTION_RATE = 1
+@onready var dyingTime = $DyingTime
 var FOOD_CONSUMPTION_RATE = 1
 @onready var timer = $FoodTimer
 @onready var combatSystem: CombatSystem = $CombatSystem
@@ -17,24 +22,26 @@ var FOOD_CONSUMPTION_RATE = 1
 var speed = 10
 var health = 100
 var ARMOR_SCALER = .5
-@export var unit: Enums.UNIT_TYPE
 @onready var swordImage = get_node("Collision/SwordUnit")
 @onready var bowImage = get_node("Collision/BowUnit")
+@onready var hp = $BasicHealthBar
+@export var unit: Enums.UNIT_TYPE
 
 func _ready():
 	add_to_group("Units")
-	timer.start()
 	setProperties()
 
 func _process(delta: float) -> void:
-	if health <= 0:
-		self.queue_free()
+	if alive:
+		if hp.value != hp.max_value:
+			hp.visible = true
 		
 	if !isInLight:
 		label.visible = false
 		health -= 10 * ARMOR_SCALER
 	else:
-		label.visible = true
+		hp.visible = false
+	
 	
 func _input(event):
 	if event.is_action_pressed("RightClick"):
@@ -43,14 +50,24 @@ func _input(event):
 		followCursor = false
 
 func _physics_process(delta: float) -> void:
+	
+	match unit: 
+		Enums.UNIT_TYPE.SWORD: 
+			image = swordImage
+		Enums.UNIT_TYPE.BOW:
+			image = bowImage
+	
 	if followCursor && isSelected:
 		target = get_global_mouse_position()
 	
 	velocity = position.direction_to(target) * speed
 	
-	if position.distance_to(target) > 10:
-		move_and_slide()
-
+	if alive:
+		if position.distance_to(target) > 10:
+			image.play('run')
+			move_and_slide()
+		else:
+			image.play('idle')
 func setSelected(value):
 	isSelected = value
 	selectedPanel.visible = value
@@ -74,3 +91,26 @@ func _on_timer_timeout() -> void:
 	var foodConsumed = Game.consumeFood()
 	if !foodConsumed:
 		health -= 10
+		print(health)
+
+
+func _on_in_fog_timer_timeout() -> void:
+	if !isInLight:
+		label.visible = false
+		health -= 10 * ARMOR_SCALER
+		hp.value = health
+	else:
+		label.visible = true
+		
+	if health <= 0:
+		match unit: 
+			Enums.UNIT_TYPE.SWORD: 
+				if alive:
+					die(swordImage)
+			Enums.UNIT_TYPE.BOW:
+				if alive:
+					die(bowImage)
+
+func die(image):
+	alive = false
+	image.play("die")
