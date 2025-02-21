@@ -13,6 +13,9 @@ var followCursor = false
 var menu = preload("res://UI/wagon_menu.tscn")
 var menuInstance
 var mouseEntered = false
+@onready var foodTimer = $FoodTimer
+var WOOD_CONSUMPTION_RATE = 1
+var consumedWood = true
 
 # Wagon Customization Properties
 @onready var bowWagonImage = get_node("WagonCollision/BowWagon")
@@ -22,8 +25,6 @@ var mouseEntered = false
 @onready var lightArea = get_node("LightArea/CollisionShape2D")
 @onready var point_light = $PointLight
 
-
-
 @export var wagon: WAGON_TYPE
 var lightScale: float = 10
 var light_depletion_rate: int = 1
@@ -31,6 +32,7 @@ var light_depletion_rate: int = 1
 func _ready():
 	add_to_group("Wagons", true)
 	setProperties()
+	foodTimer.start(0)
 	
 func _input(event):
 	if event.is_action_pressed("RightClick"):
@@ -78,7 +80,6 @@ func setProperties():
 			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE +  0.3
 			add_to_group("ResourceWagon", true)
 	
-	
 	point_light.energy = 1
 	scale_lights()
 
@@ -94,15 +95,16 @@ func _on_timer() -> void:
 	if lightScale < 5:
 		extinguish()
 	else:
-		lightScale -= light_depletion_rate
-		scale_lights()
+		if !consumedWood:
+			lightScale -= light_depletion_rate
+			scale_lights()
 
 func extinguish() -> void:
 	if lightScale <= 0:
 		return
-	
+    
 	lightScale = 0
-	
+
 	scale_lights()
 	
 func scale_lights() -> void:
@@ -110,7 +112,6 @@ func scale_lights() -> void:
 	point_light.scale = Vector2(lightScale, lightScale) / 25
 
 func _on_interaction_panel_mouse_entered() -> void:
-	print("here")
 	mouseEntered = true
 
 func _on_interaction_panel_mouse_exited() -> void:
@@ -119,7 +120,6 @@ func _on_interaction_panel_mouse_exited() -> void:
 func _on_interaction_panel_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("LeftClick"):
 		if mouseEntered:
-			print(menuInstance)
 			if menuInstance == null:
 				setSelected(true)
 				menuInstance = menu.instantiate()
@@ -128,3 +128,7 @@ func _on_interaction_panel_gui_input(event: InputEvent) -> void:
 			else:
 				setSelected(false)
 				menuInstance.queue_free()
+
+func _on_food_timer_timeout() -> void:
+	consumedWood = Game.consumeWood()
+		

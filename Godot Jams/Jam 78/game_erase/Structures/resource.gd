@@ -59,8 +59,8 @@ func _on_timer_timeout() -> void:
 	tween.tween_property(bar, "value", currTime, 0.5).set_trans(Tween.TRANS_QUAD)
 	
 	if type == 'iron':
-		Global_Resources.iron_label += 2
+		Game.iron_label += 2
 	if type == 'wood':
-		Global_Resources.wood_label += 8
+		Game.wood_label += 8
 	if type == 'food':
-		Global_Resources.food_label += 3
+		Game.food_label += 3

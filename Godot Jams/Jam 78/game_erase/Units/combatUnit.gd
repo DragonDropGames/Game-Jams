@@ -9,6 +9,8 @@ var followCursor = false
 @onready var selectedPanel = get_node("SelectedPanel")
 @onready var label = get_node("Label")
 @export var isInLight = false
+var FOOD_CONSUMPTION_RATE = 1
+@onready var timer = $FoodTimer
 
 
 # UNIT CONFIG
@@ -21,9 +23,13 @@ var ARMOR_SCALER = .5
 
 func _ready():
 	add_to_group("Units")
+	timer.start()
 	setProperties()
 
 func _process(delta: float) -> void:
+	if health <= 0:
+		self.queue_free()
+		
 	if !isInLight:
 		label.visible = false
 		health -= 10 * ARMOR_SCALER
@@ -58,3 +64,7 @@ func setProperties():
 			bowImage.visible = true
 			speed = 10 
 	
+func _on_timer_timeout() -> void:
+	var foodConsumed = Game.consumeFood()
+	if !foodConsumed:
+		health -= 10

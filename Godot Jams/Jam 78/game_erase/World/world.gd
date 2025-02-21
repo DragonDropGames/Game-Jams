@@ -1,5 +1,6 @@
 extends Node2D
 
+
 var units = []
 var wagons = []
 var enemies = []
@@ -25,6 +26,7 @@ func _on_area_selected(object):
 	
 	area.append(Vector2(min(start.x, end.x), min(start.y, end.y)))
 	area.append(Vector2(max(start.x, end.x), max(start.y, end.y)))
+	load_units()
 	
 	var unitsInArea = get_units_in_area(area)
 	updateUnitSelectedStatus(units, false)
