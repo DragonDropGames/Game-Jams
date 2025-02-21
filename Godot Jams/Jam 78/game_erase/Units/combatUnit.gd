@@ -9,7 +9,15 @@ var followCursor = false
 @onready var selectedPanel = get_node("SelectedPanel")
 @onready var label = get_node("Label")
 @export var isInLight = false
+<<<<<<< Updated upstream:Godot Jams/Jam 78/game_erase/Units/combatUnit.gd
 var FOOD_CONSUMPTION_RATE = 1
+=======
+@export var alive = true
+
+var image;
+var FOOD_CONSUMPTION_RATE = 1
+@onready var dyingTime = $DyingTime
+>>>>>>> Stashed changes:Godot Jams/Jam 78/game_erase/Units/Combat/combatUnit.gd
 @onready var timer = $FoodTimer
 @onready var combatSystem: CombatSystem = $CombatSystem
 
