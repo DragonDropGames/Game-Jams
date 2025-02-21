@@ -1,11 +1,9 @@
 [gd_scene load_steps=22 format=4 uid="uid://mu6ry3vbvfog"]
 
-[ext_resource type="Script" path="res://World/world_generation.gd" id="1_qc38g"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator.gd" id="1_w7eie"]
 [ext_resource type="Script" path="res://addons/gaea/modifiers/2D/modifier_2d.gd" id="2_t5twq"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_settings.gd" id="3_m8cud"]
 [ext_resource type="Script" path="res://addons/gaea/generators/2D/noise_generator/noise_generator_data.gd" id="4_0fn7q"]
-[ext_resource type="Script" path="res://addons/gaea/tile_info/tilemap_tile_info.gd" id="5_w73bl"]
 [ext_resource type="Script" path="res://addons/gaea/renderers/2D/threaded_tilemap_gaea_renderer.gd" id="6_gjdw7"]
 [ext_resource type="Texture2D" uid="uid://bbcrltgn4k240" path="res://Assets/tilemap.png" id="7_5jt3e"]
 [ext_resource type="Texture2D" uid="uid://cg5niopp6jfxp" path="res://Assets/Units/MiniWorker.png" id="9_3mvoq"]
@@ -14,67 +12,13 @@
 noise_type = 0
 seed = -1849055115
 
-[sub_resource type="Resource" id="Resource_4u7qr"]
-script = ExtResource("5_w73bl")
-type = 0
-tilemap_layer = 0
-source_id = 0
-atlas_coord = Vector2i(0, 0)
-alternative_tile = 0
-id = ""
-layer = 0
-
-[sub_resource type="Resource" id="Resource_j6m6j"]
-resource_name = "grass"
-script = ExtResource("4_0fn7q")
-title = "grass"
-tile = SubResource("Resource_4u7qr")
-min = -1.0
-max = 0.7
-
-[sub_resource type="Resource" id="Resource_rdhrs"]
-script = ExtResource("5_w73bl")
-type = 0
-tilemap_layer = 0
-source_id = 0
-atlas_coord = Vector2i(1, 0)
-alternative_tile = 0
-id = ""
-layer = 0
-
-[sub_resource type="Resource" id="Resource_bfkin"]
-resource_name = "leafy grass"
-script = ExtResource("4_0fn7q")
-title = "leafy grass"
-tile = SubResource("Resource_rdhrs")
-min = 0.2
-max = 0.7
-
-[sub_resource type="Resource" id="Resource_7awpq"]
-script = ExtResource("5_w73bl")
-type = 0
-tilemap_layer = 0
-source_id = 0
-atlas_coord = Vector2i(2, 0)
-alternative_tile = 0
-id = ""
-layer = 0
-
-[sub_resource type="Resource" id="Resource_bjbjr"]
-resource_name = "flowery grass"
-script = ExtResource("4_0fn7q")
-title = "flowery grass"
-tile = SubResource("Resource_7awpq")
-min = 0.7
-max = 1.0
-
-[sub_resource type="Resource" id="Resource_ghum3"]
+[sub_resource type="Resource" id="Resource_lkbmk"]
 resource_name = "Settings"
 script = ExtResource("3_m8cud")
-tiles = Array[ExtResource("4_0fn7q")]([SubResource("Resource_j6m6j"), SubResource("Resource_bfkin"), SubResource("Resource_bjbjr")])
-noise = SubResource("FastNoiseLite_o0uva")
+tiles = Array[ExtResource("4_0fn7q")]([])
+noise = SubResource("FastNoiseLite_behoq")
 infinite = false
-world_size = Vector2i(256, 1080)
+world_size = Vector2i(256, 256)
 falloff_enabled = false
 modifiers = Array[ExtResource("2_t5twq")]([])
 
@@ -304,21 +248,15 @@ sources/1 = SubResource("TileSetAtlasSource_wwudc")
 
 [node name="WorldGeneration" type="Node2D"]
 self_modulate = Color(0, 0, 0, 1)
-script = ExtResource("1_qc38g")
 
 [node name="NoiseGenerator" type="Node" parent="."]
 script = ExtResource("1_w7eie")
-settings = SubResource("Resource_ghum3")
+settings = SubResource("Resource_lkbmk")
 
 [node name="ThreadedTilemapGaeaRenderer" type="Node" parent="." node_paths=PackedStringArray("tile_map_layers", "generator")]
 script = ExtResource("6_gjdw7")
 tile_map_layers = [NodePath("../TileMapLayer")]
 generator = NodePath("../NoiseGenerator")
-
-[node name="Fog" type="Sprite2D" parent="."]
-y_sort_enabled = true
-material = SubResource("CanvasItemMaterial_nq3e6")
-centered = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.298039, 0.298039, 0.298039, 1)

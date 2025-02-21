@@ -14,6 +14,9 @@ var followCursor = false
 var image;
 var FOOD_CONSUMPTION_RATE = 1
 @onready var dyingTime = $DyingTime
+var FOOD_CONSUMPTION_RATE = 1
+@onready var timer = $FoodTimer
+@onready var combatSystem: CombatSystem = $CombatSystem
 
 # UNIT CONFIG
 var speed = 10
@@ -32,6 +35,10 @@ func _process(delta: float) -> void:
 	if alive:
 		if hp.value != hp.max_value:
 			hp.visible = true
+		
+	if !isInLight:
+		label.visible = false
+		health -= 10 * ARMOR_SCALER
 	else:
 		hp.visible = false
 	
@@ -70,13 +77,18 @@ func setProperties():
 		Enums.UNIT_TYPE.SWORD: 
 			swordImage.visible = true
 			speed = 15
+			combatSystem.damageType = Enums.DAMAGE_TYPE.MELEE
+			combatSystem.distanceOfAttack = 50
+			combatSystem.frequencyOfAttack = 2
+			combatSystem.damageValue = 5
+			combatSystem.targets = [Enums.TARGET_TYPE.ENEMIES]
+			combatSystem._ready()
 		Enums.UNIT_TYPE.BOW:
 			bowImage.visible = true
 			speed = 10 
 	
 func _on_timer_timeout() -> void:
 	var foodConsumed = Game.consumeFood()
-	print(foodConsumed)
 	if !foodConsumed:
 		health -= 10
 		print(health)

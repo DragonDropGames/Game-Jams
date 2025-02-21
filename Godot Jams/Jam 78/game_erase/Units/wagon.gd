@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Wagon
 
 enum WAGON_TYPE { MAIN, SWORD, BOW, RESOURCE }
 const BASE_LIGHT_DEPLITION_RATE: int = 0.1
@@ -12,24 +13,27 @@ var followCursor = false
 var menu = preload("res://UI/wagon_menu.tscn")
 var menuInstance
 var mouseEntered = false
+@onready var foodTimer = $FoodTimer
+var WOOD_CONSUMPTION_RATE = 1
+var consumedWood = true
 
 # Wagon Customization Properties
 @onready var bowWagonImage = get_node("WagonCollision/BowWagon")
 @onready var mainWagonImage = get_node("WagonCollision/MainWagon")
 @onready var resourceWagonImage = get_node("WagonCollision/ResourceWagon")
 @onready var swordWagonImage = get_node("WagonCollision/SwordWagon")
-@onready var lightArea = get_node("LightArea/CollisionShape2D")
+@onready var light_collision: CollisionShape2D = $LightArea/CollisionShape2D
 @onready var point_light = $PointLight
 
-
-
 @export var wagon: WAGON_TYPE
-var lightScale: Vector2 = Vector2(10, 10)
+var lightScale: float = 10
 var light_depletion_rate: int = 1
 
 func _ready():
 	add_to_group("Wagons", true)
 	setProperties()
+	foodTimer.start(0)
+
 	
 func _input(event):
 	if event.is_action_pressed("RightClick"):
@@ -55,28 +59,27 @@ func setProperties():
 		Enums.WAGON_TYPE.MAIN:
 			speed = 15
 			mainWagonImage.visible = true
-			lightScale = Vector2(30, 30)
+			lightScale = 30
 			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE
 			add_to_group("MainWagon", true)
 		Enums.WAGON_TYPE.SWORD:
 			speed = 20
 			swordWagonImage.visible = true
-			lightScale = Vector2(15, 15)
+			lightScale = 15
 			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE + 0.1
 			add_to_group("SwordWagon", true)
 		Enums.WAGON_TYPE.BOW:
 			speed = 20
 			bowWagonImage.visible = true
-			lightScale = Vector2(15, 15)
+			lightScale = 15
 			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE +  0.2
 			add_to_group("BowWagon", true)
 		Enums.WAGON_TYPE.RESOURCE:
 			speed = 15
 			resourceWagonImage.visible = true
-			lightScale = Vector2(15, 15)
+			lightScale = 15
 			light_depletion_rate = BASE_LIGHT_DEPLITION_RATE +  0.3
 			add_to_group("ResourceWagon", true)
-	
 	
 	point_light.energy = 1
 	scale_lights()
@@ -90,26 +93,26 @@ func _on_light_area_body_exited(body: Node2D) -> void:
 		body.isInLight = false
 
 func _on_timer() -> void:
-	if lightScale < Vector2(5, 5):
+	if lightScale < 5:
 		extinguish()
 	else:
-		lightScale -= Vector2(light_depletion_rate, light_depletion_rate)
-		scale_lights()
+		if !consumedWood:
+			lightScale -= light_depletion_rate
+			scale_lights()
 
 func extinguish() -> void:
-	if lightScale <= Vector2.ZERO:
+	if lightScale <= 0:
 		return
-	
-	lightScale = Vector2.ZERO
-	
+
+	lightScale = 0
+
 	scale_lights()
 	
 func scale_lights() -> void:
-	lightArea.scale = lightScale
-	point_light.scale = lightScale / 25
+	light_collision.scale = Vector2(lightScale, lightScale)
+	point_light.scale = Vector2(lightScale, lightScale) / 25
 
 func _on_interaction_panel_mouse_entered() -> void:
-	print("here")
 	mouseEntered = true
 
 func _on_interaction_panel_mouse_exited() -> void:
@@ -118,7 +121,6 @@ func _on_interaction_panel_mouse_exited() -> void:
 func _on_interaction_panel_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("LeftClick"):
 		if mouseEntered:
-			print(menuInstance)
 			if menuInstance == null:
 				setSelected(true)
 				menuInstance = menu.instantiate()
@@ -127,3 +129,7 @@ func _on_interaction_panel_gui_input(event: InputEvent) -> void:
 			else:
 				setSelected(false)
 				menuInstance.queue_free()
+
+func _on_food_timer_timeout() -> void:
+	consumedWood = Game.consumeWood()
+		

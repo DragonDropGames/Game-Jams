@@ -1,21 +1,22 @@
 extends Node2D
 
-var units = []
-var wagons = []
-var enemies = []
-var resources = []
 
-signal update_fog(Vector2)
+var units: Array[Node] = []
+var wagons: Array[Node] = []
+var enemies: Array[Node] = []
+var resources: Array[Node] = []
+
+signal clear_fog(CollisionShape2D)
 
 func _ready():
 	load_units()
 	load_enemies()
 	load_resources()
-	connect("update_fog", Callable(get_tree().get_root().get_node("World/WorldGeneration"), "update_fog"))
+	connect("clear_fog", Callable(get_tree().get_root().get_node("World/WorldGeneration/Fog_Layer"), "clear_fog"))
 
 func _process(delta: float) -> void:
 	for wagon in wagons:
-		emit_signal("update_fog",wagon.position, wagon.lightScale)
+		emit_signal("clear_fog", wagon.light_collision)
 	
 func _on_area_selected(object):
 	var start = object.start
@@ -24,6 +25,7 @@ func _on_area_selected(object):
 	
 	area.append(Vector2(min(start.x, end.x), min(start.y, end.y)))
 	area.append(Vector2(max(start.x, end.x), max(start.y, end.y)))
+	load_units()
 	
 	var unitsInArea = get_units_in_area(area)
 	updateUnitSelectedStatus(units, false)
@@ -49,14 +51,11 @@ func get_units_in_area(area):
 	return unitsInArea
 
 func load_units():
-	units = null
 	units = get_tree().get_nodes_in_group("Units")
 	wagons = get_tree().get_nodes_in_group("Wagons")
-	
+
 func load_enemies():
-	enemies = null
 	enemies = get_tree().get_nodes_in_group("Enemies")
 	
 func load_resources():
-	resources = null
 	resources = get_tree().get_nodes_in_group("Resources")
