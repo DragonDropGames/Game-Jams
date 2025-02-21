@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://byf4nkgylxsx8"]
+[gd_scene load_steps=9 format=3 uid="uid://byf4nkgylxsx8"]
 
 [ext_resource type="Script" path="res://Units/combatUnit.gd" id="1_riq1d"]
 [ext_resource type="Texture2D" uid="uid://gj6oxdy6j3vw" path="res://Assets/Units/tile_0096.png" id="2_kwky2"]
 [ext_resource type="Texture2D" uid="uid://cd7k7sm337pnn" path="res://Assets/Units/tile_0112.png" id="3_6mxvg"]
 [ext_resource type="PackedScene" uid="uid://dyewi7ipnw4vu" path="res://Global/Health Bars/BasicHealthBar.tscn" id="4_vx3ww"]
+[ext_resource type="PackedScene" uid="uid://bowehgbjjbx3y" path="res://Units/systems/combat_system.tscn" id="5_0kr32"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w604s"]
 
@@ -65,5 +66,7 @@ value = 100.0
 
 [node name="FoodTimer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="CombatSystem" parent="." instance=ExtResource("5_0kr32")]
 
 [connection signal="timeout" from="FoodTimer" to="." method="_on_timer_timeout"]

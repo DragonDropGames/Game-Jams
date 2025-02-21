@@ -102,7 +102,7 @@ func _on_timer() -> void:
 func extinguish() -> void:
 	if lightScale <= 0:
 		return
-    
+	
 	lightScale = 0
 
 	scale_lights()
