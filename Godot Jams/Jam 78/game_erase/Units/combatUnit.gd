@@ -11,7 +11,7 @@ var followCursor = false
 @export var isInLight = false
 var FOOD_CONSUMPTION_RATE = 1
 @onready var timer = $FoodTimer
-
+@onready var combatSystem: CombatSystem = $CombatSystem
 
 # UNIT CONFIG
 var speed = 10
@@ -60,6 +60,12 @@ func setProperties():
 		Enums.UNIT_TYPE.SWORD: 
 			swordImage.visible = true
 			speed = 15
+			combatSystem.damageType = Enums.DAMAGE_TYPE.MELEE
+			combatSystem.distanceOfAttack = 50
+			combatSystem.frequencyOfAttack = 2
+			combatSystem.damageValue = 5
+			combatSystem.targets = [Enums.TARGET_TYPE.ENEMIES]
+			combatSystem._ready()
 		Enums.UNIT_TYPE.BOW:
 			bowImage.visible = true
 			speed = 10 

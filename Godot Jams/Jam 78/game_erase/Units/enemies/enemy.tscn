@@ -25,3 +25,9 @@ texture = ExtResource("2_yav15")
 visible = false
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("3_tmiu0")
+
+[node name="healthCheckTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="healthCheckTimer" to="." method="_on_health_check_timer_timeout"]
