@@ -9,7 +9,7 @@ var followCursor = false
 @onready var selectedPanel = get_node("SelectedPanel")
 @onready var healthBar = get_node("BasicHealthBar")
 @onready var hplabel = $Label
-var lightScale: Vector2 = Vector2(10, 10)
+var lightScale: float = 10
 var light_depletion_rate: int = 0
 
 func _ready():

@@ -5,17 +5,18 @@ var wagons = []
 var enemies = []
 var resources = []
 
-signal update_fog(Vector2)
+signal clear_fog(Vector2, float)
 
 func _ready():
 	load_units()
 	load_enemies()
 	load_resources()
-	connect("update_fog", Callable(get_tree().get_root().get_node("World/WorldGeneration"), "update_fog"))
+	connect("clear_fog", Callable(get_tree().get_root().get_node("World/WorldGeneration/Fog_Layer"), "clear_fog"))
 
 func _process(delta: float) -> void:
 	for wagon in wagons:
-		emit_signal("update_fog",wagon.position, wagon.lightScale)
+		#$WorldGeneration/Fpg_layer.clear_fog(wagon.position, wagon.lightScale)
+		emit_signal("clear_fog", wagon.position, wagon.lightScale)
 	
 func _on_area_selected(object):
 	var start = object.start
