@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bowehgbjjbx3y"]
+
+[ext_resource type="Script" path="res://Units/systems/combat_system.gd" id="1_u8iln"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rya2l"]
+
+[node name="CombatSystem" type="Node2D"]
+script = ExtResource("1_u8iln")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_rya2l")
