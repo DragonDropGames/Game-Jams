@@ -9,6 +9,9 @@ var followCursor = false
 @onready var selectedPanel = get_node("SelectedPanel")
 @onready var healthBar = get_node("BasicHealthBar")
 @onready var hplabel = $Label
+@onready var point_light: PointLight2D = $PointLight
+@onready var light_collision: Area2D = $LightArea
+
 var lightScale: float = 10
 var light_depletion_rate: int = 0
 

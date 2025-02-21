@@ -22,7 +22,7 @@ var consumedWood = true
 @onready var mainWagonImage = get_node("WagonCollision/MainWagon")
 @onready var resourceWagonImage = get_node("WagonCollision/ResourceWagon")
 @onready var swordWagonImage = get_node("WagonCollision/SwordWagon")
-@onready var lightArea = get_node("LightArea/CollisionShape2D")
+@onready var light_collision: CollisionShape2D = $LightArea/CollisionShape2D
 @onready var point_light = $PointLight
 
 @export var wagon: WAGON_TYPE
@@ -33,6 +33,7 @@ func _ready():
 	add_to_group("Wagons", true)
 	setProperties()
 	foodTimer.start(0)
+
 	
 func _input(event):
 	if event.is_action_pressed("RightClick"):
@@ -102,13 +103,13 @@ func _on_timer() -> void:
 func extinguish() -> void:
 	if lightScale <= 0:
 		return
-    
+
 	lightScale = 0
 
 	scale_lights()
 	
 func scale_lights() -> void:
-	lightArea.scale = Vector2(lightScale, lightScale)
+	light_collision.scale = Vector2(lightScale, lightScale)
 	point_light.scale = Vector2(lightScale, lightScale) / 25
 
 func _on_interaction_panel_mouse_entered() -> void:
