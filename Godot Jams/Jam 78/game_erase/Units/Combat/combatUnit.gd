@@ -14,7 +14,6 @@ var followCursor = false
 var image;
 var FOOD_CONSUMPTION_RATE = 1
 @onready var dyingTime = $DyingTime
-var FOOD_CONSUMPTION_RATE = 1
 @onready var timer = $FoodTimer
 @onready var combatSystem: CombatSystem = $CombatSystem
 
