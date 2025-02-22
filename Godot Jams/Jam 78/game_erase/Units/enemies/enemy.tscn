@@ -825,6 +825,7 @@ frame = 6
 frame_progress = 1.0
 
 [node name="BasicEnemy" type="AnimatedSprite2D" parent="EnemyCollision"]
+visible = false
 sprite_frames = SubResource("SpriteFrames_37x4h")
 animation = &"die"
 autoplay = "idle"
