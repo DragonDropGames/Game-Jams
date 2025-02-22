@@ -4,9 +4,6 @@ extends Camera2D
 @export var ZOOM_MARGIN = 0.1
 @export var SPEED = 20.0
 
-
-
-
 # Unit Selection Variables
 var mousePos = Vector2()
 var mousePosGlobal = Vector2()
@@ -70,7 +67,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouse:
 		mousePos = event.position
 		mousePosGlobal = get_global_mouse_position()
-		
+
 func drawArea(s=true):
 	box.size = Vector2(abs(startV.x - endV.x), abs(startV.y - endV.y))
 	var pos = Vector2()
@@ -92,4 +89,5 @@ func _unhandled_input(event):
 
 	# Dragging (smooth movement)
 	elif event is InputEventMouseMotion and dragging:
-		position -= event.relative * zoom * drag_sensitivity
+		# Adjust the dragging speed by dividing the motion by the zoom level to counter the zoom effect
+		position -= event.relative * drag_sensitivity / zoom.x
