@@ -9,4 +9,5 @@ func _ready():
 	health = 1200
 	alive = true
 	sprite = heroSprite
+	attack_area = $AttackArea
 	ready_complete()
