@@ -7,7 +7,7 @@ func _ready():
 	speed = 10
 	health = 100
 	darkness_scaler = 0.5
-	sprit = workerSprite
+	sprite = workerSprite
 	light_scale = 4
 	light_depletion_rate = 0.1
 	add_to_group("Units")

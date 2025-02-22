@@ -8,5 +8,5 @@ func _ready():
 	speed = 60
 	health = 1200
 	alive = true
-	sprit = heroSprite
+	sprite = heroSprite
 	ready_complete()

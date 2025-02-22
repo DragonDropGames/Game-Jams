@@ -480,9 +480,4 @@ offset_right = 8.0
 offset_bottom = -7.0
 value = 100.0
 
-[node name="FoodTimer" type="Timer" parent="."]
-wait_time = 5.0
-
 [node name="CombatSystem" parent="." instance=ExtResource("5_0kr32")]
-
-[connection signal="timeout" from="FoodTimer" to="." method="_on_timer_timeout"]

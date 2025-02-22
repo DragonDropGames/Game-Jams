@@ -20,7 +20,7 @@ func _ready() -> void:
 
 func _on_timer_timeout() -> void:
 	if spawn_budget <= 0:
-		print("Spawner finished! Checking enemy count...")
+		#print("Spawner finished! Checking enemy count...")
 		check_and_spawn_new_spawner()  # Check enemy count before deleting
 		queue_free()  # Remove spawner when done
 		return
@@ -43,7 +43,7 @@ func _on_timer_timeout() -> void:
 	# Only spawn if budget allows
 	if spawn_budget >= cost:
 		spawn_budget -= cost  # Deduct cost
-		print("Spawning ", enemy, " | Remaining budget: ", spawn_budget)
+		#print("Spawning ", enemy, " | Remaining budget: ", spawn_budget)
 
 		# **Generate random spawn position in a circle**
 		var angle = rng.randf_range(0, TAU)  # Random direction
@@ -60,10 +60,10 @@ func check_and_spawn_new_spawner():
 	# Count all enemies in the "Enemies" group
 	var enemy_count = get_tree().get_nodes_in_group("Enemies").size()
 
-	print("Current enemy count: ", enemy_count)
+	#print("Current enemy count: ", enemy_count)
 	
 	if enemy_count < 100:
-		print("Enemy count low! Spawning a new spawner...")
+		#print("Enemy count low! Spawning a new spawner...")
 
 		# **Pick a random position in the map**
 		var new_position = Vector2(rng.randf_range(0, map_size.x), rng.randf_range(0, map_size.y))
