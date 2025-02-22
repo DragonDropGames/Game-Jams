@@ -3,7 +3,6 @@ extends Node2D
 var travel = Vector2(0, -150)
 var duration = 1
 var spread = PI / 2
-
 var pos
 
 func showMenu(type: Enums.WAGON_TYPE, woodCount: float, wagonPos: Vector2) -> void:
