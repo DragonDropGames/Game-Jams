@@ -853,7 +853,6 @@ color = Color(0.298039, 0.298039, 0.298039, 1)
 process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 0
-visible = false
 top_level = true
 z_index = 99
 tile_set = SubResource("TileSet_a1umu")
