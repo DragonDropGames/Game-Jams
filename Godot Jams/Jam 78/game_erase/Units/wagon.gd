@@ -15,6 +15,7 @@ var mouseEntered = false
 
 @export var wagon: WAGON_TYPE
 
+
 func _ready():
 	speed = 40
 	match wagon:
@@ -39,8 +40,7 @@ func _ready():
 			resourceWagonImage.visible = true
 	
 	ready_complete()
-
-
+	
 func _on_light_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("ControllableUnits"):
 		body.in_light = true

@@ -85,7 +85,7 @@ func _physics_process(delta: float):
 	move_and_slide()
 
 func _on_agro_enter(body):
-	if body.is_in_group("ControllableUnits"):
+	if body.is_in_group("ControlableUnits"):
 		player = body
 		aggroed = true
 

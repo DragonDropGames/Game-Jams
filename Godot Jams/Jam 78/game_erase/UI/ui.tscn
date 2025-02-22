@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://vys72xs8cl6y"]
+[gd_scene load_steps=7 format=3 uid="uid://vys72xs8cl6y"]
 
+[ext_resource type="Texture2D" uid="uid://mm66mxqop7cf" path="res://Assets/buttonLong_blue.png" id="1_rxskm"]
 [ext_resource type="PackedScene" uid="uid://yofk1e5vynqt" path="res://UI/resourceTracker.tscn" id="1_u4lcu"]
+[ext_resource type="Texture2D" uid="uid://d3d57g5awares" path="res://Assets/barRed_horizontalMid.png" id="2_3sgym"]
 [ext_resource type="Script" path="res://UI/resource_tracker.gd" id="2_h7whw"]
+[ext_resource type="Texture2D" uid="uid://ohqgvv2k20x8" path="res://Assets/Item 3-1.png.png" id="3_plavr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn0pl"]
 bg_color = Color(0.6, 0.6, 0.6, 0.313726)
@@ -17,6 +20,21 @@ corner_radius_bottom_left = 20
 
 [node name="UI" type="CanvasLayer"]
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+offset_left = 69.0
+offset_top = 30.0
+offset_right = 111.0
+offset_bottom = 70.0
+
+[node name="ResourceTracker" parent="HBoxContainer2" instance=ExtResource("1_u4lcu")]
+layout_mode = 2
+text = "Iron:"
+
+[node name="Iron Count" parent="HBoxContainer2" instance=ExtResource("1_u4lcu")]
+layout_mode = 2
+text = ""
+script = ExtResource("2_h7whw")
+
 [node name="SelectionPanel" type="Panel" parent="."]
 visible = false
 offset_right = 40.0
@@ -24,44 +42,10 @@ offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_nn0pl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="ResourceTracker" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("1_u4lcu")]
-layout_mode = 2
-text = "Wood:"
-
-[node name="Wood Count" parent="VBoxContainer/HBoxContainer3" instance=ExtResource("1_u4lcu")]
-layout_mode = 2
-text = ""
-script = ExtResource("2_h7whw")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="ResourceTracker" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_u4lcu")]
-layout_mode = 2
-text = "Iron:"
-
-[node name="Iron Count" parent="VBoxContainer/HBoxContainer" instance=ExtResource("1_u4lcu")]
-layout_mode = 2
-text = ""
-script = ExtResource("2_h7whw")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="ResourceTracker" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("1_u4lcu")]
-layout_mode = 2
-text = "Meat:"
-
-[node name="Meat Count" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("1_u4lcu")]
-layout_mode = 2
-text = ""
-script = ExtResource("2_h7whw")
+offset_left = 49.0
+offset_top = 32.0
+offset_right = 146.0
+offset_bottom = 109.0
 
 [node name="FogToggle" type="CheckBox" parent="."]
 anchors_preset = 2
@@ -71,3 +55,48 @@ offset_top = -31.0
 offset_right = 110.0
 grow_vertical = 0
 text = "Toggle Fog"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 48.0
+offset_top = 11.0
+offset_right = 88.0
+offset_bottom = 51.0
+scale = Vector2(12.0446, 0.499806)
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("1_rxskm")
+texture_progress = ExtResource("2_3sgym")
+
+[node name="Item3-1_png" type="Sprite2D" parent="."]
+position = Vector2(28, 25)
+texture = ExtResource("3_plavr")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+offset_left = 235.0
+offset_top = 30.0
+offset_right = 290.0
+offset_bottom = 70.0
+
+[node name="ResourceTracker" parent="HBoxContainer3" instance=ExtResource("1_u4lcu")]
+layout_mode = 2
+text = "Wood:"
+
+[node name="Wood Count" parent="HBoxContainer3" instance=ExtResource("1_u4lcu")]
+layout_mode = 2
+text = ""
+script = ExtResource("2_h7whw")
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="."]
+offset_left = 433.0
+offset_top = 31.0
+offset_right = 482.0
+offset_bottom = 71.0
+
+[node name="ResourceTracker" parent="HBoxContainer4" instance=ExtResource("1_u4lcu")]
+layout_mode = 2
+text = "Meat:"
+
+[node name="Meat Count" parent="HBoxContainer4" instance=ExtResource("1_u4lcu")]
+layout_mode = 2
+text = ""
+script = ExtResource("2_h7whw")

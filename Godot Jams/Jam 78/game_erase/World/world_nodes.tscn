@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bntjk372f57bs"]
+[gd_scene load_steps=8 format=3 uid="uid://bntjk372f57bs"]
 
 [ext_resource type="PackedScene" uid="uid://byf4nkgylxsx8" path="res://Units/Combat/combatUnit.tscn" id="1_es40y"]
 [ext_resource type="PackedScene" uid="uid://cy7232f5xniil" path="res://Units/Wagon.tscn" id="2_2776d"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cgp5eivo4vtgt" path="res://Structures/resource.tscn" id="4_m4483"]
 [ext_resource type="PackedScene" uid="uid://ckmkx8imypqy7" path="res://Units/enemies/enemy.tscn" id="5_fsb3k"]
 [ext_resource type="PackedScene" uid="uid://d1sb7mq2miv8n" path="res://UI/Enemy Spawner/enemy_spawner.tscn" id="7_w2kfn"]
-[ext_resource type="PackedScene" uid="uid://c6olgxa5fk0vy" path="res://Structures/Torch/torch.tscn" id="8_dgdsv"]
 
 [node name="WorldNodes" type="Node2D"]
 
@@ -19,6 +18,7 @@ position = Vector2(149, 239)
 
 [node name="ResourceUnit" parent="Units" instance=ExtResource("2_ml6ot")]
 position = Vector2(374, 314)
+light_depletion_rate = 1
 
 [node name="Hero" parent="Units" instance=ExtResource("3_a6o1l")]
 position = Vector2(527, 549)
@@ -67,8 +67,3 @@ position = Vector2(457, 190)
 
 [node name="CharacterBody2D2" parent="Enemy Spawner" instance=ExtResource("7_w2kfn")]
 position = Vector2(745, 289)
-
-[node name="Torches" type="Node2D" parent="."]
-
-[node name="Torch" parent="Torches" instance=ExtResource("8_dgdsv")]
-position = Vector2(693.126, 463.631)
