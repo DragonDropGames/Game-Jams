@@ -21,7 +21,7 @@ signal start_move_selection
 
 @export var zoom_speed: float = 0.1
 @export var min_zoom: float = 0.5
-@export var max_zoom: float = 2.0
+@export var max_zoom: float = 3.0
 @export var drag_sensitivity: float = 1.0  # Adjust for smoother dragging
 
 var dragging: bool = false

@@ -74,7 +74,7 @@ func _process(delta: float) -> void:
 	if collision:
 		velocity = velocity.bounce(collision.get_normal()) * 0.5  # Bounce effect to avoid getting stuck
 
-func setProperties():
+func set_properties():
 	match enemy:
 		ENEMY_TYPE.BASIC:
 			speed = 35
