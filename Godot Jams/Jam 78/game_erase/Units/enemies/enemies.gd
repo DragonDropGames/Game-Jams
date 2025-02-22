@@ -9,7 +9,10 @@ var image: AnimatedSprite2D
 var alive = true
 var player = null
 var aggroed = false
-var attacking = false
+var attack_damage = 10
+var attack_frequency = 1
+var combat: CombatSystem
+const attack_group = "ControlableUnit"
 
 @export var enemy: ENEMY_TYPE
 @export var health = 100
@@ -22,32 +25,47 @@ var attacking = false
 @onready var mediumEnemyImage = $EnemyCollision/MediumEnemy
 @onready var bigBoyImage = $EnemyCollision/BigBoy
 
+		
+		
 func _ready():
 	add_to_group("Enemies", true)
 
-	$AgroRange.connect("body_entered", Callable(self, "_on_agro_enter"))
-	$AgroRange.connect("body_exited", Callable(self, "_on_agro_exit"))
-	$AttackRange.connect("body_entered", Callable(self, "_on_attack_range_enter"))
-	$AttackRange.connect("body_exited", Callable(self, "_on_attack_range_exit"))
+	
 	
 	match enemy:
 		ENEMY_TYPE.BASIC:
 			speed = 35
 			image = basicEnemyImage
+			attack_damage = 10
+			attack_frequency = 1
 			basicEnemyImage.visible = true
 			add_to_group("SmallBoys", true)
 		ENEMY_TYPE.MEDIUM:
 			speed = 25
 			image = mediumEnemyImage
+			attack_damage = 10
+			attack_frequency = 1
 			mediumEnemyImage.visible = true
 			add_to_group("MediumBoys", true)
 		ENEMY_TYPE.BIGBOY:
 			speed = 15
 			image = bigBoyImage
+			attack_damage = 10
+			attack_frequency = 1
 			bigBoyImage.visible = true
 			add_to_group("BigBoys", true)
 		ENEMY_TYPE.BOSS:
 			speed = 10
+	
+	$AgroRange.connect("body_entered", Callable(self, "_on_agro_enter"))
+	$AgroRange.connect("body_exited", Callable(self, "_on_agro_exit"))
+	$AttackRange.connect("body_entered", Callable(self, "_on_attack_range_enter"))
+	$AttackRange.connect("body_exited", Callable(self, "_on_attack_range_exit"))
+	
+	combat = CombatSystem.new()
+	combat.attack_damage = attack_damage
+	combat.attack_frequency = attack_frequency
+	combat.attack_group = attack_group
 
 func _physics_process(delta: float):
 	if not alive:
@@ -57,7 +75,7 @@ func _physics_process(delta: float):
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * speed
 		
-		if attacking:
+		if combat.attacking:
 			image.play('attack')
 		else:
 			image.play('run')
@@ -68,7 +86,7 @@ func _physics_process(delta: float):
 	move_and_slide()
 
 func _on_agro_enter(body):
-	if body.is_in_group("ControlableUnits"):
+	if body.is_in_group(attack_group):
 		player = body
 		aggroed = true
 
@@ -78,13 +96,11 @@ func _on_agro_exit(body):
 		aggroed = false
 
 func _on_attack_range_enter(body):
-	if body.is_in_group("ControlableUnits"):
-		attacking = true
+	combat.on_attack_range_enter(body)
 
 func _on_attack_range_exit(body):
-	if body == player:
-		attacking = false
-		
+	combat.on_attack_range_exit(body)
+
 
 func _process(delta: float) -> void:
 	if not alive:
@@ -138,4 +154,17 @@ func _on_health_check_timer_timeout() -> void:
 	if health <= 0 and alive:
 		image.play('die')
 		alive = false
-		set_physics_process(false)  # Stop movement processing when dead
+		set_physics_process(false)
+		remove_from_group("Enemies")
+		
+
+func take_damage(damage: float) -> bool:
+	health -= damage
+	
+	if health <= 0 and alive:
+		image.play('die')
+		alive = false
+		set_physics_process(false)
+		remove_from_group("Enemies")
+	
+	return not alive

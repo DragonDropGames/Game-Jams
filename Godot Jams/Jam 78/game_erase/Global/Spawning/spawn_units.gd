@@ -22,7 +22,6 @@ func spawnEnemy(type: Enums.ENEMY_TYPE, position: Vector2) -> void:
 
 	# Ensure the path exists
 	if not enemies_path or not world:
-		print("Error: Enemy spawn path not found!")
 		return
 	
 	# Create the enemy instance

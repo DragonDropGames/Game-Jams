@@ -11,11 +11,7 @@ var rng = RandomNumberGenerator.new()
 var spawn_budget: int  # Total spawn value budget
 
 func _ready() -> void:
-	# Set a random spawn budget (between 8-20)
 	spawn_budget = rng.randi_range(min_units, max_units)
-	print("Spawner initialized with budget: ", spawn_budget)
-
-	# Start timer to spawn units periodically
 	spawn_timer.start()
 
 func _on_timer_timeout() -> void:
