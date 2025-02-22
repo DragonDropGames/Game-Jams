@@ -85,18 +85,3 @@ text = "Wood:"
 layout_mode = 2
 text = ""
 script = ExtResource("2_h7whw")
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="."]
-offset_left = 433.0
-offset_top = 31.0
-offset_right = 482.0
-offset_bottom = 71.0
-
-[node name="ResourceTracker" parent="HBoxContainer4" instance=ExtResource("1_u4lcu")]
-layout_mode = 2
-text = "Meat:"
-
-[node name="Meat Count" parent="HBoxContainer4" instance=ExtResource("1_u4lcu")]
-layout_mode = 2
-text = ""
-script = ExtResource("2_h7whw")

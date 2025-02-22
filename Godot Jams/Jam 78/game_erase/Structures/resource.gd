@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-enum RESOURCE_TYPE { Iron, Food, Wood }
+enum RESOURCE_TYPE { Iron, Wood }
 @export var resourceType: RESOURCE_TYPE
 
 var totalTime = 5
@@ -12,7 +12,6 @@ var type;
 @onready var timer = $Timer
 @onready var iron = $Iron
 @onready var wood = $Wood
-@onready var food = $Food
 
 func _ready() -> void:
 	add_to_group('Resource')
@@ -30,9 +29,6 @@ func setProperties() -> void:
 		RESOURCE_TYPE.Iron:
 			type = 'iron'
 			totalTime = 300
-			pass
-		RESOURCE_TYPE.Food:
-			type = 'food'
 			pass
 		RESOURCE_TYPE.Wood:
 			totalTime = 60
@@ -63,5 +59,3 @@ func _on_timer_timeout() -> void:
 		Game.iron_label += 2
 	if type == 'wood':
 		Game.wood_label += 8
-	if type == 'food':
-		Game.food_label += 3

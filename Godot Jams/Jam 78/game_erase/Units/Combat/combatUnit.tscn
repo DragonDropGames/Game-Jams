@@ -469,11 +469,6 @@ offset_bottom = -7.0
 value = 100.0
 
 [node name="CombatSystem" parent="." instance=ExtResource("5_0kr32")]
-damageType = null
-distanceOfAttack = null
-frequencyOfAttack = null
-damageValue = null
-targets = null
 
 [node name="SwordUnit" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -6)

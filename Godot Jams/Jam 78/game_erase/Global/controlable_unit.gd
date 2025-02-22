@@ -28,7 +28,6 @@ var in_light := true
 var alive := true
 var follow_cursor := false
 var is_selected := false
-var food_timer := Timer.new()
 var light_timer := Timer.new()
 var selected := false
 
@@ -52,12 +51,6 @@ func ready_complete():
 	add_child(point_light)
 	
 	add_to_group("ControllableUnits", true)
-	
-	food_timer.wait_time = 10.0
-	food_timer.one_shot = false
-	food_timer.timeout.connect(_on_light_timer)
-	add_child(food_timer)
-	food_timer.start()
 	
 	light_timer.wait_time = 1.0
 	light_timer.one_shot = false
@@ -172,9 +165,6 @@ func _input(event):
 		follow_cursor = true
 	elif event.is_action_released("RightClick"):
 		follow_cursor = false
-
-func _on_food_time() -> void:
-	pass
 
 func _on_light_timer() -> void:
 	if light_scale <= 0.0:

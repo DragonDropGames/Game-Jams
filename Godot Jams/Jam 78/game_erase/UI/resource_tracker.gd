@@ -15,8 +15,6 @@ func _process(delta: float) -> void:
 		value = str(Game.wood_label)
 	if name == 'Iron Count':
 		value = str(Game.iron_label)
-	if name == 'Meat Count':
-		value = str(Game.food_label)
 		
 	text = value
 	pass
