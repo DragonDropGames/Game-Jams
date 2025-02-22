@@ -44,4 +44,5 @@ RightClick={
 
 [layer_names]
 
+2d_render/layer_6="Obstacles"
 2d_render/layer_10="Hud"

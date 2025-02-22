@@ -13,7 +13,7 @@ script = ExtResource("1_37q7v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 y_sort_enabled = true
-position = Vector2(578, 323)
+position = Vector2(1930.42, 3934.4)
 limit_left = -5
 limit_top = -5
 limit_right = 6955
@@ -23,3 +23,4 @@ script = ExtResource("2_js0y7")
 [node name="WorldGeneration" parent="." instance=ExtResource("4_v0mnd")]
 
 [node name="WorldNodes" parent="." instance=ExtResource("11_8ricn")]
+position = Vector2(1565, 3456)

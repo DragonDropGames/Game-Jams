@@ -51,6 +51,7 @@ func ready_complete():
 	point_light.visibility_layer = 2
 	point_light.blend_mode = Light2D.BLEND_MODE_ADD
 	point_light.material = canvas
+	point_light.shadow_enabled = true
 	
 	add_child(point_light)
 	
