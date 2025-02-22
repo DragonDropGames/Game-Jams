@@ -25,7 +25,6 @@ limit_top = -16
 limit_right = 4112
 limit_bottom = 4112
 script = ExtResource("2_js0y7")
-max_zoom = 5.0
 
 [node name="WorldGeneration" parent="." instance=ExtResource("4_v0mnd")]
 

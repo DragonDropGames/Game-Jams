@@ -77,12 +77,16 @@ func ready_complete():
 		combat.attack_group = "Enemies"
 
 func _physics_process(delta: float) -> void:
+	if !alive:
+		return
+		
 	if follow_cursor && is_selected:
 		target = get_global_mouse_position()
 	
 	velocity = position.direction_to(target) * speed
 	
 	if position.distance_to(target) > 10:
+		fog.clear_fog(light_collision)
 		update_sprit('run')
 		move_and_slide()
 	elif gathering_resources:
@@ -102,17 +106,14 @@ func _process(delta: float) -> void:
 
 		if label:
 			label.visible = false
+			
 	elif label:
 		label.visible = true
 		
-	if alive &&  health_bar.value != health_bar.max_value:
-		health_bar.visible = true
+	health_bar.visible = health_bar.value != health_bar.max_value
 		
-		if health_bar.value <= 0:
+	if health_bar.value <= 0:
 			die()
-
-	else:
-		health_bar.visible = false
 	
 	# **Boids Behavior**
 	var boids = get_tree().get_nodes_in_group("Units")
