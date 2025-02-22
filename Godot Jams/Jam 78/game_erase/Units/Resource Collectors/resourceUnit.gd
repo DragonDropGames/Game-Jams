@@ -8,7 +8,8 @@ func _ready():
 	health = 100
 	darkness_scaler = 0.5
 	sprit = workerSprite
-	light_scale = 1
+	light_scale = 4
+	light_depletion_rate = 0.1
 	add_to_group("Units")
 	add_to_group("Villagers")
 	

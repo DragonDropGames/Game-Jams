@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=3 uid="uid://ckmkx8imypqy7"]
+[gd_scene load_steps=121 format=3 uid="uid://ckmkx8imypqy7"]
 
 [ext_resource type="Script" path="res://Units/enemies/enemies.gd" id="1_qnt0y"]
 [ext_resource type="Texture2D" uid="uid://c1ihvuxboy2ot" path="res://Assets/Units/OutlinedBehemoth/Behemoth-attack1-outline.png" id="2_m38la"]
@@ -16,6 +16,9 @@
 [ext_resource type="Texture2D" uid="uid://b2rgkx8jycdoe" path="res://Assets/Units/OutlinedRat/rat-death-outline.png" id="14_4pt2a"]
 [ext_resource type="Texture2D" uid="uid://0reiwuq17nq8" path="res://Assets/Units/OutlinedRat/rat-idle-outline.png" id="15_lsm5d"]
 [ext_resource type="Texture2D" uid="uid://bmk012nbwt5w8" path="res://Assets/Units/OutlinedRat/rat-run-outline.png" id="16_empxk"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oubl8"]
+light_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nikx"]
 
@@ -797,6 +800,9 @@ animations = [{
 }]
 
 [node name="Enemy" type="CharacterBody2D"]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_oubl8")
 script = ExtResource("1_qnt0y")
 
 [node name="EnemyCollision" type="CollisionShape2D" parent="."]

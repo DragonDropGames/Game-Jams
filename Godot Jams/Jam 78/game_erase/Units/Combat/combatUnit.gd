@@ -3,11 +3,8 @@ extends ControlableUnit
 # UNIT PROPERTIES
 var followCursor = false
 @export var isSelected = false
-@onready var target = position
 @onready var selectedPanel = get_node("SelectedPanel")
-@onready var label = get_node("Label")
 @export var isInLight = false
-@export var alive = true
 
 var image
 var FOOD_CONSUMPTION_RATE = 1
@@ -29,6 +26,7 @@ func _ready():
 	light_scale = 4
 	health = 100
 	darkness_scaler = .5
+	light_depletion_rate = 0.1
 	add_to_group("Units")
 	
 	match unit: 
