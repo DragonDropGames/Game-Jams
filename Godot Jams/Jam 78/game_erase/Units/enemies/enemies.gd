@@ -14,13 +14,12 @@ var speed = 20
 
 
 func _ready():
-	add_to_group("Enemies", true)
-	setProperties()
+	set_properties()
 
 func _process(delta: float) -> void:
 	pass
 
-func setProperties():
+func set_properties():
 	match enemy:
 		ENEMY_TYPE.BASIC:
 			speed = 15

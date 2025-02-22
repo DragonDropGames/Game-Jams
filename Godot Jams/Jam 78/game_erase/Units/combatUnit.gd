@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 	if position.distance_to(target) > 10:
 		move_and_slide()
 
-func setSelected(value):
+func set_selected(value):
 	isSelected = value
 	selectedPanel.visible = value
 
