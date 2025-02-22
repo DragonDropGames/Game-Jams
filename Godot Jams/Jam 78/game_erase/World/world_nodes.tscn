@@ -16,6 +16,13 @@ position = Vector2(0, 1)
 
 [node name="CombatUnit" parent="Units" instance=ExtResource("1_es40y")]
 position = Vector2(149, 239)
+unit = 0
+speed = 10.0
+health = 10.0
+darkness_scaler = 0.0
+gathering_resources = 0.0
+light_scale = 0.0
+light_depletion_rate = 0
 
 [node name="ResourceUnit" parent="Units" instance=ExtResource("2_ml6ot")]
 position = Vector2(374, 314)
@@ -25,6 +32,13 @@ position = Vector2(527, 549)
 
 [node name="CombatUnit2" parent="Units" instance=ExtResource("1_es40y")]
 position = Vector2(188, 323)
+unit = 0
+speed = 10.0
+health = 10.0
+darkness_scaler = 0.0
+gathering_resources = 0.0
+light_scale = 0.0
+light_depletion_rate = 0
 
 [node name="ResourceUnit2" parent="Units" instance=ExtResource("2_ml6ot")]
 position = Vector2(173, 458)

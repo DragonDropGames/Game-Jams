@@ -18,8 +18,8 @@ class_name ControlableUnit
 @onready var light_collision: CollisionShape2D
 @onready var fog = get_node("/root/World/WorldGeneration/Fog_Layer")
 @onready var label = get_node("Label")
-@onready var point_light_texture: Resource = preload("res://Assets/2d_lights_and_shadows_neutral_point_light.webp")
 @onready var target = position
+@onready var tourch_scn: Resource = preload("res://Global/Tourch Light/PointLight.tscn")
 
 var in_light := true
 var alive := true
@@ -44,18 +44,7 @@ func ready_complete():
 	light_area.add_child(light_collision)
 	add_child(light_area)
 	
-		
-	var canvas := CanvasItemMaterial.new()
-	canvas.light_mode = CanvasItemMaterial.LIGHT_MODE_LIGHT_ONLY
-	
-	point_light = PointLight2D.new()
-	point_light.texture = point_light_texture
-	point_light.energy = 1
-	point_light.light_mask = 2
-	point_light.visibility_layer = 2
-	point_light.blend_mode = Light2D.BLEND_MODE_ADD
-	point_light.material = canvas
-	point_light.shadow_enabled = true
+	point_light = tourch_scn.instantiate()
 	
 	add_child(point_light)
 	
@@ -218,7 +207,7 @@ func scale_lights() -> void:
 		return
 		
 	light_collision.scale = Vector2(light_scale, light_scale)
-	point_light.scale = Vector2(light_scale, light_scale) / 25
+	point_light.scale = Vector2(light_scale, light_scale)
 
 func update_sprit(name: String) -> void:
 	if sprite:

@@ -847,7 +847,7 @@ layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 131072, 0, 0, 196608,
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 use_parent_material = true
-color = Color(0.298039, 0.298039, 0.298039, 1)
+color = Color(0.0999859, 0.099986, 0.099986, 1)
 
 [node name="Fog_Layer" type="TileMapLayer" parent="."]
 process_thread_group = 2
