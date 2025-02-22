@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cy7232f5xniil"]
+[gd_scene load_steps=33 format=3 uid="uid://cy7232f5xniil"]
 
 [ext_resource type="Script" path="res://Units/wagon.gd" id="1_24qf5"]
-[ext_resource type="Texture2D" uid="uid://bq3bbh6en201i" path="res://Assets/Wagon/BowWagon.png" id="2_fgr36"]
-[ext_resource type="Texture2D" uid="uid://bxbrf5wu4ksfw" path="res://Assets/Wagon/MainWagon.png" id="3_74cm7"]
-[ext_resource type="Texture2D" uid="uid://cj7smce3ci5g7" path="res://Assets/Wagon/ResourceWagon.png" id="4_xl4qy"]
-[ext_resource type="Texture2D" uid="uid://ds5deyb62h55" path="res://Assets/Wagon/SwordWagon.png" id="5_3ieid"]
+[ext_resource type="Texture2D" uid="uid://j4ufg2rn7fg8" path="res://Assets/Wagon/chicken.png" id="6_pmlj8"]
+[ext_resource type="Texture2D" uid="uid://jimgqrgdkctj" path="res://Assets/Wagon/chicken with silly idle.png" id="7_i2xvl"]
 [ext_resource type="PackedScene" uid="uid://dyewi7ipnw4vu" path="res://Global/Health Bars/BasicHealthBar.tscn" id="8_f21ow"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kfxd"]
@@ -23,6 +21,205 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agtqq"]
 size = Vector2(34, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lft6r"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(64, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqvpv"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(32, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc8br"]
+atlas = ExtResource("7_i2xvl")
+region = Rect2(0, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pft2a"]
+atlas = ExtResource("7_i2xvl")
+region = Rect2(16, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgecq"]
+atlas = ExtResource("7_i2xvl")
+region = Rect2(32, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3bs5"]
+atlas = ExtResource("7_i2xvl")
+region = Rect2(48, 17, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cbgc2"]
+animations = [{
+"frames": [{
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_lft6r")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_kqvpv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc8br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pft2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgecq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3bs5")
+}],
+"loop": true,
+"name": &"moving",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_moceo"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(64, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wl2s2"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(32, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngsvf"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(0, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82d3c"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(16, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2jb4"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(48, 17, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1q2l2"]
+animations = [{
+"frames": [{
+"duration": 3.2,
+"texture": SubResource("AtlasTexture_moceo")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_wl2s2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngsvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82d3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2jb4")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys2m1"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(64, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4b0e"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(32, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0813l"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(0, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adlha"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(32, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6543"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(48, 17, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rnpb8"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_ys2m1")
+}, {
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_k4b0e")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0813l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adlha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6543")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxlv5"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(64, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_boml0"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(32, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2pwj"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(0, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfj7n"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(32, 17, 15, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn82d"]
+atlas = ExtResource("6_pmlj8")
+region = Rect2(48, 17, 15, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u6v62"]
+animations = [{
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_jxlv5")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_boml0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2pwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dfj7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kn82d")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
 
 [node name="Wagon" type="CharacterBody2D"]
 input_pickable = true
@@ -55,32 +252,46 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_1jnf0")
 [node name="WagonCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_agtqq")
 
-[node name="SwordWagon" type="Sprite2D" parent="WagonCollision"]
+[node name="MainWagon" type="AnimatedSprite2D" parent="WagonCollision"]
 visible = false
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("5_3ieid")
+self_modulate = Color(0.937255, 0.74902, 0.0156863, 1)
+position = Vector2(4.17233e-07, 0)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_cbgc2")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.388847
 
-[node name="ResourceWagon" type="Sprite2D" parent="WagonCollision"]
+[node name="SwordWagon" type="AnimatedSprite2D" parent="WagonCollision"]
 visible = false
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("4_xl4qy")
+self_modulate = Color(0.27451, 0.619608, 0.705882, 1)
+sprite_frames = SubResource("SpriteFrames_1q2l2")
+animation = &"run"
+autoplay = "idle"
+frame_progress = 0.530294
 
-[node name="MainWagon" type="Sprite2D" parent="WagonCollision"]
+[node name="ResourceWagon" type="AnimatedSprite2D" parent="WagonCollision"]
 visible = false
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("3_74cm7")
+self_modulate = Color(0.4, 0.2, 0, 1)
+sprite_frames = SubResource("SpriteFrames_rnpb8")
+animation = &"run"
+autoplay = "idle"
+frame_progress = 0.213912
 
-[node name="BowWagon" type="Sprite2D" parent="WagonCollision"]
+[node name="BowWagon" type="AnimatedSprite2D" parent="WagonCollision"]
 visible = false
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_fgr36")
+self_modulate = Color(0.133333, 0.54902, 0.133333, 1)
+sprite_frames = SubResource("SpriteFrames_u6v62")
+animation = &"run"
+autoplay = "idle"
+frame_progress = 0.555926
 
 [node name="BasicHealthBar" parent="." instance=ExtResource("8_f21ow")]
 z_index = 20
 offset_left = -17.0
-offset_top = -17.0
+offset_top = -26.0
 offset_right = 17.0
-offset_bottom = -16.0
+offset_bottom = -25.0
 value = 100.0
 
 [node name="Timer" type="Timer" parent="."]
