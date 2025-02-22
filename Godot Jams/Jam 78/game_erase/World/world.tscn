@@ -59,12 +59,30 @@ position = Vector2(2009.38, 3899.79)
 
 [node name="Bow 1" parent="Characters" instance=ExtResource("7_mpoq3")]
 unit = 1
+speed = 10.0
+health = 10.0
+darkness_scaler = 0.0
+gathering_resources = 0.0
+light_scale = 0.0
+light_depletion_rate = 0
 
 [node name="Bow 2" parent="Characters" instance=ExtResource("7_mpoq3")]
 unit = 1
+speed = 10.0
+health = 10.0
+darkness_scaler = 0.0
+gathering_resources = 0.0
+light_scale = 0.0
+light_depletion_rate = 0
 
 [node name="Bow 3" parent="Characters" instance=ExtResource("7_mpoq3")]
 unit = 1
+speed = 10.0
+health = 10.0
+darkness_scaler = 0.0
+gathering_resources = 0.0
+light_scale = 0.0
+light_depletion_rate = 0
 
 [node name="ResourceUnit" parent="Characters" instance=ExtResource("8_fdbak")]
 position = Vector2(1805, 3954)
