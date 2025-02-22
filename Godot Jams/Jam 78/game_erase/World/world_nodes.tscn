@@ -1,9 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://bntjk372f57bs"]
+[gd_scene load_steps=9 format=3 uid="uid://b42t76jchxqwh"]
 
+[ext_resource type="PackedScene" uid="uid://byf4nkgylxsx8" path="res://Units/Combat/combatUnit.tscn" id="1_es40y"]
+[ext_resource type="PackedScene" uid="uid://cy7232f5xniil" path="res://Units/Wagon.tscn" id="2_2776d"]
+[ext_resource type="PackedScene" uid="uid://cd2syih2mid6q" path="res://Units/Resource Collectors/resourceUnit.tscn" id="2_ml6ot"]
+[ext_resource type="PackedScene" uid="uid://ds455vbi5e36t" path="res://Units/hero/hero.tscn" id="3_a6o1l"]
 [ext_resource type="PackedScene" uid="uid://cgp5eivo4vtgt" path="res://Structures/resource.tscn" id="4_m4483"]
 [ext_resource type="PackedScene" uid="uid://ckmkx8imypqy7" path="res://Units/enemies/enemy.tscn" id="5_fsb3k"]
+[ext_resource type="PackedScene" uid="uid://d1sb7mq2miv8n" path="res://UI/Enemy Spawner/enemy_spawner.tscn" id="7_w2kfn"]
+[ext_resource type="PackedScene" uid="uid://c6olgxa5fk0vy" path="res://Structures/Torch/torch.tscn" id="8_dgdsv"]
 
 [node name="WorldNodes" type="Node2D"]
+
+[node name="Units" type="Node2D" parent="."]
+position = Vector2(0, 1)
+
+[node name="CombatUnit" parent="Units" instance=ExtResource("1_es40y")]
+position = Vector2(149, 239)
+unit = null
+speed = null
+health = null
+darkness_scaler = null
+gathering_resources = null
+light_scale = null
+light_depletion_rate = null
+
+[node name="ResourceUnit" parent="Units" instance=ExtResource("2_ml6ot")]
+position = Vector2(374, 314)
+
+[node name="Hero" parent="Units" instance=ExtResource("3_a6o1l")]
+position = Vector2(527, 549)
+
+[node name="CombatUnit2" parent="Units" instance=ExtResource("1_es40y")]
+position = Vector2(188, 323)
+unit = null
+speed = null
+health = null
+darkness_scaler = null
+gathering_resources = null
+light_scale = null
+light_depletion_rate = null
+
+[node name="ResourceUnit2" parent="Units" instance=ExtResource("2_ml6ot")]
+position = Vector2(173, 458)
+
+[node name="Wagons" type="Node2D" parent="."]
+position = Vector2(0, 1)
+
+[node name="Wagon" parent="Wagons" instance=ExtResource("2_2776d")]
+position = Vector2(683, 363)
+
+[node name="Wagon2" parent="Wagons" instance=ExtResource("2_2776d")]
+y_sort_enabled = true
+position = Vector2(66, 508)
+wagon = 1
 
 [node name="Resources" type="Node2D" parent="."]
 position = Vector2(0, 1)
@@ -24,3 +73,16 @@ enemy = 2
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("5_fsb3k")]
 position = Vector2(209, 141)
+
+[node name="Enemy Spawner" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" parent="Enemy Spawner" instance=ExtResource("7_w2kfn")]
+position = Vector2(457, 190)
+
+[node name="CharacterBody2D2" parent="Enemy Spawner" instance=ExtResource("7_w2kfn")]
+position = Vector2(745, 289)
+
+[node name="Torches" type="Node2D" parent="."]
+
+[node name="Torch" parent="Torches" instance=ExtResource("8_dgdsv")]
+position = Vector2(693.126, 463.631)

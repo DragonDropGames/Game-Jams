@@ -68,7 +68,7 @@ func _physics_process(delta: float):
 	move_and_slide()
 
 func _on_agro_enter(body):
-	if not body.is_in_group("Enemies"):
+	if body.is_in_group("ControllableUnits"):
 		player = body
 		aggroed = true
 
@@ -78,7 +78,7 @@ func _on_agro_exit(body):
 		aggroed = false
 
 func _on_attack_range_enter(body):
-	if not body.is_in_group("Enemies"):
+	if body.is_in_group("ControllableUnits"):
 		attacking = true
 
 func _on_attack_range_exit(body):
