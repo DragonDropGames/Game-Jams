@@ -4,9 +4,12 @@ enum ENEMY_TYPE { BASIC, MEDIUM, BIGBOY, BOSS }
 
 
 var speed = 20
+var image;
+var alive = true
 
 @export var enemy: ENEMY_TYPE
 @export var health = 100
+
 
 @onready var basicEnemyImage = get_node("EnemyCollision/BasicEnemy")
 @onready var mediumEnemyImage = get_node("EnemyCollision/MediumEnemy")
@@ -23,15 +26,18 @@ func _process(delta: float) -> void:
 func setProperties():
 	match enemy:
 		ENEMY_TYPE.BASIC:
-			speed = 15
+			speed = 30
+			image = basicEnemyImage
 			basicEnemyImage.visible = true
 			add_to_group("SmallBoys", true)
 		ENEMY_TYPE.MEDIUM:
 			speed = 20
+			image = mediumEnemyImage
 			mediumEnemyImage.visible = true
 			add_to_group("MediumBoys", true)
 		ENEMY_TYPE.BIGBOY:
-			speed = 20
+			speed = 10
+			image = bigBoyImage
 			bigBoyImage.visible = true
 			add_to_group("BigBoys", true)
 		ENEMY_TYPE.BOSS:
@@ -39,4 +45,6 @@ func setProperties():
 
 func _on_health_check_timer_timeout() -> void:
 	if health <= 0:
-		self.queue_free()
+		if alive:
+			image.play('die')
+			alive = false
