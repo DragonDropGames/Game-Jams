@@ -4,9 +4,12 @@ class_name EnemyCharacter
 
 enum ENEMY_TYPE { BASIC, MEDIUM, BIGBOY, BOSS }
 
-var speed = 20
-var image
+@export var speed: float
+var image: AnimatedSprite2D
 var alive = true
+var player = null
+var aggroed = false
+var attacking = false
 
 @export var enemy: ENEMY_TYPE
 @export var health = 100
@@ -21,8 +24,67 @@ var alive = true
 
 func _ready():
 	add_to_group("Enemies", true)
-	set_properties()
 
+	$AgroRange.connect("body_entered", Callable(self, "_on_agro_enter"))
+	$AgroRange.connect("body_exited", Callable(self, "_on_agro_exit"))
+	$AttackRange.connect("body_entered", Callable(self, "_on_attack_range_enter"))
+	$AttackRange.connect("body_exited", Callable(self, "_on_attack_range_exit"))
+	
+	match enemy:
+		ENEMY_TYPE.BASIC:
+			speed = 35
+			image = basicEnemyImage
+			basicEnemyImage.visible = true
+			add_to_group("SmallBoys", true)
+		ENEMY_TYPE.MEDIUM:
+			speed = 25
+			image = mediumEnemyImage
+			mediumEnemyImage.visible = true
+			add_to_group("MediumBoys", true)
+		ENEMY_TYPE.BIGBOY:
+			speed = 15
+			image = bigBoyImage
+			bigBoyImage.visible = true
+			add_to_group("BigBoys", true)
+		ENEMY_TYPE.BOSS:
+			speed = 10
+
+func _physics_process(delta: float):
+	if not alive:
+		return
+	
+	if aggroed and player:
+		var direction = (player.global_position - global_position).normalized()
+		velocity = direction * speed
+		
+		if attacking:
+			image.play('attack')
+		else:
+			image.play('run')
+	else:
+		image.play('idle')
+		velocity = Vector2.ZERO
+
+	move_and_slide()
+
+func _on_agro_enter(body):
+	if not body.is_in_group("Enemies"):
+		player = body
+		aggroed = true
+
+func _on_agro_exit(body):
+	if body == player:
+		player = null
+		aggroed = false
+
+func _on_attack_range_enter(body):
+	if not body.is_in_group("Enemies"):
+		attacking = true
+
+func _on_attack_range_exit(body):
+	if body == player:
+		attacking = false
+		
 
 func _process(delta: float) -> void:
 	if not alive:
@@ -71,26 +133,6 @@ func _process(delta: float) -> void:
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		velocity = velocity.bounce(collision.get_normal()) * 0.5  # Bounce effect to avoid getting stuck
-
-func set_properties():
-	match enemy:
-		ENEMY_TYPE.BASIC:
-			speed = 35
-			image = basicEnemyImage
-			basicEnemyImage.visible = true
-			add_to_group("SmallBoys", true)
-		ENEMY_TYPE.MEDIUM:
-			speed = 25
-			image = mediumEnemyImage
-			mediumEnemyImage.visible = true
-			add_to_group("MediumBoys", true)
-		ENEMY_TYPE.BIGBOY:
-			speed = 15
-			image = bigBoyImage
-			bigBoyImage.visible = true
-			add_to_group("BigBoys", true)
-		ENEMY_TYPE.BOSS:
-			speed = 10
 
 func _on_health_check_timer_timeout() -> void:
 	if health <= 0 and alive:
