@@ -19,6 +19,7 @@ script = ExtResource("1_37q7v")
 [node name="Camera2D" type="Camera2D" parent="."]
 y_sort_enabled = true
 position = Vector2(1902, 3867)
+zoom = Vector2(3, 3)
 limit_left = -16
 limit_top = -16
 limit_right = 4112
@@ -49,33 +50,12 @@ wagon = 2
 
 [node name="Sword 1" parent="Characters" instance=ExtResource("7_mpoq3")]
 position = Vector2(1713.1, 3770.39)
-unit = 0
-speed = 10.0
-health = 10.0
-darkness_scaler = 0.0
-gathering_resources = 0.0
-light_scale = 0.0
-light_depletion_rate = 0
 
 [node name="Sword 2" parent="Characters" instance=ExtResource("7_mpoq3")]
 position = Vector2(2087.16, 3727.96)
-unit = 0
-speed = 10.0
-health = 10.0
-darkness_scaler = 0.0
-gathering_resources = 0.0
-light_scale = 0.0
-light_depletion_rate = 0
 
 [node name="Sword 3" parent="Characters" instance=ExtResource("7_mpoq3")]
 position = Vector2(2009.38, 3899.79)
-unit = 0
-speed = 10.0
-health = 10.0
-darkness_scaler = 0.0
-gathering_resources = 0.0
-light_scale = 0.0
-light_depletion_rate = 0
 
 [node name="Bow 1" parent="Characters" instance=ExtResource("7_mpoq3")]
 unit = 1

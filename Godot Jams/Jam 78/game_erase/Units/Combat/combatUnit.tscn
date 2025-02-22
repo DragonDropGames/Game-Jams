@@ -442,13 +442,6 @@ radius = 15.0
 
 [node name="CombatUnit" type="CharacterBody2D"]
 script = ExtResource("1_6r518")
-unit = null
-speed = null
-health = null
-darkness_scaler = null
-gathering_resources = null
-light_scale = null
-light_depletion_rate = null
 
 [node name="SelectedPanel" type="Panel" parent="."]
 visible = false

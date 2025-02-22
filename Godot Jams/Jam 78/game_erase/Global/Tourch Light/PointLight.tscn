@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://vsp4jupipdag"]
+
+[sub_resource type="Gradient" id="Gradient_itxj1"]
+offsets = PackedFloat32Array(0, 0.0934223, 0.224976)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.903509, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gtn7b"]
+gradient = SubResource("Gradient_itxj1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.837607, 0.245726)
+
+[node name="PointLight" type="PointLight2D"]
+color = Color(1, 1, 1, 0.278431)
+blend_mode = 2
+range_item_cull_mask = 3
+texture = SubResource("GradientTexture2D_gtn7b")
