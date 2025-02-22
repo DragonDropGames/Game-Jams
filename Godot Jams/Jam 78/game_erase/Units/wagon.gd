@@ -16,28 +16,25 @@ var mouseEntered = false
 @export var wagon: WAGON_TYPE
 
 func _ready():
+	speed = 40
 	match wagon:
 		Enums.WAGON_TYPE.MAIN:
-			speed = 60
-			light_scale = 30
+			light_scale = 80
 			light_depletion_rate = 0.1
 			mainWagonImage.visible = true
 			
 		Enums.WAGON_TYPE.SWORD:
-			speed = 60
-			light_scale = 15
+			light_scale = 50
 			light_depletion_rate = 0.2
 			swordWagonImage.visible = true
 			
 		Enums.WAGON_TYPE.BOW:
-			speed = 60
-			light_scale = 15
+			light_scale = 50
 			light_depletion_rate = 0.3
 			bowWagonImage.visible = true
 			
 		Enums.WAGON_TYPE.RESOURCE:
-			speed = 60
-			light_scale = 15
+			light_scale = 60
 			light_depletion_rate = 0.4
 			resourceWagonImage.visible = true
 	

@@ -1,45 +1,47 @@
 extends Node2D
 class_name CombatSystem
 
-
 # COMBAT SYSTEM CONFIG
-@export var damageType: Enums.DAMAGE_TYPE
-@export var distanceOfAttack: float
-@export var frequencyOfAttack: float
-@export var damageValue: float
-@export var targets: Array
+@export var attack_damage: float = 10
+@export var attack_frequency: float = 1
+@export var attack_group: String
 
-# COMBAT SYSTEM NODES
-@onready var collision: CollisionShape2D = $CombatRange/CollisionShape2D
-@onready var combatTimer = $CombatTimer
+var combat_timer := Timer.new()
+var enemy = null
+var attacking = false
+var _counter: float = 0
 
-# COMBAT SYSTEM VARIABLES
-var targetGroups: Array[String]
-var isTargetInRange = false
-var targetToAttack: Node2D
+func attack() -> void:
+	if _counter < attack_frequency:
+		_counter += 0.1
+		return
+	
+	_counter = 0
+	
+	if enemy and attacking:
+		print("Attacking enemy:", enemy)
+		var killed = enemy.take_damage(attack_damage)  # Ensure enemy has `take_damage()`
+		if killed:
+			print("Enemy killed:", enemy)
+			enemy = null
+			attacking = false
+		
 
-func _ready() -> void:
-	collision.shape.radius = distanceOfAttack
-	combatTimer.wait_time = frequencyOfAttack
-	for target in targets:
-		targetGroups.append(Enums.convertTargetTypeToGroupName(target))
+func on_attack_range_enter(body: Node2D):
+	print("_on_attack_range_enter")
+	
+	if body.is_in_group(attack_group):
+		print("enemy in group")
+		
+		enemy = body
+		attacking = true
+		_counter = 0
 
-func _on_combat_timer_timeout() -> void:
-	if isTargetInRange:
-		targetToAttack.health -= damageValue
-
-func _on_combat_range_body_entered(body: Node2D) -> void:
-	for target in targetGroups:
-		if body.is_in_group(target):
-			if targetToAttack == null:
-				targetToAttack = body
-			isTargetInRange = true
-			combatTimer.start()
-			
-func _on_combat_range_body_exited(body: Node2D) -> void:
-	for target in targetGroups:
-		if body.is_in_group(target):
-			isTargetInRange = false
-			if targetToAttack != null:
-				targetToAttack = null
-			combatTimer.stop()
+func on_attack_range_exit(body: Node2D):
+	print("_on_attack_range_exit")
+	
+	if body == enemy:
+		enemy = null
+		attacking = false
+		_counter = 0
+		

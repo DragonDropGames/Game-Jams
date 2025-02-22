@@ -25,6 +25,7 @@ limit_top = -16
 limit_right = 4112
 limit_bottom = 4112
 script = ExtResource("2_js0y7")
+max_zoom = 5.0
 
 [node name="WorldGeneration" parent="." instance=ExtResource("4_v0mnd")]
 
@@ -32,6 +33,14 @@ script = ExtResource("2_js0y7")
 
 [node name="Hero" parent="Characters" instance=ExtResource("5_0nvrh")]
 position = Vector2(1888, 3833)
+speed = 10.0
+health = 10.0
+darkness_scaler = 0.0
+gathering_resources = 0.0
+light_scale = 0.0
+light_depletion_rate = 0
+attack_damage = 0.0
+attack_frequency = 0.0
 
 [node name="Wagon Main" parent="Characters" instance=ExtResource("6_d7cx2")]
 position = Vector2(1718.05, 3933.02)

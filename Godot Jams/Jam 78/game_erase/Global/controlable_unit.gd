@@ -9,7 +9,10 @@ class_name ControlableUnit
 @export var light_scale: float
 @export var light_depletion_rate: int = 0
 @export var sprite: AnimatedSprite2D
+# COMBAT
 @export var attack_area: Area2D
+@export var attack_damage: float
+@export var attack_frequency: float
 
 @onready var selected_panel: Panel = get_node("SelectedPanel")
 @onready var health_bar: TextureProgressBar = get_node("BasicHealthBar")
@@ -27,15 +30,14 @@ var follow_cursor := false
 var is_selected := false
 var food_timer := Timer.new()
 var selected := false
-var aggroed = false
-var attacking = false
-var enemy = null
 
 # BOIDS PARAMETERS
 var separation_distance: float = 25.0
 var neighbor_radius: float = 75.0
 var max_force: float = 2.0
 var friction: float = 0.9  # Reduces movement over time to settle
+
+var combat
 
 func ready_complete():
 	light_collision = CollisionShape2D.new()
@@ -59,29 +61,36 @@ func ready_complete():
 	scale_lights()
 	fog.clear_fog(light_collision)
 	
-	if attack_area:
+	if attack_area and attack_damage and attack_frequency:
 		attack_area.connect("body_entered", Callable(self, "_on_attack_range_enter"))
 		attack_area.connect("body_exited", Callable(self, "_on_attack_range_exit"))
+		combat = CombatSystem.new()
+		combat.attack_damage = attack_damage
+		combat.attack_frequency = attack_frequency
+		combat.attack_group = "Enemies"
 
 func _physics_process(delta: float) -> void:
-	if alive:
-		fog.clear_fog(light_collision)
-		
-		if follow_cursor && is_selected:
-			target = get_global_mouse_position()
-		
-		velocity = position.direction_to(target) * speed
-		
-		if position.distance_to(target) > 10:
-			update_sprit('run')
-			move_and_slide()
-		elif gathering_resources:
-			update_sprit('collect')
-		elif attacking:
-			update_sprit('attack')
-		else:
-			update_sprit('idle')
-
+	if not alive:
+		return
+	
+	fog.clear_fog(light_collision)
+	
+	if follow_cursor && is_selected:
+		target = get_global_mouse_position()
+	
+	velocity = position.direction_to(target) * speed
+	
+	if position.distance_to(target) > 10:
+		update_sprit('run')
+		move_and_slide()
+	elif gathering_resources:
+		update_sprit('collect')
+	elif combat and combat.attacking:
+		update_sprit('attack')
+		if combat:
+			combat.attack()
+	else:
+		update_sprit('idle')
 
 func _process(delta: float) -> void:
 	if !in_light:
@@ -146,23 +155,11 @@ func _process(delta: float) -> void:
 	if collision:
 		velocity = velocity.bounce(collision.get_normal()) * 0.5  # Slight bounce effect to prevent sticking
 
-func _on_agro_enter(body):
-	if body.is_in_group("Enemies"):
-		enemy = body
-		aggroed = true
-
-func _on_agro_exit(body):
-	if body == enemy:
-		enemy = null
-		aggroed = false
-
 func _on_attack_range_enter(body):
-	if body.is_in_group("Enemies"):
-		attacking = true
+	combat.on_attack_range_enter(body)
 
 func _on_attack_range_exit(body):
-	if body == enemy:
-		attacking = false
+	combat.on_attack_range_exit(body)
 		
 func _input(event):
 	if event.is_action_pressed("RightClick"):
