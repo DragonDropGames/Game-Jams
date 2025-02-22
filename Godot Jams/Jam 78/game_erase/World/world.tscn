@@ -14,10 +14,10 @@ script = ExtResource("1_37q7v")
 [node name="Camera2D" type="Camera2D" parent="."]
 y_sort_enabled = true
 position = Vector2(578, 323)
-limit_left = -5
-limit_top = -5
-limit_right = 6955
-limit_bottom = 4905
+limit_left = -16
+limit_top = -16
+limit_right = 4112
+limit_bottom = 4112
 script = ExtResource("2_js0y7")
 
 [node name="WorldGeneration" parent="." instance=ExtResource("4_v0mnd")]
