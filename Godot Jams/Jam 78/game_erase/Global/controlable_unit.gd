@@ -24,6 +24,7 @@ class_name ControlableUnit
 @onready var target = position
 @onready var tourch_scn: Resource = preload("res://Global/Tourch Light/PointLight.tscn")
 
+const group_name = "ControllableUnits"
 var in_light := true
 var alive := true
 var follow_cursor := false
@@ -31,12 +32,7 @@ var is_selected := false
 var light_timer := Timer.new()
 var selected := false
 
-# BOIDS PARAMETERS
-var separation_distance: float = 25.0
-var neighbor_radius: float = 75.0
-var max_force: float = 2.0
-var friction: float = 0.9  # Reduces movement over time to settle
-
+var boid := Boid.new()
 var combat: CombatSystem
 
 func ready_complete():
@@ -50,7 +46,7 @@ func ready_complete():
 	
 	add_child(point_light)
 	
-	add_to_group("ControllableUnits", true)
+	add_to_group(group_name, true)
 	
 	light_timer.wait_time = 1.0
 	light_timer.one_shot = false
@@ -71,9 +67,6 @@ func ready_complete():
 		combat.node = self
 
 func _physics_process(delta: float) -> void:
-	if !alive:
-		return
-		
 	if follow_cursor && is_selected:
 		target = get_global_mouse_position()
 	
@@ -92,67 +85,21 @@ func _physics_process(delta: float) -> void:
 		update_sprit('idle')
 
 func _process(delta: float) -> void:
-	if !alive:
-		return
-		
 	if !in_light:
 		die()
 
 		if label:
 			label.visible = false
-			
+
 	elif label:
 		label.visible = true
-		
+
 	health_bar.visible = health_bar.value != health_bar.max_value
-		
+
 	if health_bar.value <= 0:
-			die()
+		die()
 	
-	# **Boids Behavior**
-	var boids = get_tree().get_nodes_in_group("Units")
-	var separation_force = Vector2.ZERO
-	var alignment_force = Vector2.ZERO
-	var cohesion_force = Vector2.ZERO
-
-	var neighbor_count = 0
-	var center_of_mass = Vector2.ZERO
-
-	for boid in boids:
-		if boid == self or not boid.alive:
-			continue
-
-		var distance = position.distance_to(boid.position)
-		if distance < neighbor_radius:
-			# **Separation - Push away when too close**
-			if distance < separation_distance:
-				var push_vector = (position - boid.position).normalized()
-				var push_strength = (separation_distance - distance) / separation_distance  # Stronger push when closer
-				separation_force += push_vector * push_strength * 5.0
-
-			# **Alignment - Match velocity with nearby units**
-			alignment_force += boid.velocity
-
-			# **Cohesion - Move toward the center of mass**
-			center_of_mass += boid.position
-			neighbor_count += 1
-
-	if neighbor_count > 0:
-		alignment_force = (alignment_force / neighbor_count).normalized() * speed
-		cohesion_force = ((center_of_mass / neighbor_count) - position).normalized() * speed
-
-	# **Apply weighted forces**
-	var steer = separation_force * 1.8 + alignment_force * 0.8 + cohesion_force * 1.2
-	steer = steer.limit_length(max_force)
-
-	velocity += steer * delta
-	velocity = velocity.lerp(Vector2.ZERO, friction * delta)  # Gradually slow down
-	velocity = velocity.normalized() * speed if velocity.length() > 1 else Vector2.ZERO
-
-	# **Move & Handle Collisions (Push Effect)**
-	var collision = move_and_collide(velocity * delta)
-	if collision:
-		velocity = velocity.bounce(collision.get_normal()) * 0.5  # Slight bounce effect to prevent sticking
+	boid.process_boid(delta, self, speed, group_name)
 
 func _on_attack_range_enter(body):
 	combat.on_attack_range_enter(body)
@@ -168,15 +115,14 @@ func _input(event):
 
 func _on_light_timer() -> void:
 	if light_scale <= 0.0:
-		if alive:
-			die()
-			
+		die()
 	elif light_depletion_rate > 0:
 		Game.consumeWood()
 		light_scale -= light_depletion_rate
 		scale_lights()
 
 func _on_light_area_body_entered(body: Node2D) -> void:
+	print("[_on_light_area_body_entered]")
 	if body.is_in_group("Units"):
 		body.in_light = true
 
@@ -191,13 +137,6 @@ func set_selected(value: bool):
 func _on_health_check_timer_timeout() -> void:
 	if health <= 0 and alive:
 		die()
-
-func extinguish() -> void:
-	if light_scale <= 0:
-		return
-
-	light_scale = 0
-	scale_lights()
 
 func scale_lights() -> void:
 	if !light_collision:
@@ -216,8 +155,12 @@ func die():
 	set_physics_process(false)
 	set_process(false)
 	remove_from_group('ControlableUnits')
-	
+	light_timer.stop()
+
 func take_damage(damage: float, body: Node2D) -> bool:
+	if not alive:
+		return not alive 
+
 	health -= damage
 	print("[controllable unit] taking damage", damage, " remaining health ", health)
 	

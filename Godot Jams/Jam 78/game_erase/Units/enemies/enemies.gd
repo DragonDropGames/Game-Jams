@@ -13,6 +13,7 @@ var attack_damage = 10
 var attack_frequency = 1
 var combat: CombatSystem
 const attack_group = "ControllableUnits"
+const group_name = "Enemies"
 
 @export var enemy: ENEMY_TYPE
 @export var health = 100
@@ -25,8 +26,9 @@ const attack_group = "ControllableUnits"
 @onready var mediumEnemyImage = $EnemyCollision/MediumEnemy
 @onready var bigBoyImage = $EnemyCollision/BigBoy
 
-		
-		
+var boid := Boid.new()
+
+
 func _ready():
 	add_to_group("Enemies", true)
 	
@@ -109,52 +111,7 @@ func _on_attack_range_exit(body):
 	combat.on_attack_range_exit(body)
 
 func _process(delta: float) -> void:
-	if not alive:
-		return  # Don't process movement if dead
-
-	var boids = get_tree().get_nodes_in_group("Enemies")
-	var separation_force = Vector2.ZERO
-	var alignment_force = Vector2.ZERO
-	var cohesion_force = Vector2.ZERO
-
-	var neighbor_count = 0
-	var center_of_mass = Vector2.ZERO
-
-	for boid in boids:
-		if boid == self or not boid.alive:
-			continue
-
-		var distance = position.distance_to(boid.position)
-		if distance < neighbor_radius:
-			# **Separation (Push Force)**
-			if distance < separation_distance:
-				var push_vector = (position - boid.position).normalized()
-				var push_strength = (separation_distance - distance) / separation_distance  # Scale push force
-				separation_force += push_vector * push_strength * 5.0  # Adjust multiplier for strength
-
-			# **Alignment (Match Direction)**
-			alignment_force += boid.velocity
-
-			# **Cohesion (Move Toward Center of Group)**
-			center_of_mass += boid.position
-			neighbor_count += 1
-
-	if neighbor_count > 0:
-		alignment_force = (alignment_force / neighbor_count).normalized() * speed
-		cohesion_force = ((center_of_mass / neighbor_count) - position).normalized() * speed
-
-	# **Combine Forces**
-	var steer = separation_force * 1.8 + alignment_force * 0.8 + cohesion_force * 1.2
-	steer = steer.limit_length(max_force)
-
-	velocity += steer * delta
-	velocity = velocity.lerp(Vector2.ZERO, friction * delta)  # Gradually slow down
-	velocity = velocity.normalized() * speed if velocity.length() > 1 else Vector2.ZERO
-
-	# **Move & Handle Collisions (Push Effect)**
-	var collision = move_and_collide(velocity * delta)
-	if collision:
-		velocity = velocity.bounce(collision.get_normal()) * 0.5  # Bounce effect to avoid getting stuck
+	boid.process_boid(delta, self, speed, group_name)
 
 func _on_health_check_timer_timeout() -> void:
 	if health <= 0 and alive:
