@@ -19,7 +19,7 @@ var lightScale: float = 10
 var light_depletion_rate: int = 0
 
 func _ready():
-	add_to_group("Wagons", true)
+	add_to_group("Hero", true)
 	healthBar.max_value = maxHealth
 	healthBar.value = maxHealth
 	hplabel.text= str(healthBar.max_value)
