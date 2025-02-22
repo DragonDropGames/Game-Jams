@@ -45,11 +45,11 @@ func _ready():
 
 
 func _on_light_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Units"):
+	if body.is_in_group("ControllableUnits"):
 		body.in_light = true
 
 func _on_light_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Units"):
+	if body.is_in_group("ControllableUnits"):
 		body.in_light = false
 
 func _on_interaction_panel_mouse_entered() -> void:
