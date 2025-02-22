@@ -26,6 +26,7 @@ var alive := true
 var follow_cursor := false
 var is_selected := false
 var food_timer := Timer.new()
+var light_timer := Timer.new()
 var selected := false
 var aggroed = false
 var attacking = false
@@ -52,9 +53,15 @@ func ready_complete():
 	
 	food_timer.wait_time = 10.0
 	food_timer.one_shot = false
-	food_timer.timeout.connect(_on_timer)
+	food_timer.timeout.connect(_on_light_timer)
 	add_child(food_timer)
 	food_timer.start()
+	
+	light_timer.wait_time = 1.0
+	light_timer.one_shot = false
+	light_timer.timeout.connect(_on_light_timer)
+	add_child(light_timer)
+	light_timer.start()
 	
 	scale_lights()
 	fog.clear_fog(light_collision)
@@ -82,11 +89,13 @@ func _physics_process(delta: float) -> void:
 		else:
 			update_sprit('idle')
 
-
 func _process(delta: float) -> void:
-	if !in_light:
-		health -= 10 * darkness_scaler
+	if !alive:
+		return
 		
+	if !in_light:
+		die()
+
 		if label:
 			label.visible = false
 	elif label:
@@ -97,7 +106,7 @@ func _process(delta: float) -> void:
 		
 		if health_bar.value <= 0:
 			die()
-			update_sprit("die")
+
 	else:
 		health_bar.visible = false
 	
@@ -170,13 +179,18 @@ func _input(event):
 	elif event.is_action_released("RightClick"):
 		follow_cursor = false
 
-func _on_timer() -> void:
-	if light_scale < 3:
-		if light_depletion_rate != 0:
-			extinguish()
+func _on_food_time() -> void:
+	pass
+
+func _on_light_timer() -> void:
+	if light_scale <= 0.0:
+		if alive:
+			die()
+			
 	elif light_depletion_rate > 0:
 		Game.consumeWood()
 		light_scale -= light_depletion_rate
+		print(light_scale)
 		scale_lights()
 
 func _on_light_area_body_entered(body: Node2D) -> void:
@@ -216,3 +230,6 @@ func update_sprit(name: String) -> void:
 func die():
 	alive = false
 	update_sprit("die")
+	set_physics_process(false)
+	set_process(false)
+	remove_from_group('ControlableUnits')
