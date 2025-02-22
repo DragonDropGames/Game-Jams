@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ds455vbi5e36t"]
+[gd_scene load_steps=34 format=3 uid="uid://ds455vbi5e36t"]
 
 [ext_resource type="Script" path="res://Units/hero/hero.gd" id="1_vckm5"]
 [ext_resource type="PackedScene" uid="uid://dyewi7ipnw4vu" path="res://Global/Health Bars/BasicHealthBar.tscn" id="2_i0p05"]
@@ -223,6 +223,9 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_pt7sk"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rxlfb"]
+radius = 100.499
+
 [node name="Hero" type="CharacterBody2D"]
 script = ExtResource("1_vckm5")
 
@@ -259,3 +262,8 @@ offset_right = 4.0
 offset_bottom = -14.0
 label_settings = SubResource("LabelSettings_pt7sk")
 horizontal_alignment = 1
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="AttackCollisionShape" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_rxlfb")

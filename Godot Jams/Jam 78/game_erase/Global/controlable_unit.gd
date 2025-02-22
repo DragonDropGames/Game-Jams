@@ -9,6 +9,7 @@ class_name ControlableUnit
 @export var light_scale: float
 @export var light_depletion_rate: int = 0
 @export var sprite: AnimatedSprite2D
+@export var attack_area: Area2D
 
 @onready var selected_panel: Panel = get_node("SelectedPanel")
 @onready var health_bar: TextureProgressBar = get_node("BasicHealthBar")
@@ -26,6 +27,9 @@ var follow_cursor := false
 var is_selected := false
 var food_timer := Timer.new()
 var selected := false
+var aggroed = false
+var attacking = false
+var enemy = null
 
 # BOIDS PARAMETERS
 var separation_distance: float = 25.0
@@ -64,6 +68,10 @@ func ready_complete():
 	
 	scale_lights()
 	fog.clear_fog(light_collision)
+	
+	if attack_area:
+		attack_area.connect("body_entered", Callable(self, "_on_attack_range_enter"))
+		attack_area.connect("body_exited", Callable(self, "_on_attack_range_exit"))
 
 func _physics_process(delta: float) -> void:
 	if alive:
@@ -79,10 +87,12 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 		elif gathering_resources:
 			update_sprit('collect')
+		elif attacking:
+			update_sprit('attack')
 		else:
 			update_sprit('idle')
 
-				
+
 func _process(delta: float) -> void:
 	if !in_light:
 		health -= 10 * darkness_scaler
@@ -146,6 +156,24 @@ func _process(delta: float) -> void:
 	if collision:
 		velocity = velocity.bounce(collision.get_normal()) * 0.5  # Slight bounce effect to prevent sticking
 
+func _on_agro_enter(body):
+	if body.is_in_group("Enemies"):
+		enemy = body
+		aggroed = true
+
+func _on_agro_exit(body):
+	if body == enemy:
+		enemy = null
+		aggroed = false
+
+func _on_attack_range_enter(body):
+	if body.is_in_group("Enemies"):
+		attacking = true
+
+func _on_attack_range_exit(body):
+	if body == enemy:
+		attacking = false
+		
 func _input(event):
 	if event.is_action_pressed("RightClick"):
 		follow_cursor = true

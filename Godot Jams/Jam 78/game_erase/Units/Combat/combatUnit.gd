@@ -5,8 +5,8 @@ extends ControlableUnit
 var image: AnimatedSprite2D
 
 @onready var combatSystem: CombatSystem = $CombatSystem
-@onready var sword_image: AnimatedSprite2D = $Collision/SwordUnit
-@onready var bow_image: AnimatedSprite2D = $Collision/BowUnit
+@onready var sword_image: AnimatedSprite2D = $SwordUnit
+@onready var bow_image: AnimatedSprite2D = $BowUnit
 
 func _ready():
 	light_scale = 4
@@ -16,7 +16,8 @@ func _ready():
 	add_to_group("Units")
 	
 	match unit: 
-		Enums.UNIT_TYPE.SWORD: 
+		Enums.UNIT_TYPE.SWORD:
+			attack_area = $BowArea
 			speed = 15
 			image = sword_image
 			sword_image.visible = true
@@ -27,8 +28,9 @@ func _ready():
 			combatSystem.targets = [Enums.TARGET_TYPE.ENEMIES]
 			combatSystem._ready()
 		Enums.UNIT_TYPE.BOW:
+			attack_area = $SwordArea
 			image = bow_image
 			bow_image.visible = true
 			speed = 10 
-
+	
 	ready_complete()
