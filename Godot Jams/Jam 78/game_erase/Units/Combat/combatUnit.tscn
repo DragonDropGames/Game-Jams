@@ -471,18 +471,16 @@ value = 100.0
 [node name="CombatSystem" parent="." instance=ExtResource("5_0kr32")]
 
 [node name="SwordUnit" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_tlinn")
-animation = &"run"
+animation = &"die"
 autoplay = "idle"
-frame_progress = 0.142857
 
 [node name="BowUnit" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_dvt8u")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="BowArea" type="Area2D" parent="."]
