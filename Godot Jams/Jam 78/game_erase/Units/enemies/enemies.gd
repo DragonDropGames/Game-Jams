@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name EnemyCharacter
+
 enum ENEMY_TYPE { BASIC, MEDIUM, BIGBOY, BOSS }
 
 var speed = 20
@@ -19,10 +21,6 @@ var alive = true
 
 func _ready():
 	add_to_group("Enemies", true)
-
-func initialize(enemy_type: ENEMY_TYPE) -> void:
-	await ready  # Wait for @onready variables to be assigned
-	enemy = enemy_type
 	set_properties()
 
 

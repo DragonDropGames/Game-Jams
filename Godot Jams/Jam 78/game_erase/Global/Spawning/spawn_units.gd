@@ -1,7 +1,7 @@
 extends Node
 
-var combatUnit = load("res://Units/Combat/combatUnit.tscn")
-var enemyUnit = load("res://Units/enemies/enemy.tscn")
+var combatUnit = preload("res://Units/Combat/combatUnit.tscn")
+var enemyUnit = preload("res://Units/enemies/enemy.tscn")
 
 
 func spawn(type: Enums.UNIT_TYPE, position: Vector2) -> void:
@@ -27,7 +27,7 @@ func spawnEnemy(type: Enums.ENEMY_TYPE, position: Vector2) -> void:
 	
 	# Create the enemy instance
 	var unit = enemyUnit.instantiate()
-	unit.initialize(type)  # NEW: Call an init function for setup
+	unit.enemy = type
 	unit.position = position
 	
 	# Add to scene
