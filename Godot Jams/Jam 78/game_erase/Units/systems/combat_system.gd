@@ -5,11 +5,13 @@ class_name CombatSystem
 @export var attack_damage: float = 10
 @export var attack_frequency: float = 1
 @export var attack_group: String
+@export var node: Node2D
 
 var combat_timer := Timer.new()
-var enemy = null
-var attacking = false
+var enemy: Node2D = null
+var attacking := false
 var _counter: float = 0
+
 
 func attack() -> void:
 	if _counter < attack_frequency:
@@ -19,7 +21,7 @@ func attack() -> void:
 	_counter = 0
 	
 	if enemy and attacking:
-		var killed = enemy.take_damage(attack_damage)  # Ensure enemy has `take_damage()`
+		var killed = enemy.take_damage(attack_damage, node)  # Ensure enemy has `take_damage()`
 		if killed:
 			enemy = null
 			attacking = false
@@ -36,4 +38,8 @@ func on_attack_range_exit(body: Node2D):
 		enemy = null
 		attacking = false
 		_counter = 0
-		
+
+
+func being_attacked(body: Node2D) -> void:
+	enemy = body
+	attacking = true

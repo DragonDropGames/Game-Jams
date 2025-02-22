@@ -38,7 +38,7 @@ var neighbor_radius: float = 75.0
 var max_force: float = 2.0
 var friction: float = 0.9  # Reduces movement over time to settle
 
-var combat
+var combat: CombatSystem
 
 func ready_complete():
 	light_collision = CollisionShape2D.new()
@@ -75,6 +75,7 @@ func ready_complete():
 		combat.attack_damage = attack_damage
 		combat.attack_frequency = attack_frequency
 		combat.attack_group = "Enemies"
+		combat.node = self
 
 func _physics_process(delta: float) -> void:
 	if !alive:
@@ -183,7 +184,6 @@ func _on_light_timer() -> void:
 	elif light_depletion_rate > 0:
 		Game.consumeWood()
 		light_scale -= light_depletion_rate
-		print(light_scale)
 		scale_lights()
 
 func _on_light_area_body_entered(body: Node2D) -> void:
@@ -199,8 +199,8 @@ func set_selected(value: bool):
 	selected_panel.visible = value
 
 func _on_health_check_timer_timeout() -> void:
-	if health <= 0:
-		self.queue_free()
+	if health <= 0 and alive:
+		die()
 
 func extinguish() -> void:
 	if light_scale <= 0:
@@ -226,3 +226,14 @@ func die():
 	set_physics_process(false)
 	set_process(false)
 	remove_from_group('ControlableUnits')
+	
+func take_damage(damage: float, body: Node2D) -> bool:
+	health -= damage
+	print("[controllable unit] taking damage", damage, " remaining health ", health)
+	
+	_on_health_check_timer_timeout()
+	
+	if alive:
+		combat.being_attacked(body)
+	
+	return not alive
