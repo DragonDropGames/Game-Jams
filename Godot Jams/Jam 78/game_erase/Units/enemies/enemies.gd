@@ -12,7 +12,7 @@ var aggroed = false
 var attack_damage = 10
 var attack_frequency = 1
 var combat: CombatSystem
-const attack_group = "ControlableUnit"
+const attack_group = "ControllableUnits"
 
 @export var enemy: ENEMY_TYPE
 @export var health = 100
@@ -29,8 +29,6 @@ const attack_group = "ControlableUnit"
 		
 func _ready():
 	add_to_group("Enemies", true)
-
-	
 	
 	match enemy:
 		ENEMY_TYPE.BASIC:
@@ -66,17 +64,26 @@ func _ready():
 	combat.attack_damage = attack_damage
 	combat.attack_frequency = attack_frequency
 	combat.attack_group = attack_group
+	combat.node = self
 
 func _physics_process(delta: float):
 	if not alive:
 		return
 	
-	if aggroed and player:
+	if combat.attacking and combat.enemy:
+		image.play('attack')
+		combat.attack()
+		
+		var direction = (combat.enemy.global_position - global_position).normalized()
+		velocity = direction * speed
+		
+	elif aggroed and player:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * speed
 		
 		if combat.attacking:
 			image.play('attack')
+			combat.attack()
 		else:
 			image.play('run')
 	else:
@@ -100,7 +107,6 @@ func _on_attack_range_enter(body):
 
 func _on_attack_range_exit(body):
 	combat.on_attack_range_exit(body)
-
 
 func _process(delta: float) -> void:
 	if not alive:
@@ -152,19 +158,23 @@ func _process(delta: float) -> void:
 
 func _on_health_check_timer_timeout() -> void:
 	if health <= 0 and alive:
-		image.play('die')
-		alive = false
-		set_physics_process(false)
-		remove_from_group("Enemies")
-		
+		die()
 
-func take_damage(damage: float) -> bool:
+func die():
+	alive = false
+	image.play('die')
+	set_physics_process(false)
+	set_process(false)
+	remove_from_group('ControlableUnits')
+	
+func take_damage(damage: float, body: Node2D) -> bool:
 	health -= damage
 	
-	if health <= 0 and alive:
-		image.play('die')
-		alive = false
-		set_physics_process(false)
-		remove_from_group("Enemies")
+	print("[enemy unit] taking damage", damage, " remaining health ", health)
+
+	_on_health_check_timer_timeout()
+	
+	if alive:
+		combat.being_attacked(body)
 	
 	return not alive
