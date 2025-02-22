@@ -13,6 +13,7 @@ func _ready():
 	light_scale = 4
 	health = 100
 	darkness_scaler = .5
+	light_depletion_rate = 0.1
 	add_to_group("Units")
 	
 	match unit: 

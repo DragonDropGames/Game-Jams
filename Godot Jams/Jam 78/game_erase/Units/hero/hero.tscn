@@ -1,9 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://ds455vbi5e36t"]
+[gd_scene load_steps=29 format=3 uid="uid://ds455vbi5e36t"]
 
 [ext_resource type="Script" path="res://Units/hero/hero.gd" id="1_vckm5"]
 [ext_resource type="PackedScene" uid="uid://dyewi7ipnw4vu" path="res://Global/Health Bars/BasicHealthBar.tscn" id="2_i0p05"]
 [ext_resource type="Texture2D" uid="uid://bbtqkp2vkvi37" path="res://Assets/Units/MiniPrinceMan.png" id="2_y5ok5"]
-[ext_resource type="PackedScene" uid="uid://vsp4jupipdag" path="res://Global/Point Light/PointLight.tscn" id="4_2gn03"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hylxi"]
 
@@ -196,51 +195,6 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_pt7sk"]
 
-[sub_resource type="GDScript" id="GDScript_5kjvm"]
-script/source = "extends PointLight2D
-
-@onready var point_light = $\".\" # Ensure this is the correct path to the PointLight2D node
-
-var flicker_base_intensity = 1.0  # The base intensity level of the candlelight
-var flicker_intensity_range = Vector2(0.95, 1.05)  # A small fluctuation range for flickering
-var flicker_interval_range = Vector2(0.08, 0.15)  # A slightly longer flicker interval range for a slower, more natural flicker
-var flicker_color_base = Color(1, 0.9, 0.7)  # A soft yellow-orange base color for the candlelight
-var flicker_color_range = Color(1, 1, 1)  # A pure white color for occasional flickers
-
-func _ready():
-	if point_light == null:
-		print(\"Error: PointLight2D node not found!\")
-		return  # Stop further execution if point_light is not found
-	
-	randomize()  # Randomize the random number generator
-	start_flicker()
-
-# Start the flickering process
-func start_flicker():
-	# Start the flickering process using async
-	_flicker()
-
-# Use an async function to handle the actual flickering effect
-func _flicker() -> void:
-	while true:
-		# Simulate a candle-like flicker with small intensity fluctuations
-		var flicker_intensity = flicker_base_intensity * randf_range(flicker_intensity_range.x, flicker_intensity_range.y)
-		point_light.energy = flicker_intensity
-		
-		# Simulate color flickering with a subtle shift in hue
-		var flicker_color = flicker_color_base.lerp(flicker_color_range, randf_range(0.95, 1.05))
-		point_light.color = flicker_color
-		
-		# Randomize the flicker interval to simulate varying candlelight behavior
-		var flicker_interval = randf_range(flicker_interval_range.x, flicker_interval_range.y)
-		
-		# Wait for the flicker interval before changing the light intensity again
-		await get_tree().create_timer(flicker_interval).timeout
-"
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8soft"]
-radius = 5.0
-
 [node name="Hero" type="CharacterBody2D"]
 script = ExtResource("1_vckm5")
 
@@ -277,13 +231,3 @@ offset_right = 4.0
 offset_bottom = -14.0
 label_settings = SubResource("LabelSettings_pt7sk")
 horizontal_alignment = 1
-
-[node name="PointLight" parent="." instance=ExtResource("4_2gn03")]
-scale = Vector2(0.634766, 0.607422)
-color = Color(1, 1, 0.737255, 0.607843)
-script = SubResource("GDScript_5kjvm")
-
-[node name="LightArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LightArea"]
-shape = SubResource("CircleShape2D_8soft")

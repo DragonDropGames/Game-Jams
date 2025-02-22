@@ -2,40 +2,49 @@ extends CharacterBody2D
 
 class_name ControlableUnit
 
-@export var in_light: bool = true
 @export var speed: float = 10
 @export var health: float = 10
 @export var darkness_scaler: float = 0
 @export var gathering_resources: float = 0
 @export var light_scale: float
 @export var light_depletion_rate: int = 0
-@export var is_selected = false
-@onready var target = position
+@export var sprit: AnimatedSprite2D
+
 @onready var selected_panel: Panel = get_node("SelectedPanel")
 @onready var health_bar: TextureProgressBar = get_node("BasicHealthBar")
 @onready var hp_label: Label = $Label
 @onready var point_light: PointLight2D
 @onready var light_collision: CollisionShape2D
-@export var follow_cursor = false
-@export var sprit: AnimatedSprite2D
-@export var alive: bool = true
 @onready var fog = get_node("/root/World/WorldGeneration/Fog_Layer")
 @onready var label = get_node("Label")
+@onready var point_light_texture: Resource = preload("res://Assets/2d_lights_and_shadows_neutral_point_light.webp")
+@onready var target = position
 
-var food_timer = Timer.new()
+var in_light := true
+var alive := true
+var follow_cursor := false
+var is_selected := false
+var food_timer := Timer.new()
+var selected := false
 
 func ready_complete():
-	print("ready_complete called....")
-	
 	light_collision = CollisionShape2D.new()
 	
 	var light_area = Area2D.new()
 	light_area.add_child(light_collision)
 	add_child(light_area)
 	
+		
+	var canvas := CanvasItemMaterial.new()
+	canvas.light_mode = CanvasItemMaterial.LIGHT_MODE_LIGHT_ONLY
 	
 	point_light = PointLight2D.new()
+	point_light.texture = point_light_texture
 	point_light.energy = 1
+	point_light.light_mask = 2
+	point_light.visibility_layer = 2
+	point_light.blend_mode = Light2D.BLEND_MODE_ADD
+	point_light.material = canvas
 	
 	add_child(point_light)
 	
@@ -93,11 +102,11 @@ func _input(event):
 		follow_cursor = false
 
 func _on_timer() -> void:
-	Game.consumeWood()
-	
-	if light_scale < 5:
-		extinguish()
-	else:
+	if light_scale < 3:
+		if light_depletion_rate != 0:
+			extinguish()
+	elif light_depletion_rate > 0:
+		Game.consumeWood()
 		light_scale -= light_depletion_rate
 		scale_lights()
 
