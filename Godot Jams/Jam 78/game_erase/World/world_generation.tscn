@@ -528,6 +528,9 @@ func _ready() -> void:
 
 # Keep the clear_fog function as it was
 func clear_fog(light_collision: CollisionShape2D, force = false) -> void:
+	if !light_collision: 
+		return
+		
 	var pos: Vector2 = light_collision.global_position
 	var center_tile := local_to_map(pos)
 	

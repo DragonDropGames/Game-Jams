@@ -10,7 +10,7 @@ func _ready():
 	load_enemies()
 	load_resources()
 
-	
+
 func _on_area_selected(object):
 	var start = object.start
 	var end = object.end

@@ -1,84 +1,25 @@
-extends CharacterBody2D
+extends ControlableUnit
 
 
-
-# ALL UNIT PROPERTIES
-var followCursor = false
-@export var isSelected = false
-@onready var target = position
-@onready var selectedPanel = get_node("SelectedPanel")
-@onready var label = get_node("Label")
-@export var isInLight = false
-@export var alive = true
-
-var image;
-var FOOD_CONSUMPTION_RATE = 1
-@onready var dyingTime = $DyingTime
-@onready var timer = $FoodTimer
 @onready var combatSystem: CombatSystem = $CombatSystem
-
-# UNIT CONFIG
-var speed = 10
-var health = 100
-var ARMOR_SCALER = .5
-
-@onready var swordImage = get_node("Collision/SwordUnit")
-@onready var bowImage = get_node("Collision/BowUnit")
+@onready var sword_image = get_node("Collision/SwordUnit")
+@onready var bow_image = get_node("Collision/BowUnit")
 @onready var hp = $BasicHealthBar
 @export var unit: Enums.UNIT_TYPE
 
+var image;
+
 func _ready():
+	light_scale = 4
+	health = 100
+	darkness_scaler = .5
 	add_to_group("Units")
-
-	setProperties()
-
-func _process(delta: float) -> void:
-	if alive:
-		if hp.value != hp.max_value:
-			hp.visible = true
-		
-	if !isInLight:
-		label.visible = false
-		health -= 10 * ARMOR_SCALER
-	else:
-		hp.visible = false
-	
-	
-func _input(event):
-	if event.is_action_pressed("RightClick"):
-		followCursor = true
-	elif event.is_action_released("RightClick"):
-		followCursor = false
-
-func _physics_process(delta: float) -> void:
 	
 	match unit: 
 		Enums.UNIT_TYPE.SWORD: 
-			image = swordImage
-		Enums.UNIT_TYPE.BOW:
-			image = bowImage
-	
-	if followCursor && isSelected:
-		target = get_global_mouse_position()
-	
-	velocity = position.direction_to(target) * speed
-	
-	if alive:
-		if position.distance_to(target) > 10:
-			image.play('run')
-			move_and_slide()
-		else:
-			image.play('idle')
-
-func set_selected(value):
-	isSelected = value
-	selectedPanel.visible = value
-
-func setProperties():
-	match unit: 
-		Enums.UNIT_TYPE.SWORD: 
-			swordImage.visible = true
 			speed = 15
+			image = sword_image
+			sword_image.visible = true
 			combatSystem.damageType = Enums.DAMAGE_TYPE.MELEE
 			combatSystem.distanceOfAttack = 50
 			combatSystem.frequencyOfAttack = 2
@@ -86,33 +27,8 @@ func setProperties():
 			combatSystem.targets = [Enums.TARGET_TYPE.ENEMIES]
 			combatSystem._ready()
 		Enums.UNIT_TYPE.BOW:
-			bowImage.visible = true
+			image = bow_image
+			bow_image.visible = true
 			speed = 10 
-	
-func _on_timer_timeout() -> void:
-	var foodConsumed = Game.consumeFood()
-	if !foodConsumed:
-		health -= 10
-		print(health)
-
-
-func _on_in_fog_timer_timeout() -> void:
-	if !isInLight:
-		label.visible = false
-		health -= 10 * ARMOR_SCALER
-		hp.value = health
-	else:
-		label.visible = true
-		
-	if health <= 0:
-		match unit: 
-			Enums.UNIT_TYPE.SWORD: 
-				if alive:
-					die(swordImage)
-			Enums.UNIT_TYPE.BOW:
-				if alive:
-					die(bowImage)
-
-func die(image):
-	alive = false
-	image.play("die")
+			
+	ready_complete()
