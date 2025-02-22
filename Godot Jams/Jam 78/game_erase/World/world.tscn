@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bj68p12cthhye"]
+[gd_scene load_steps=11 format=3 uid="uid://bj68p12cthhye"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_37q7v"]
 [ext_resource type="PackedScene" uid="uid://vys72xs8cl6y" path="res://UI/ui.tscn" id="2_aawxf"]
 [ext_resource type="Script" path="res://World/camera.gd" id="2_js0y7"]
 [ext_resource type="PackedScene" uid="uid://brma022lql5t4" path="res://World/world_generation.tscn" id="4_v0mnd"]
-[ext_resource type="PackedScene" uid="uid://b42t76jchxqwh" path="res://World/world_nodes.tscn" id="11_8ricn"]
+[ext_resource type="PackedScene" uid="uid://ds455vbi5e36t" path="res://Units/hero/hero.tscn" id="5_0nvrh"]
+[ext_resource type="PackedScene" uid="uid://cy7232f5xniil" path="res://Units/Wagon.tscn" id="6_d7cx2"]
+[ext_resource type="PackedScene" uid="uid://byf4nkgylxsx8" path="res://Units/Combat/combatUnit.tscn" id="7_mpoq3"]
+[ext_resource type="PackedScene" uid="uid://cd2syih2mid6q" path="res://Units/Resource Collectors/resourceUnit.tscn" id="8_fdbak"]
+[ext_resource type="PackedScene" uid="uid://ckmkx8imypqy7" path="res://Units/enemies/enemy.tscn" id="8_yodkv"]
+[ext_resource type="PackedScene" uid="uid://d1sb7mq2miv8n" path="res://UI/Enemy Spawner/enemy_spawner.tscn" id="10_lybhf"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_37q7v")
@@ -13,7 +18,7 @@ script = ExtResource("1_37q7v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 y_sort_enabled = true
-position = Vector2(578, 323)
+position = Vector2(1902, 3867)
 limit_left = -16
 limit_top = -16
 limit_right = 4112
@@ -22,5 +27,165 @@ script = ExtResource("2_js0y7")
 
 [node name="WorldGeneration" parent="." instance=ExtResource("4_v0mnd")]
 
-[node name="WorldNodes" parent="." instance=ExtResource("11_8ricn")]
-position = Vector2(1565, 3456)
+[node name="Characters" type="Node2D" parent="."]
+
+[node name="Hero" parent="Characters" instance=ExtResource("5_0nvrh")]
+position = Vector2(1888, 3833)
+
+[node name="Wagon Main" parent="Characters" instance=ExtResource("6_d7cx2")]
+position = Vector2(1718.05, 3933.02)
+
+[node name="Wagon Sword" parent="Characters" instance=ExtResource("6_d7cx2")]
+position = Vector2(2173.75, 3974.7)
+wagon = 1
+
+[node name="Wagon Resource" parent="Characters" instance=ExtResource("6_d7cx2")]
+position = Vector2(2236.75, 3787.61)
+wagon = 3
+
+[node name="Wagon Bow" parent="Characters" instance=ExtResource("6_d7cx2")]
+position = Vector2(1803.97, 3696.89)
+wagon = 2
+
+[node name="Sword 1" parent="Characters" instance=ExtResource("7_mpoq3")]
+position = Vector2(1713.1, 3770.39)
+unit = 0
+
+[node name="Sword 2" parent="Characters" instance=ExtResource("7_mpoq3")]
+position = Vector2(2087.16, 3727.96)
+unit = 0
+
+[node name="Sword 3" parent="Characters" instance=ExtResource("7_mpoq3")]
+position = Vector2(2009.38, 3899.79)
+unit = 0
+
+[node name="Bow 1" parent="Characters" instance=ExtResource("7_mpoq3")]
+unit = 1
+
+[node name="Bow 2" parent="Characters" instance=ExtResource("7_mpoq3")]
+unit = 1
+
+[node name="Bow 3" parent="Characters" instance=ExtResource("7_mpoq3")]
+unit = 1
+
+[node name="ResourceUnit" parent="Characters" instance=ExtResource("8_fdbak")]
+position = Vector2(1805, 3954)
+
+[node name="ResourceUnit2" parent="Characters" instance=ExtResource("8_fdbak")]
+position = Vector2(1873, 3971)
+
+[node name="ResourceUnit3" parent="Characters" instance=ExtResource("8_fdbak")]
+position = Vector2(1972, 3967)
+
+[node name="ResourceUnit4" parent="Characters" instance=ExtResource("8_fdbak")]
+position = Vector2(1824, 4003)
+
+[node name="Enemeis" type="Node2D" parent="."]
+rotation = -0.000189473
+
+[node name="Enemy10" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(471.127, 1406.47)
+
+[node name="Enemy" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1900.15, 3490.55)
+
+[node name="Enemy2" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1382.91, 3209.27)
+
+[node name="Enemy3" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2455.15, 3190.39)
+
+[node name="Enemy4" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(994.034, 3953.04)
+
+[node name="Enemy5" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(971.381, 2675.04)
+
+[node name="Enemy6" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2953.52, 4000.24)
+
+[node name="Enemy7" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(3380.15, 3039.37)
+
+[node name="Enemy8" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(520.209, 3322.54)
+
+[node name="Enemy9" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(3100.76, 2067.18)
+
+[node name="Enemy11" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1173.37, 555.096)
+
+[node name="Enemy12" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(3122, 693)
+
+[node name="Enemy13" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(3601, 1112)
+
+[node name="Enemy14" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(881, 3970)
+
+[node name="Enemy15" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(3536, 3824)
+
+[node name="Enemy16" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1893, 2369)
+
+[node name="Enemy17" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2283, 1243)
+
+[node name="Enemy18" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1980, 1061)
+
+[node name="Enemy19" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1523, 1236)
+
+[node name="Enemy20" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1691, 1122)
+
+[node name="Enemy21" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1708, 1337)
+
+[node name="Enemy22" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1893, 1219)
+
+[node name="Enemy23" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2098, 1296)
+
+[node name="Enemy24" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2256, 1407)
+
+[node name="Spawners" type="Node2D" parent="."]
+position = Vector2(994.783, 3952.86)
+rotation = -0.000189473
+
+[node name="Spawner1" parent="Spawners" instance=ExtResource("10_lybhf")]
+position = Vector2(1675.28, -350.538)
+rotation = 0.000189473
+
+[node name="Spawner2" parent="Spawners" instance=ExtResource("10_lybhf")]
+position = Vector2(-203.615, -884.894)
+rotation = 0.000189473
+
+[node name="Spawner3" parent="Spawners" instance=ExtResource("10_lybhf")]
+position = Vector2(-682.47, -1649.98)
+rotation = 0.000189473
+
+[node name="Spawner4" parent="Spawners" instance=ExtResource("10_lybhf")]
+position = Vector2(1739.36, -1268.43)
+rotation = 0.000189473
+
+[node name="Spawner5" parent="Spawners" instance=ExtResource("10_lybhf")]
+position = Vector2(936.665, -2364.68)
+rotation = 0.000189473
+
+[node name="Spawner6" parent="Spawners" instance=ExtResource("10_lybhf")]
+position = Vector2(1023.89, -3566.66)
+rotation = 0.000189473
+
+[node name="Spawner7" parent="Spawners" instance=ExtResource("10_lybhf")]
+position = Vector2(-573.116, -3518.96)
+rotation = 0.000189473
+
+[node name="Spawner8" parent="Spawners" instance=ExtResource("10_lybhf")]
+position = Vector2(2824.82, -3156.32)
