@@ -15,6 +15,7 @@ var type;
 @onready var food = $Food
 
 func _ready() -> void:
+	add_to_group('Resource')
 	setProperties()
 	currTime = totalTime
 	bar.max_value = totalTime

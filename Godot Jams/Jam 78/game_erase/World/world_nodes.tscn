@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://b42t76jchxqwh"]
 
-[ext_resource type="PackedScene" uid="uid://byf4nkgylxsx8" path="res://Units/combatUnit.tscn" id="1_es40y"]
+[ext_resource type="PackedScene" uid="uid://byf4nkgylxsx8" path="res://Units/Combat/combatUnit.tscn" id="1_es40y"]
 [ext_resource type="PackedScene" uid="uid://cy7232f5xniil" path="res://Units/Wagon.tscn" id="2_2776d"]
-[ext_resource type="PackedScene" uid="uid://cd2syih2mid6q" path="res://Units/resourceUnit.tscn" id="2_ml6ot"]
+[ext_resource type="PackedScene" uid="uid://cd2syih2mid6q" path="res://Units/Resource Collectors/resourceUnit.tscn" id="2_ml6ot"]
 [ext_resource type="PackedScene" uid="uid://ds455vbi5e36t" path="res://Units/hero/hero.tscn" id="3_a6o1l"]
-[ext_resource type="PackedScene" path="res://Structures/resource.tscn" id="4_m4483"]
+[ext_resource type="PackedScene" uid="uid://cgp5eivo4vtgt" path="res://Structures/resource.tscn" id="4_m4483"]
 [ext_resource type="PackedScene" uid="uid://ckmkx8imypqy7" path="res://Units/enemies/enemy.tscn" id="5_fsb3k"]
 
 [node name="WorldNodes" type="Node2D"]
