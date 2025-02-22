@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://vsp4jupipdag"]
 
 [sub_resource type="Gradient" id="Gradient_itxj1"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.0934223, 0.224976)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.903509, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_gtn7b"]
 gradient = SubResource("Gradient_itxj1")
