@@ -12,6 +12,7 @@ var aggroed = false
 var attack_damage = 10
 var attack_frequency = 1
 var combat: CombatSystem
+const attack_group = "ControlableUnit"
 
 @export var enemy: ENEMY_TYPE
 @export var health = 100
@@ -64,7 +65,7 @@ func _ready():
 	combat = CombatSystem.new()
 	combat.attack_damage = attack_damage
 	combat.attack_frequency = attack_frequency
-	combat.attack_group = "ControlableUnit"
+	combat.attack_group = attack_group
 
 func _physics_process(delta: float):
 	if not alive:
@@ -85,7 +86,7 @@ func _physics_process(delta: float):
 	move_and_slide()
 
 func _on_agro_enter(body):
-	if body.is_in_group("ControlableUnits"):
+	if body.is_in_group(attack_group):
 		player = body
 		aggroed = true
 
