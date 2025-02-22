@@ -3,11 +3,8 @@ extends ControlableUnit
 # UNIT PROPERTIES
 var followCursor = false
 @export var isSelected = false
-@onready var target = position
 @onready var selectedPanel = get_node("SelectedPanel")
-@onready var label = get_node("Label")
 @export var isInLight = false
-@export var alive = true
 
 var image
 var FOOD_CONSUMPTION_RATE = 1

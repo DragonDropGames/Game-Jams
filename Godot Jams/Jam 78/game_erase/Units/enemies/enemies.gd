@@ -22,8 +22,8 @@ func _ready():
 
 func initialize(enemy_type: ENEMY_TYPE) -> void:
 	await ready  # Wait for @onready variables to be assigned
-	self.enemy = enemy_type
-	setProperties()
+	enemy = enemy_type
+	set_properties()
 
 
 func _process(delta: float) -> void:
