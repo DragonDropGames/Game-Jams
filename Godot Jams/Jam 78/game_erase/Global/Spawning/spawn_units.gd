@@ -1,6 +1,7 @@
 extends Node
 
-var combatUnit = preload("res://Units/Combat/combatUnit.tscn")
+var combatUnit = load("res://Units/Combat/combatUnit.tscn")
+var enemyUnit = load("res://Units/enemies/enemy.tscn")
 
 
 func spawn(type: Enums.UNIT_TYPE, position: Vector2) -> void:
@@ -13,3 +14,22 @@ func spawn(type: Enums.UNIT_TYPE, position: Vector2) -> void:
 	unit._ready()
 	path.add_child(unit)
 	worldPath.load_units()
+
+
+func spawnEnemy(type: Enums.ENEMY_TYPE, position: Vector2) -> void:
+	var enemies_path = get_tree().get_root().get_node_or_null("World/WorldNodes/Enemies")
+	var world = get_tree().get_root().get_node_or_null("World")
+
+	# Ensure the path exists
+	if not enemies_path or not world:
+		print("Error: Enemy spawn path not found!")
+		return
+	
+	# Create the enemy instance
+	var unit = enemyUnit.instantiate()
+	unit.initialize(type)  # NEW: Call an init function for setup
+	unit.position = position
+	
+	# Add to scene
+	enemies_path.add_child(unit)
+	world.load_enemies()
