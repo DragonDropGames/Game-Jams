@@ -69,7 +69,8 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 		else:
 			image.play('idle')
-func setSelected(value):
+
+func set_selected(value):
 	isSelected = value
 	selectedPanel.visible = value
 

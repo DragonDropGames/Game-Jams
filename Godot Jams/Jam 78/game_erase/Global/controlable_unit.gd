@@ -14,7 +14,8 @@ class_name ControlableUnit
 @onready var point_light: PointLight2D = $PointLight
 @onready var light_collision: CollisionShape2D = $LightArea/CollisionShape2D
 @export var follow_cursor = false
-
+@export var sprit: AnimatedSprite2D
+@export var alive: bool = true
 @onready var fog = get_node("/root/World/WorldGeneration/Fog_Layer")
 
 var food_timer = Timer.new()
@@ -43,8 +44,20 @@ func _physics_process(delta: float) -> void:
 	velocity = position.direction_to(target) * speed
 	
 	if position.distance_to(target) > 10:
+		update_sprit('run')
 		move_and_slide()
+	else:
+		update_sprit('idle')
 
+func _process(delta: float) -> void:
+	if alive &&  health_bar.value != health_bar.max_value:
+		health_bar.visible = true
+		if health_bar.value <= 0:
+			alive = false
+			update_sprit("die")
+	else:
+		health_bar.visible = false
+		
 func _input(event):
 	if event.is_action_pressed("RightClick"):
 		follow_cursor = true
@@ -86,3 +99,7 @@ func extinguish() -> void:
 func scale_lights() -> void:
 	light_collision.scale = Vector2(light_scale, light_scale)
 	point_light.scale = Vector2(light_scale, light_scale) / 25
+
+func update_sprit(name: String) -> void:
+	if sprit:
+		sprit.play(name)

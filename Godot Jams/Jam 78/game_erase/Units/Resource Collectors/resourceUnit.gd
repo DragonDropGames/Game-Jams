@@ -61,10 +61,9 @@ func _physics_process(delta: float) -> void:
 			else:
 				workerSprite.play("idle")
 
-func setSelected(value):
+func set_selected(value: bool):
 	isSelected = value
 	selectedPanel.visible = value
-	
 
 func _on_gather_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group('Resource'):
