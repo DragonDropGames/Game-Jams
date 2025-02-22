@@ -514,6 +514,7 @@ var unit_past_positions: Array[Vector2i] = []  # Stores cleared tiles
 var unit_collision_shapes: Array[CollisionShape2D] = []  # Stores cleared tiles
 var fog_timer = Timer.new()
 
+
 func _ready() -> void:
 	for x in range(map_size.x):
 		for y in range(map_size.y):
@@ -527,6 +528,9 @@ func _ready() -> void:
 
 # Keep the clear_fog function as it was
 func clear_fog(light_collision: CollisionShape2D, force = false) -> void:
+	if !light_collision: 
+		return
+		
 	var pos: Vector2 = light_collision.global_position
 	var center_tile := local_to_map(pos)
 	
@@ -535,6 +539,8 @@ func clear_fog(light_collision: CollisionShape2D, force = false) -> void:
 
 	if force == false and center_tile in unit_past_positions:
 		return
+	
+	print(\"clear_fog\", center_tile)
 	
 	unit_past_positions.append(center_tile)
 
