@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var spawn_timer = $Timer
 var rng = RandomNumberGenerator.new()
 
+@onready var fog = get_node("/root/World/WorldGeneration/Fog_Layer")
+
 @export var spawn_radius: float = 30
 @export var min_units: int = 2
 @export var max_units: int = 6
@@ -21,8 +23,8 @@ func _on_timer_timeout() -> void:
 		return
 
 	var roll = rng.randf()
-	var enemy
-	var cost
+	var enemy: Enums.ENEMY_TYPE
+	var cost: int
 	
 	if roll < 0.50:
 		enemy = Enums.ENEMY_TYPE.BASIC
@@ -36,12 +38,15 @@ func _on_timer_timeout() -> void:
 
 	if spawn_budget >= cost:
 		spawn_budget -= cost
-
 		var angle = rng.randf_range(0, TAU)
 		var offset = Vector2(cos(angle), sin(angle)) * rng.randf_range(10, spawn_radius)
-		var spawn_position = position + offset
+		var spawn_position = global_position + offset
 
+		if fog.is_safe(spawn_position):
+			return
+			
 		SpawnUnits.spawnEnemy(enemy, spawn_position)
+		print("spawned new enemy ", enemy, " ", spawn_position)
 
 	spawn_timer.start()
 
