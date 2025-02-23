@@ -241,10 +241,10 @@ autoplay = "idle"
 
 [node name="SelectedPanel" type="Panel" parent="."]
 visible = false
-offset_left = -47.0
-offset_top = -55.0
-offset_right = 37.0
-offset_bottom = 27.0
+offset_left = -14.0
+offset_top = -22.0
+offset_right = 14.0
+offset_bottom = 14.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_u55ob")
 
