@@ -28,6 +28,7 @@ const group_name = "Enemies"
 
 @onready var aggro_range: Area2D = $AggroRange
 @onready var attack_range: Area2D = $AttackRange
+@onready var health_bar: ProgressBar = $HealthBar
 
 var boid := Boid.new()
 
@@ -70,11 +71,13 @@ func _ready():
 	combat.attack_frequency = attack_frequency
 	combat.attack_group = attack_group
 	combat.node = self
+	
+	health_bar.value = health
 
 func _physics_process(delta: float):
 	if not alive:
 		return
-	
+		
 	var enemy = combat.enemy
 	
 	if combat.attacking and enemy:
@@ -118,13 +121,10 @@ func _on_attack_range_exit(body):
 func _process(delta: float) -> void:
 	boid.process_boid(delta, self, speed, group_name)
 
-func _on_health_check_timer_timeout() -> void:
-	if health <= 0 and alive:
-		die()
-
 func die():
 	alive = false
 	image.play('die')
+	health_bar.queue_free()
 	set_physics_process(false)
 	set_process(false)
 	remove_from_group('ControlableUnits')
@@ -137,11 +137,14 @@ func die():
 	
 func take_damage(damage: float, body: Node2D) -> bool:
 	health -= damage
+	health_bar.value = health
 	
 	print("[enemy unit] taking damage", damage, " remaining health ", health)
-
-	_on_health_check_timer_timeout()
 	
+	if health <= 0:
+		die()
+	
+
 	if alive:
 		combat.being_attacked(body)
 	

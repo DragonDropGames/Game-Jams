@@ -863,7 +863,6 @@ offset_right = 22.0
 offset_bottom = -16.0
 theme_override_styles/background = SubResource("StyleBoxFlat_tccn1")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ojbg7")
-value = 25.0
 show_percentage = false
 
 [connection signal="timeout" from="healthCheckTimer" to="." method="_on_health_check_timer_timeout"]

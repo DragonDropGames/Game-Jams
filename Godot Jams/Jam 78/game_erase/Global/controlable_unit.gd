@@ -172,6 +172,7 @@ func die(reason: String):
 	set_process(false)
 	remove_from_group('ControlableUnits')
 	light_timer.stop()
+	health_bar.queue_free()
 	
 	if attack_area:
 		attack_area.monitoring = false

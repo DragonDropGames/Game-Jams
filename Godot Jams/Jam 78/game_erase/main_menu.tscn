@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bflajg3rpwkmk"]
+[gd_scene load_steps=12 format=3 uid="uid://dupbrudvpldgi"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_0xxe6"]
 [ext_resource type="Texture2D" uid="uid://u8f1wewhw51p" path="res://Assets/Nebula Blue.png" id="2_ui3oy"]
