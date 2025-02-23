@@ -66,51 +66,18 @@ position = Vector2(1888, 3833)
 
 [node name="Wagon Main" parent="Characters" instance=ExtResource("6_d7cx2")]
 position = Vector2(1718.05, 3933.02)
-wagon = null
-speed = null
-health = null
-darkness_scaler = null
-gathering_resources = null
-light_scale = null
-light_depletion_rate = null
-attack_damage = null
-attack_frequency = null
 
 [node name="Wagon Sword" parent="Characters" instance=ExtResource("6_d7cx2")]
 position = Vector2(2173.75, 3974.7)
 wagon = 1
-speed = null
-health = null
-darkness_scaler = null
-gathering_resources = null
-light_scale = null
-light_depletion_rate = null
-attack_damage = null
-attack_frequency = null
 
 [node name="Wagon Resource" parent="Characters" instance=ExtResource("6_d7cx2")]
 position = Vector2(2263, 3804)
 wagon = 3
-speed = null
-health = null
-darkness_scaler = null
-gathering_resources = null
-light_scale = null
-light_depletion_rate = null
-attack_damage = null
-attack_frequency = null
 
 [node name="Wagon Bow" parent="Characters" instance=ExtResource("6_d7cx2")]
 position = Vector2(1803.97, 3696.89)
 wagon = 2
-speed = null
-health = null
-darkness_scaler = null
-gathering_resources = null
-light_scale = null
-light_depletion_rate = null
-attack_damage = null
-attack_frequency = null
 
 [node name="Sword 1" parent="Characters" instance=ExtResource("7_mpoq3")]
 position = Vector2(1713.1, 3770.39)

@@ -5,7 +5,7 @@ class_name ControlableUnit
 @export var speed: float = 10
 @export var health: float = 10
 @export var darkness_scaler: float = 0
-@export var gathering_resources: float = 0
+@export var gathering_resources: bool = false
 @export var light_scale: float
 @export var light_depletion_rate: int = 0
 @export var sprite: AnimatedSprite2D
@@ -54,7 +54,7 @@ func ready_complete():
 	
 	add_to_group(group_name, true)
 	
-	light_timer.wait_time = 1.0
+	light_timer.wait_time = 10.0
 	light_timer.one_shot = false
 	light_timer.timeout.connect(_on_light_timer)
 	add_child(light_timer)
