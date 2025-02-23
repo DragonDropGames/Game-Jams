@@ -5,6 +5,7 @@ var units: Array[Node] = []
 var controllable_units: Array[Node] = []
 var enemies: Array[Node] = []
 var resources: Array[Node] = []
+@onready var end_game_timer: Timer = $"End Game Timer"
 
 func _ready() -> void:
 	load_units()
@@ -63,4 +64,19 @@ func load_enemies():
 	
 func load_resources():
 	resources = get_tree().get_nodes_in_group("Resources")
-	
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is ControlableUnit:
+		if body.is_hero:
+			end_game_timer.start()
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body is ControlableUnit:
+		if body.is_hero:
+			end_game_timer.stop()
+
+
+func _on_end_game_timer_timeout() -> void:
+	get_tree().change_scene_to_file("res://winner.tscn")
+	pass # Replace with function body.

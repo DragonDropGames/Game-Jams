@@ -46,7 +46,6 @@ func _on_timer_timeout() -> void:
 			return
 			
 		SpawnUnits.spawnEnemy(enemy, spawn_position)
-		print("spawned new enemy ", enemy, " ", spawn_position)
 
 	spawn_timer.start()
 

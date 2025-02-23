@@ -2,7 +2,9 @@ extends ControlableUnit
 
 @onready var heroSprite: AnimatedSprite2D = $CollisionShape2D/Hero
 
+
 func _ready():
+	is_hero = true
 	light_scale = 20
 	light_depletion_rate = 0.5
 	speed = 40

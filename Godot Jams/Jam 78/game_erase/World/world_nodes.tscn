@@ -18,7 +18,6 @@ position = Vector2(149, 239)
 
 [node name="ResourceUnit" parent="Units" instance=ExtResource("2_ml6ot")]
 position = Vector2(374, 314)
-light_depletion_rate = 1
 
 [node name="Hero" parent="Units" instance=ExtResource("3_a6o1l")]
 position = Vector2(527, 549)
@@ -37,7 +36,6 @@ position = Vector2(683, 363)
 wagon = null
 speed = null
 health = null
-darkness_scaler = null
 gathering_resources = null
 light_scale = null
 light_depletion_rate = null
@@ -50,7 +48,6 @@ position = Vector2(66, 508)
 wagon = 1
 speed = null
 health = null
-darkness_scaler = null
 gathering_resources = null
 light_scale = null
 light_depletion_rate = null

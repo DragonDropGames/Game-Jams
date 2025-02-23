@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bj68p12cthhye"]
+[gd_scene load_steps=18 format=3 uid="uid://bj68p12cthhye"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_37q7v"]
 [ext_resource type="PackedScene" uid="uid://vys72xs8cl6y" path="res://UI/ui.tscn" id="2_aawxf"]
@@ -29,6 +29,9 @@ shader_parameter/density = 0.5
 shader_parameter/speed = Vector2(0.02, 0.01)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_yv2ek")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8gma"]
+size = Vector2(272, 141)
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_37q7v")
 
@@ -49,7 +52,7 @@ color = Color(0.149475, 0.149475, 0.149475, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 y_sort_enabled = true
-position = Vector2(1902, 3867)
+position = Vector2(1903, 3863)
 zoom = Vector2(3, 3)
 limit_left = -16
 limit_top = -16
@@ -70,10 +73,10 @@ parameters/looping = true
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="Hero" parent="Characters" instance=ExtResource("5_0nvrh")]
-position = Vector2(1888, 3833)
+position = Vector2(1874.56, 3825.14)
 
 [node name="Wagon Main" parent="Characters" instance=ExtResource("6_d7cx2")]
-position = Vector2(1718.05, 3933.02)
+position = Vector2(1711.4, 3906.19)
 
 [node name="Wagon Sword" parent="Characters" instance=ExtResource("6_d7cx2")]
 position = Vector2(2173.75, 3974.7)
@@ -264,3 +267,20 @@ position = Vector2(3909, 3298)
 
 [node name="Resource2" parent="Iron Nodes" instance=ExtResource("11_v2822")]
 position = Vector2(2499, 3917)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1913, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(137, 72.5)
+shape = SubResource("RectangleShape2D_c8gma")
+
+[node name="End Game Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="child_entered_tree" from="Area2D/CollisionShape2D" to="." method="_on_collision_shape_2d_child_entered_tree"]
+[connection signal="child_exiting_tree" from="Area2D/CollisionShape2D" to="." method="_on_collision_shape_2d_child_exiting_tree"]
+[connection signal="timeout" from="End Game Timer" to="." method="_on_end_game_timer_timeout"]

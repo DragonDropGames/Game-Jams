@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 class_name ControlableUnit
 
+@export var is_hero = false
 @export var speed: float = 10
 @export var health: float = 10
 @export var gathering_resources: bool = false
