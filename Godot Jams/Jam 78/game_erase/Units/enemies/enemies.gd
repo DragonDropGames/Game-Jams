@@ -9,18 +9,14 @@ var image: AnimatedSprite2D
 var alive = true
 var player = null
 var aggroed = false
-var attack_damage = 10
-var attack_frequency = 1
+var attack_damage: int
+var attack_frequency: int
 var combat: CombatSystem
 const attack_group = "ControllableUnits"
 const group_name = "Enemies"
 
 @export var enemy: ENEMY_TYPE
 @export var health: float = 100
-@export var separation_distance: float = 30.0
-@export var neighbor_radius: float = 75.0
-@export var max_force: float = 2.0
-@export var friction: float = 0.9  # Reduces movement over time to settle
 
 @onready var collision_shape: CollisionShape2D = $EnemyCollision
 
@@ -38,7 +34,6 @@ var boid := Boid.new()
 func _ready():
 	set_collision_mask_value(6, false)
 
-	
 	add_to_group("Enemies", true)
 	match enemy:
 		ENEMY_TYPE.BASIC:

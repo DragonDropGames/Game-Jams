@@ -18,6 +18,7 @@ class_name ControlableUnit
 @onready var hp_label: Label = $Label
 @onready var point_light: PointLight2D
 
+
 @onready var fog = get_node("/root/World/WorldGeneration/Fog_Layer")
 @onready var label = get_node("Label")
 @onready var target = position
@@ -194,8 +195,14 @@ func die(reason: String):
 	set_process(false)
 	remove_from_group('ControlableUnits')
 	light_timer.stop()
-	health_bar.queue_free()
+	health_bar.visible = false
+	selected = false
+	selected_panel.visible = false
 	
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.disabled = true
+			
 	if attack_area:
 		attack_area.monitoring = false
 

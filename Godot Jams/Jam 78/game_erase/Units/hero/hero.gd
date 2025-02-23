@@ -5,7 +5,7 @@ extends ControlableUnit
 func _ready():
 	light_scale = 20
 	light_depletion_rate = 0.5
-	speed = 60
+	speed = 40
 	health = 1200
 	alive = true
 	sprite = heroSprite
