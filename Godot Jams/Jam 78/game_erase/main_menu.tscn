@@ -54,9 +54,10 @@ text = "Quit"
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.001, 0.001)
+motion_mirroring = Vector2(4096, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(1309, 1386)
+position = Vector2(1309, 1229)
 texture = ExtResource("2_ui3oy")
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -71,10 +72,11 @@ centered = false
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.02, 0.02)
+motion_mirroring = Vector2(1156, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
 self_modulate = Color(0.00392157, 0.0470588, 0.109804, 1)
-position = Vector2(-1075, -732)
+position = Vector2(-1212, -743)
 texture = ExtResource("3_xhxfp")
 centered = false
 
