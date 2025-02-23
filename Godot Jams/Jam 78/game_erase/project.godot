@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="game_erase"
-run/main_scene="res://main_menu.tscn"
+run/main_scene="res://World/world.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[audio]
+
+driver/output_latency=1
 
 [autoload]
 

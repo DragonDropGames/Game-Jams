@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bj68p12cthhye"]
+[gd_scene load_steps=13 format=3 uid="uid://bj68p12cthhye"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_37q7v"]
 [ext_resource type="PackedScene" uid="uid://vys72xs8cl6y" path="res://UI/ui.tscn" id="2_aawxf"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ckmkx8imypqy7" path="res://Units/enemies/enemy.tscn" id="8_yodkv"]
 [ext_resource type="PackedScene" uid="uid://d1sb7mq2miv8n" path="res://UI/Enemy Spawner/enemy_spawner.tscn" id="10_lybhf"]
 [ext_resource type="PackedScene" uid="uid://cgp5eivo4vtgt" path="res://Structures/resource.tscn" id="11_v2822"]
+[ext_resource type="AudioStream" uid="uid://dqwn8k060so73" path="res://Assets/Music/Sketchbook 2024-03-20_02.ogg" id="12_752jm"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_37q7v")
@@ -226,3 +227,7 @@ position = Vector2(3909, 3298)
 
 [node name="Resource2" parent="Iron Nodes" instance=ExtResource("11_v2822")]
 position = Vector2(2499, 3917)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_752jm")
+autoplay = true

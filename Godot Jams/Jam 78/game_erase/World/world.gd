@@ -1,14 +1,25 @@
 extends Node2D
 
+
 var units: Array[Node] = []
 var controllable_units: Array[Node] = []
 var enemies: Array[Node] = []
 var resources: Array[Node] = []
 
-func _ready():
+@onready var music:AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+func _ready() -> void:
 	load_units()
 	load_enemies()
 	load_resources()
+	music.stop()
+	print(music.playing)
+	music.play()
+	print(music.playing)
+	print(music.stream.resource_path)
+
+	
+	
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -62,3 +73,4 @@ func load_enemies():
 	
 func load_resources():
 	resources = get_tree().get_nodes_in_group("Resources")
+	
