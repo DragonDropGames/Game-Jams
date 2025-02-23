@@ -9,18 +9,20 @@ func _ready():
 	add_to_group("Units")
 	
 	light_scale = 5
-	health = 100
-	speed = 38
 
 	match unit: 
 		Enums.UNIT_TYPE.SWORD:
 			attack_area = $SwordArea
-			attack_damage = 10
+			attack_damage = 20
+			speed = 25
+			health = 100
 			attack_frequency = 1
 			sprite = $Collision/SwordUnit
 		Enums.UNIT_TYPE.BOW:
 			attack_area = $BowArea
 			attack_damage = 25
+			health = 50
+			speed = 30
 			attack_frequency = 5
 			sprite = $Collision/BowUnit
 	

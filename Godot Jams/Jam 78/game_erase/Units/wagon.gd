@@ -12,9 +12,9 @@ var wagon_image: AnimatedSprite2D
 @export var wagon: WAGON_TYPE
 
 func _ready():
-	speed = 40
+	speed = 30
 	add_to_group("Wagons")
-	
+	health = 600
 	match wagon:
 		Enums.WAGON_TYPE.MAIN:
 			light_scale = 60
@@ -26,7 +26,7 @@ func _ready():
 			
 		Enums.WAGON_TYPE.BOW:
 			light_scale = 40
-			wagon_image = $Collision/MainWagon
+			wagon_image = $Collision/MainWagon 
 			
 		Enums.WAGON_TYPE.RESOURCE:
 			light_scale = 50

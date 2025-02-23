@@ -30,7 +30,6 @@ const group_name = "Enemies"
 
 var boid := Boid.new()
 
-
 func _ready():
 	set_collision_mask_value(6, false)
 
@@ -43,6 +42,7 @@ func _ready():
 			attack_frequency = 1
 			basicEnemyImage.visible = true
 			add_to_group("SmallBoys", true)
+			health = 100
 		ENEMY_TYPE.MEDIUM:
 			speed = 25
 			image = mediumEnemyImage
@@ -50,15 +50,19 @@ func _ready():
 			attack_frequency = 1
 			mediumEnemyImage.visible = true
 			add_to_group("MediumBoys", true)
+			health = 50
 		ENEMY_TYPE.BIGBOY:
-			speed = 15
+			speed = 10
 			image = bigBoyImage
-			attack_damage = 10
+			attack_damage = 20
 			attack_frequency = 1
 			bigBoyImage.visible = true
 			add_to_group("BigBoys", true)
+			health = 100
 		ENEMY_TYPE.BOSS:
 			speed = 10
+			attack_damage = 30
+			health = 200
 	
 	aggro_range.body_entered.connect(_on_agro_enter)
 	aggro_range.body_exited.connect(_on_agro_exit)
