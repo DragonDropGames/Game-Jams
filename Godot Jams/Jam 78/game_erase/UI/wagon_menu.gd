@@ -38,6 +38,8 @@ func _on_sword_gui_input(event: InputEvent) -> void:
 		SpawnUnits.spawn(Enums.UNIT_TYPE.SWORD, pos)
 	
 func _on_bow_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("LeftClick"):
+		SpawnUnits.spawn(Enums.UNIT_TYPE.BOW, pos)
 	pass # Replace with function body.
 
 func _on_main_gui_input(event: InputEvent) -> void:
