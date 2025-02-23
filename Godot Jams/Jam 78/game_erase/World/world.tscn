@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bj68p12cthhye"]
+[gd_scene load_steps=16 format=3 uid="uid://bj68p12cthhye"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_37q7v"]
 [ext_resource type="PackedScene" uid="uid://vys72xs8cl6y" path="res://UI/ui.tscn" id="2_aawxf"]
@@ -27,7 +27,6 @@ shader = ExtResource("13_n0cd5")
 shader_parameter/density = 0.5
 shader_parameter/speed = Vector2(0.02, 0.01)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_yv2ek")
-[ext_resource type="AudioStream" uid="uid://dqwn8k060so73" path="res://Assets/Music/Sketchbook 2024-03-20_02.ogg" id="12_752jm"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_37q7v")
@@ -43,7 +42,7 @@ material = SubResource("ShaderMaterial_i5t6x")
 offset_right = 2050.0
 offset_bottom = 2050.0
 mouse_filter = 2
-color = Color(0.332881, 0.332881, 0.332881, 1)
+color = Color(0.149475, 0.149475, 0.149475, 1)
 
 [node name="UI" parent="." instance=ExtResource("2_aawxf")]
 
@@ -56,11 +55,6 @@ limit_top = -16
 limit_right = 4112
 limit_bottom = 4112
 script = ExtResource("2_js0y7")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D"]
-position = Vector2(97.46, -85.6499)
-stream = ExtResource("12_752jm")
-autoplay = true
 
 [node name="WorldGeneration" parent="." instance=ExtResource("4_v0mnd")]
 
@@ -297,5 +291,4 @@ position = Vector2(2499, 3917)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1999.46, 3781.35)
-stream = ExtResource("12_752jm")
 autoplay = true
