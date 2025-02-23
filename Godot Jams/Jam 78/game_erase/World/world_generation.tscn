@@ -515,6 +515,10 @@ var unit_past_positions: Array[Vector2i] = []
 var unit_collision_shapes: Array[CollisionShape2D] = []
 var fog_timer = Timer.new()
 
+var victory_timer = Timer.new()
+var victory_current_row = 0
+var victory = false
+
 func _ready() -> void:
 	for x in range(map_size.x):
 		for y in range(map_size.y):
@@ -525,8 +529,33 @@ func _ready() -> void:
 	fog_timer.timeout.connect(close_fog)
 	add_child(fog_timer)
 	fog_timer.start()
+	
+func victory_clear() -> void:
+	victory = true
+	
+	victory_timer.wait_time = 0.01
+	victory_timer.one_shot = false
+	victory_timer.timeout.connect(_remove_next_row)
+	add_child(victory_timer)
+	victory_timer.start()
+	
+
+func _remove_next_row() -> void:
+	if victory_current_row > map_size.x:
+		return
+		
+	print(\"removing\")
+	
+	for x in range(map_size.x):
+		_clear_cell(Vector2i(x, victory_current_row))
+
+	victory_current_row += 1
+
 
 func clear_fog(light_collision: CollisionShape2D, force = false) -> void:
+	if victory:
+		return
+		
 	if !light_collision: 
 		return
 		
@@ -551,6 +580,9 @@ func clear_fog(light_collision: CollisionShape2D, force = false) -> void:
 				_clear_cell(tile_pos)
 
 func close_fog() -> void:
+	if victory:
+		return
+		
 	var cells_to_close := get_empty_tiles_adjacent_to_non_empty()
 	
 	for cell in cells_to_close:

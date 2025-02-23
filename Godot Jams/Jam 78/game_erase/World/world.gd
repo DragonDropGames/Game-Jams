@@ -7,6 +7,7 @@ var enemies: Array[Node] = []
 var resources: Array[Node] = []
 @onready var end_game_timer: Timer = $"End Game Timer"
 @onready var end_game_bar: ProgressBar = $"End Game/ProgressBar"
+@onready var fog = get_node("/root/World/WorldGeneration/Fog_Layer")
 
 func _ready() -> void:
 	end_game_bar.max_value = end_game_timer.wait_time
@@ -90,5 +91,6 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 
 func _on_end_game_timer_timeout() -> void:
+	fog.victory_clear()
+	await get_tree().create_timer(5.0).timeout
 	get_tree().change_scene_to_file("res://winner.tscn")
-	pass # Replace with function body.
