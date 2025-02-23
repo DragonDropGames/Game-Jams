@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cd2syih2mid6q"]
+[gd_scene load_steps=31 format=3 uid="uid://cd2syih2mid6q"]
 
 [ext_resource type="Script" path="res://Units/Resource Collectors/resourceUnit.gd" id="1_mn5vq"]
 [ext_resource type="Texture2D" uid="uid://b85d8h7sh07el" path="res://Assets/Units/MiniWorker.png" id="3_6jy8g"]
@@ -111,7 +111,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_we42o")
 }],
-"loop": false,
+"loop": true,
 "name": &"collect",
 "speed": 5.0
 }, {
@@ -199,9 +199,6 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[sub_resource type="LabelSettings" id="LabelSettings_7u5il"]
-font_size = 10
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qly53"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -230,15 +227,6 @@ offset_top = -10.0
 offset_right = 10.0
 offset_bottom = 10.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7p378")
-
-[node name="Label" type="Label" parent="."]
-visible = false
-offset_left = -13.0
-offset_top = -28.0
-offset_right = 13.0
-offset_bottom = -14.0
-text = "SAFE"
-label_settings = SubResource("LabelSettings_7u5il")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -23.0

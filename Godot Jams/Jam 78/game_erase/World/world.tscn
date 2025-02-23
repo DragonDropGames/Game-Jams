@@ -73,13 +73,13 @@ parameters/looping = true
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="Hero" parent="Characters" instance=ExtResource("5_0nvrh")]
-position = Vector2(1874.65, 3829.55)
+position = Vector2(1870, 3802)
 
 [node name="Wagon Main" parent="Characters" instance=ExtResource("6_d7cx2")]
 position = Vector2(1711.4, 3906.19)
 
 [node name="Wagon Sword" parent="Characters" instance=ExtResource("6_d7cx2")]
-position = Vector2(2173.75, 3974.7)
+position = Vector2(2127, 3828)
 wagon = 1
 
 [node name="Wagon Resource" parent="Characters" instance=ExtResource("6_d7cx2")]
@@ -87,41 +87,41 @@ position = Vector2(2263, 3804)
 wagon = 3
 
 [node name="Wagon Bow" parent="Characters" instance=ExtResource("6_d7cx2")]
-position = Vector2(1803.97, 3696.89)
+position = Vector2(1832, 3743)
 wagon = 2
 
 [node name="Sword 1" parent="Characters" instance=ExtResource("7_mpoq3")]
-position = Vector2(1713.1, 3770.39)
+position = Vector2(1683, 3807)
 
 [node name="Sword 2" parent="Characters" instance=ExtResource("7_mpoq3")]
-position = Vector2(2087.16, 3727.96)
+position = Vector2(1971, 3738)
 
 [node name="Sword 3" parent="Characters" instance=ExtResource("7_mpoq3")]
-position = Vector2(2009.38, 3899.79)
+position = Vector2(2064, 3948)
 
 [node name="Bow 1" parent="Characters" instance=ExtResource("7_mpoq3")]
-position = Vector2(2050, 3608)
+position = Vector2(1908, 3684)
 unit = 1
 
 [node name="Bow 2" parent="Characters" instance=ExtResource("7_mpoq3")]
-position = Vector2(1764, 3642)
+position = Vector2(1777, 3700)
 unit = 1
 
 [node name="Bow 3" parent="Characters" instance=ExtResource("7_mpoq3")]
-position = Vector2(1874, 3665)
+position = Vector2(1833, 3680)
 unit = 1
 
 [node name="ResourceUnit" parent="Characters" instance=ExtResource("8_fdbak")]
-position = Vector2(1805, 3954)
+position = Vector2(1576, 3770)
 
 [node name="ResourceUnit2" parent="Characters" instance=ExtResource("8_fdbak")]
-position = Vector2(1873, 3971)
+position = Vector2(2319, 3778)
 
 [node name="ResourceUnit3" parent="Characters" instance=ExtResource("8_fdbak")]
-position = Vector2(2305, 3791)
+position = Vector2(2295, 3757)
 
 [node name="ResourceUnit4" parent="Characters" instance=ExtResource("8_fdbak")]
-position = Vector2(1824, 4003)
+position = Vector2(1608, 3735)
 
 [node name="Enemeis" type="Node2D" parent="."]
 rotation = -0.000189473
@@ -130,13 +130,110 @@ rotation = -0.000189473
 position = Vector2(471.127, 1406.47)
 
 [node name="Enemy" parent="Enemeis" instance=ExtResource("8_yodkv")]
-position = Vector2(1900.15, 3490.55)
+position = Vector2(2252.35, 3410.43)
+enemy = 1
+
+[node name="Enemy36" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1573.98, 131.298)
+enemy = 1
+
+[node name="Enemy37" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1893.89, 316.74)
+enemy = 1
+
+[node name="Enemy38" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2080.88, 332.775)
+enemy = 1
+
+[node name="Enemy39" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1945.9, 256.749)
+enemy = 1
+
+[node name="Enemy40" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2100.91, 216.779)
+enemy = 2
+
+[node name="Enemy41" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2008.95, 277.384)
+enemy = 2
+
+[node name="Enemy42" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1905.96, 217.361)
+enemy = 1
+
+[node name="Enemy43" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2010.91, 486.381)
+enemy = 1
+
+[node name="Enemy44" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2161.96, 231.41)
+enemy = 1
+
+[node name="Enemy45" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1988.98, 90.3769)
+enemy = 2
+
+[node name="Enemy46" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2130.98, 97.4038)
+enemy = 2
+
+[node name="Enemy47" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2208.93, 389.419)
+enemy = 1
+
+[node name="Enemy48" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1817.93, 391.344)
+enemy = 1
+
+[node name="Enemy49" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1766.95, 237.335)
+enemy = 1
+
+[node name="Enemy50" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2341.96, 195.444)
+enemy = 1
+
+[node name="Enemy25" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(217.611, 3841.4)
+
+[node name="Enemy26" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(100.595, 3924.38)
+
+[node name="Enemy27" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(157.608, 3856.39)
+
+[node name="Enemy28" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(88.6168, 3809.38)
+
+[node name="Enemy29" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(289.582, 3994.42)
+enemy = 2
+
+[node name="Enemy30" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(329.351, 3951.8)
+
+[node name="Enemy31" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(109.951, 3733.44)
+
+[node name="Enemy32" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(98.181, 3652.06)
+
+[node name="Enemy33" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1630.35, 3415.31)
+
+[node name="Enemy34" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(1775.38, 3291.34)
+
+[node name="Enemy35" parent="Enemeis" instance=ExtResource("8_yodkv")]
+position = Vector2(2082.37, 3319.39)
+enemy = 1
 
 [node name="Enemy2" parent="Enemeis" instance=ExtResource("8_yodkv")]
 position = Vector2(1382.91, 3209.27)
 
 [node name="Enemy3" parent="Enemeis" instance=ExtResource("8_yodkv")]
 position = Vector2(2455.15, 3190.39)
+enemy = 2
 
 [node name="Enemy4" parent="Enemeis" instance=ExtResource("8_yodkv")]
 position = Vector2(994.034, 3953.04)
@@ -146,9 +243,11 @@ position = Vector2(971.381, 2675.04)
 
 [node name="Enemy6" parent="Enemeis" instance=ExtResource("8_yodkv")]
 position = Vector2(2953.52, 4000.24)
+enemy = 2
 
 [node name="Enemy7" parent="Enemeis" instance=ExtResource("8_yodkv")]
 position = Vector2(3380.15, 3039.37)
+enemy = 1
 
 [node name="Enemy8" parent="Enemeis" instance=ExtResource("8_yodkv")]
 position = Vector2(520.209, 3322.54)
@@ -250,6 +349,42 @@ position = Vector2(2824.82, -3156.32)
 [node name="Resource" parent="Iron Nodes" instance=ExtResource("11_v2822")]
 position = Vector2(2328, 3733)
 
+[node name="Resource22" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(3706.71, 575.112)
+
+[node name="Resource23" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(3055.87, 276.681)
+
+[node name="Resource24" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(1811, 2715)
+
+[node name="Resource19" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(406, 197)
+
+[node name="Resource20" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(208.873, 408.086)
+
+[node name="Resource21" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(202.266, 879.08)
+
+[node name="Resource13" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(2774, 3546)
+
+[node name="Resource14" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(1429.92, 3796)
+
+[node name="Resource15" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(1368.56, 3898.88)
+
+[node name="Resource16" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(167.956, 4043.3)
+
+[node name="Resource17" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(220.813, 2824.76)
+
+[node name="Resource18" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(218.925, 2367.92)
+
 [node name="Resource6" parent="Iron Nodes" instance=ExtResource("11_v2822")]
 position = Vector2(154, 2744)
 
@@ -266,7 +401,22 @@ position = Vector2(2791, 1445)
 position = Vector2(3909, 3298)
 
 [node name="Resource2" parent="Iron Nodes" instance=ExtResource("11_v2822")]
-position = Vector2(2499, 3917)
+position = Vector2(2476, 3911)
+
+[node name="Resource8" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(1153, 4055)
+
+[node name="Resource9" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(2262, 4031)
+
+[node name="Resource10" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(3962, 3752)
+
+[node name="Resource11" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(2630, 2271)
+
+[node name="Resource12" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(3997, 1285)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(1913, 16)
