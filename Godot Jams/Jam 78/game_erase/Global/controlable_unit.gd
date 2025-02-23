@@ -32,6 +32,7 @@ var light_timer := Timer.new()
 var health_check_timer := Timer.new()
 var selected := false
 
+
 var boid := Boid.new()
 var combat: CombatSystem
 var light_collision: CollisionShape2D
