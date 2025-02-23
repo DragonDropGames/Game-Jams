@@ -174,7 +174,6 @@ func die(reason: String):
 	remove_from_group('ControlableUnits')
 	light_timer.stop()
 	health_bar.queue_free()
-	collision_shape.disabled = true
 	
 	if attack_area:
 		attack_area.monitoring = false
