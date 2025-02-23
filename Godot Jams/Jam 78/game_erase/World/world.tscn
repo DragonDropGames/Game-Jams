@@ -356,7 +356,7 @@ position = Vector2(208.873, 408.086)
 position = Vector2(202.266, 879.08)
 
 [node name="Resource13" parent="Iron Nodes" instance=ExtResource("11_v2822")]
-position = Vector2(2774, 3546)
+position = Vector2(3694, 2335)
 
 [node name="Resource14" parent="Iron Nodes" instance=ExtResource("11_v2822")]
 position = Vector2(1429.92, 3796)
