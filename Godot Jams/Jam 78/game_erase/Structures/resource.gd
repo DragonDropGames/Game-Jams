@@ -27,7 +27,7 @@ func _process(delta: float) -> void:
 func setProperties() -> void:
 	match resourceType:
 		RESOURCE_TYPE.Iron:
-			total_resources = 400
+			total_resources = 120
 			type = "iron"
 			pass
 
@@ -49,5 +49,5 @@ func _on_timer_timeout() -> void:
 	var chopSpeed = 1 * units
 	bar.value -= chopSpeed
 	if type == "iron":
-		Game.iron_label += 5 * units
+		Game.iron_label += 1 * units
 		

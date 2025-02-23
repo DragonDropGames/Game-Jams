@@ -203,6 +203,8 @@ func die(reason: String):
 	selected = false
 	selected_panel.visible = false
 	set_selected(false)
+	light_scale = 0
+	
 	
 	for child in get_children():
 		if child is CollisionShape2D:
@@ -210,7 +212,8 @@ func die(reason: String):
 			
 	if attack_area:
 		attack_area.monitoring = false
-		
+	
+	scale_lights()
 	await get_tree().create_timer(0.1).timeout
 	set_process(false)
 
