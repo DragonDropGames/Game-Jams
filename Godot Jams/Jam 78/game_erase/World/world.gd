@@ -55,7 +55,6 @@ func clear_selected_units() -> void:
 
 
 func load_units():
-	units = get_tree().get_nodes_in_group("Units")
 	controllable_units = get_tree().get_nodes_in_group("ControllableUnits")
 
 func load_enemies():
