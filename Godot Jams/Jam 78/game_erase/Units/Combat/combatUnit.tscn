@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://byf4nkgylxsx8"]
+[gd_scene load_steps=65 format=3 uid="uid://byf4nkgylxsx8"]
 
 [ext_resource type="Script" path="res://Units/Combat/combatUnit.gd" id="1_6r518"]
 [ext_resource type="Texture2D" uid="uid://bjcyv4jvjxl7a" path="res://Assets/Units/MiniSwordMan.png" id="2_jkbhk"]
@@ -445,13 +445,19 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eymtk"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkgab"]
+bg_color = Color(0.558482, 0.607113, 0.0988174, 1)
+
 [node name="CombatUnit" type="CharacterBody2D"]
 script = ExtResource("1_6r518")
 
 [node name="SelectedPanel" type="Panel" parent="."]
 visible = false
 offset_left = -10.0
-offset_top = -5.0
+offset_top = -10.0
 offset_right = 10.0
 offset_bottom = 10.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4s4rt")
@@ -464,16 +470,6 @@ offset_right = 13.0
 offset_bottom = -14.0
 text = "SAFE"
 label_settings = SubResource("LabelSettings_o23ut")
-
-[node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -23.0
-offset_top = -21.0
-offset_right = 22.0
-offset_bottom = -16.0
-theme_override_styles/background = SubResource("StyleBoxFlat_rpttx")
-theme_override_styles/fill = SubResource("StyleBoxFlat_2om16")
-value = 100.0
-show_percentage = false
 
 [node name="CombatSystem" parent="." instance=ExtResource("5_0kr32")]
 
@@ -498,3 +494,13 @@ position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_dvt8u")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -23.0
+offset_top = -21.0
+offset_right = 22.0
+offset_bottom = -16.0
+theme_override_styles/background = SubResource("StyleBoxFlat_eymtk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_pkgab")
+value = 100.0
+show_percentage = false
