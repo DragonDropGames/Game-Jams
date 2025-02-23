@@ -11,7 +11,7 @@ var wagon_image: AnimatedSprite2D
 @export var wagon: Enums.WAGON_TYPE
 
 func _ready():
-	speed = 30
+	speed = 20
 	add_to_group("Wagons")
 	health = 600
 	match wagon:
