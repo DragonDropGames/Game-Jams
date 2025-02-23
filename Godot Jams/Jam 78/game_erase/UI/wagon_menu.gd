@@ -3,10 +3,10 @@ extends Node2D
 var travel = Vector2(0, -150)
 var duration = 1
 var spread = PI / 2
-var waggon_position: Vector2
+var _wagon: Node2D
 
-func showMenu(type: Enums.WAGON_TYPE, woodCount: float, wagonPos: Vector2) -> void:
-	waggon_position = wagonPos
+func showMenu(type: Enums.WAGON_TYPE, woodCount: float, wagon: Node2D) -> void:
+	_wagon = wagon
 	var buildable = $Panel/Buildable
 	
 	var tween = create_tween()
@@ -18,12 +18,11 @@ func showMenu(type: Enums.WAGON_TYPE, woodCount: float, wagonPos: Vector2) -> vo
 	buildable.visible = true
 	tween.play()
 
-
 func _on_sword_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("LeftClick"):
 		if Game.can_consume_iron(20):
 			Game.consume_iron(20)
-			SpawnUnits.spawn(Enums.UNIT_TYPE.SWORD, waggon_position)
+			SpawnUnits.spawn(Enums.UNIT_TYPE.SWORD, _wagon.position)
 		else:
 			print("not enough resources")
 	
@@ -32,7 +31,7 @@ func _on_bow_gui_input(event: InputEvent) -> void:
 		if Game.can_consume_iron(10) and Game.can_consume_wood(10):
 			Game.consume_iron(10)
 			Game.consume_wood(10)
-			SpawnUnits.spawn(Enums.UNIT_TYPE.BOW, waggon_position)
+			SpawnUnits.spawn(Enums.UNIT_TYPE.BOW, _wagon.position)
 		else:
 			print("not enough resources")
 			
@@ -43,6 +42,6 @@ func _on_resource_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("LeftClick"):
 		if Game.can_consume_iron(25):
 			Game.consume_iron(25)
-			SpawnUnits.spawn(Enums.UNIT_TYPE.VILLAGER, waggon_position)
+			SpawnUnits.spawn(Enums.UNIT_TYPE.VILLAGER, _wagon.position)
 		else:
 			print("not enough resources")

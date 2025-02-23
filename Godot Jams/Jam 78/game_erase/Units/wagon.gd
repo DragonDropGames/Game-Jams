@@ -80,7 +80,7 @@ func _on_interaction_panel_gui_input(event: InputEvent) -> void:
 			if menuInstance == null:
 				set_selected(true)
 				menuInstance = menu.instantiate()
-				menuInstance.showMenu(wagon, 10, position)
+				menuInstance.showMenu(wagon, 10, self)
 				add_child(menuInstance)
 			else:
 				set_selected(false)
