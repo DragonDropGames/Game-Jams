@@ -21,6 +21,10 @@ Enums="*res://Global/Types/enums.gd"
 SpawnUnits="*res://Global/Spawning/spawn_units.gd"
 Game="*res://Global/State/game.gd"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="game_erase"

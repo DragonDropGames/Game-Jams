@@ -1,7 +1,7 @@
 extends Node
 
 static var iron_label: int = 10;
-static var wood_label: int = 2;
+static var wood_label: int = 100;
 
 func updateResource(type: Enums.RESOURCES_TYPE,value):
 	match type:

@@ -124,10 +124,11 @@ func _input(event):
 		follow_cursor = false
 
 func _on_light_timer() -> void:
-	if light_depletion_rate > 0:
-		Game.consumeWood()
-		light_scale -= light_depletion_rate
-		scale_lights()
+	if light_depletion_rate > 0.0:
+		var recieved_wood = Game.consumeWood()
+		if not recieved_wood:
+			light_scale -= light_depletion_rate
+			scale_lights()
 
 func _on_light_area_entered(body: Node2D) -> void:
 	if body.is_in_group(group_name):
@@ -151,9 +152,13 @@ func _on_health_check_timer_timeout() -> void:
 func scale_lights() -> void:
 	if !light_collision:
 		return
-		
-	light_collision.scale = Vector2(light_scale, light_scale)/2
-	point_light.scale = Vector2(light_scale, light_scale)
+	
+	if light_scale > 0:
+		light_collision.scale = Vector2.ONE * light_scale
+		point_light.scale = Vector2.ONE * light_scale
+	else:
+		light_collision.scale = Vector2.ZERO
+		point_light.scale = Vector2.ZERO
 
 func update_sprit(name: String) -> void:
 	if sprite:
