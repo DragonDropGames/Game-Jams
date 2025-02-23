@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://chtae0fox8nre" path="res://Assets/2d_lights_and_shadows_neutral_point_light.webp" id="9_phl3y"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_behoq"]
+seed = 115571564
 
 [sub_resource type="Resource" id="Resource_lkbmk"]
 resource_name = "Settings"
