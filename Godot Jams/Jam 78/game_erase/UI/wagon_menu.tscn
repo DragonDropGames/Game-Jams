@@ -665,6 +665,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="Label" type="Label" parent="Panel/Buildable/Bow"]
+layout_mode = 0
 offset_top = 38.0
 offset_right = 40.0
 offset_bottom = 52.0
@@ -673,6 +674,7 @@ label_settings = SubResource("LabelSettings_5mp10")
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="Panel/Buildable/Bow/Label"]
+layout_mode = 0
 offset_top = 12.0
 offset_right = 40.0
 offset_bottom = 26.0
@@ -694,6 +696,7 @@ animation = &"collect"
 autoplay = "idle"
 
 [node name="Label" type="Label" parent="Panel/Buildable/Resource"]
+layout_mode = 0
 offset_top = 38.0
 offset_right = 40.0
 offset_bottom = 52.0
