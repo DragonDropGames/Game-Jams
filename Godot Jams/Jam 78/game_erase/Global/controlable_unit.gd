@@ -221,6 +221,8 @@ func take_damage(damage: float, body: Node2D) -> bool:
 	
 	_on_health_check_timer_timeout()
 	
+	target = body.position
+	
 	if alive and combat:
 		combat.being_attacked(body)
 	
