@@ -8,6 +8,8 @@ var rng = RandomNumberGenerator.new()
 @export var max_units: int = 6
 @export var map_size: Vector2 = Vector2(256,256) * 16
 
+@onready var fog = get_node("/root/World/WorldGeneration/Fog_Layer")
+
 var spawn_budget: int
 
 func _ready() -> void:
@@ -40,6 +42,9 @@ func _on_timer_timeout() -> void:
 		var angle = rng.randf_range(0, TAU)
 		var offset = Vector2(cos(angle), sin(angle)) * rng.randf_range(10, spawn_radius)
 		var spawn_position = position + offset
+		
+		if fog.is_safe(spawn_position):
+			return
 
 		SpawnUnits.spawnEnemy(enemy, spawn_position)
 
@@ -48,8 +53,6 @@ func _on_timer_timeout() -> void:
 func check_and_spawn_new_spawner():
 	var enemy_count = get_tree().get_nodes_in_group("Enemies").size()
 	
-	print(enemy_count)
-	
 	if enemy_count <= 300:
 		var new_position = Vector2(rng.randf_range(0, map_size.x), rng.randf_range(0, map_size.y))
 
@@ -57,4 +60,3 @@ func check_and_spawn_new_spawner():
 		new_spawner.position = new_position
 
 		get_parent().add_child(new_spawner)
-		print(new_position, new_spawner)
