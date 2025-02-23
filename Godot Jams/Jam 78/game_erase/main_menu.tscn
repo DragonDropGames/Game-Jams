@@ -101,7 +101,7 @@ flat = true
 
 [node name="Goal" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Goal"
+text = "How To Win"
 flat = true
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
@@ -182,6 +182,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 2
 offset_left = 36.0
 offset_top = 339.0
@@ -204,7 +205,6 @@ fit_content = true
 scroll_active = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 703.0
 offset_top = 357.0
