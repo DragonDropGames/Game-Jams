@@ -1,10 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://cd2syih2mid6q"]
+[gd_scene load_steps=32 format=3 uid="uid://cd2syih2mid6q"]
 
 [ext_resource type="Script" path="res://Units/Resource Collectors/resourceUnit.gd" id="1_mn5vq"]
 [ext_resource type="Texture2D" uid="uid://b85d8h7sh07el" path="res://Assets/Units/MiniWorker.png" id="3_6jy8g"]
-[ext_resource type="PackedScene" uid="uid://dyewi7ipnw4vu" path="res://Global/Health Bars/BasicHealthBar.tscn" id="3_d5gbx"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iy3cv"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_bbivw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_da6jh"]
 atlas = ExtResource("3_6jy8g")
@@ -112,7 +111,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_we42o")
 }],
-"loop": true,
+"loop": false,
 "name": &"collect",
 "speed": 5.0
 }, {
@@ -203,6 +202,12 @@ corner_radius_bottom_left = 1
 [sub_resource type="LabelSettings" id="LabelSettings_7u5il"]
 font_size = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qly53"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7jpvh"]
+bg_color = Color(0.558482, 0.607113, 0.0988174, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_75iq3"]
 radius = 17.0
 
@@ -210,12 +215,12 @@ radius = 17.0
 script = ExtResource("1_mn5vq")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_iy3cv")
+shape = SubResource("CircleShape2D_bbivw")
 
 [node name="ResourceUnit" type="AnimatedSprite2D" parent="Collision"]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_ma63x")
-animation = &"die"
+animation = &"collect"
 autoplay = "idle"
 
 [node name="SelectedPanel" type="Panel" parent="."]
@@ -235,15 +240,20 @@ offset_bottom = -14.0
 text = "SAFE"
 label_settings = SubResource("LabelSettings_7u5il")
 
-[node name="BasicHealthBar" parent="." instance=ExtResource("3_d5gbx")]
-z_index = 20
-offset_left = -8.0
-offset_top = -8.0
-offset_right = 8.0
-offset_bottom = -6.0
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -23.0
+offset_top = -21.0
+offset_right = 22.0
+offset_bottom = -16.0
+theme_override_styles/background = SubResource("StyleBoxFlat_qly53")
+theme_override_styles/fill = SubResource("StyleBoxFlat_7jpvh")
 value = 100.0
+show_percentage = false
 
 [node name="GatherRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GatherRange"]
 shape = SubResource("CircleShape2D_75iq3")
+
+[connection signal="body_entered" from="GatherRange" to="." method="_on_gather_range_body_entered"]
+[connection signal="body_exited" from="GatherRange" to="." method="_on_gather_range_body_exited"]

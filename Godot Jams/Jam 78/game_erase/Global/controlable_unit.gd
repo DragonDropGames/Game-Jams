@@ -15,7 +15,7 @@ class_name ControlableUnit
 @export var attack_frequency: float
 
 @onready var selected_panel: Panel = get_node("SelectedPanel")
-@onready var health_bar: TextureProgressBar = get_node("BasicHealthBar")
+@onready var health_bar: ProgressBar = get_node("HealthBar")
 @onready var hp_label: Label = $Label
 @onready var point_light: PointLight2D
 
@@ -29,6 +29,7 @@ var alive := true
 var follow_cursor := false
 var is_selected := false
 var light_timer := Timer.new()
+var health_check_timer := Timer.new()
 var selected := false
 
 var boid := Boid.new()
@@ -58,9 +59,18 @@ func ready_complete():
 	add_child(light_timer)
 	light_timer.start()
 	
+	health_check_timer.wait_time = 1.0
+	health_check_timer.one_shot = false
+	health_check_timer.timeout.connect(_on_health_check_timer_timeout)
+	add_child(health_check_timer)
+	health_check_timer.start()
+	
+	health_bar.min_value = 0
+	health_bar.max_value = health
+	health_bar.value = health
+	
 	scale_lights()
 	fog.clear_fog(light_collision)
-	
 	if attack_area and attack_damage and attack_frequency:
 		attack_area.body_entered.connect(_on_attack_range_enter)
 		attack_area.body_exited.connect(_on_attack_range_exit)
@@ -76,7 +86,7 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = position.direction_to(target) * speed
 	
-	if position.distance_to(target) > 10:
+	if position.distance_to(target) > 20:
 		fog.clear_fog(light_collision)
 		update_sprit('run')
 		move_and_slide()
@@ -129,10 +139,13 @@ func _on_light_area_exited(body: Node2D) -> void:
 		body.in_lights.erase(body)
 
 func set_selected(value: bool):
-	is_selected = value
-	selected_panel.visible = value
+	if alive:
+		is_selected = value
+		selected_panel.visible = value
 
 func _on_health_check_timer_timeout() -> void:
+	if health_bar != null:
+		health_bar.value = health
 	if health <= 0 and alive:
 		die("health check")
 

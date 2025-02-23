@@ -21,14 +21,14 @@ func _ready() -> void:
 	bar.value = totalTime
 
 func _process(delta: float) -> void:
-	if currTime <= 0:
+	if bar.value <= 0:
 		resourceCollected()
 
 func setProperties() -> void:
 	match resourceType:
 		RESOURCE_TYPE.Iron:
 			type = 'iron'
-			totalTime = 300
+			totalTime = 5
 			pass
 		RESOURCE_TYPE.Wood:
 			totalTime = 60
@@ -36,7 +36,8 @@ func setProperties() -> void:
 			pass	
 
 func resourceCollected():
-	queue_free()
+	position = Vector2(-50,-50)
+	#queue_free()
 	
 func _on_interaction_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Villagers"):
@@ -51,11 +52,9 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
 	var chopSpeed = 1 * units
-	currTime -= chopSpeed
-	var tween = get_tree().create_tween()
-	tween.tween_property(bar, "value", currTime, 0.5).set_trans(Tween.TRANS_QUAD)
-	
+	bar.value -= chopSpeed
+
 	if type == 'iron':
-		Game.iron_label += 2
+		Game.iron_label += 2 * units
 	if type == 'wood':
-		Game.wood_label += 8
+		Game.wood_label += 8 * units

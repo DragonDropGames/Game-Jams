@@ -27,12 +27,12 @@ func _ready():
 func _on_gather_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group('Resource'):
 		gathering_resources = true
-
+		sprite.play('collect')
 
 func _on_gather_range_body_exited(body: Node2D) -> void:
 	if body.is_in_group('Resource'):
 		gathering_resources = false
-
+    sprite.play('idle')
 
 func get_closest_tree_tile() -> Vector2:
 	var player_tile: Vector2 = tile_map.local_to_map(position)

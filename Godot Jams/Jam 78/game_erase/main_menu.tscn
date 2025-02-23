@@ -56,7 +56,7 @@ text = "Quit"
 motion_scale = Vector2(0.001, 0.001)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(393, 990)
+position = Vector2(1309, 1386)
 texture = ExtResource("2_ui3oy")
 
 [node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]

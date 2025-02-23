@@ -44,7 +44,7 @@ wagon = 1
 position = Vector2(0, 1)
 
 [node name="Resource" parent="Resources" instance=ExtResource("4_m4483")]
-position = Vector2(274, 239)
+position = Vector2(526.466, 371.04)
 
 [node name="Enemies" type="Node2D" parent="."]
 position = Vector2(0, 1)
@@ -58,7 +58,7 @@ position = Vector2(52, 378)
 enemy = 2
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource("5_fsb3k")]
-position = Vector2(209, 141)
+position = Vector2(197, 134)
 
 [node name="Enemy Spawner" type="Node2D" parent="."]
 
