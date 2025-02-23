@@ -1,8 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://cy7232f5xniil"]
+[gd_scene load_steps=12 format=3 uid="uid://cy7232f5xniil"]
 
 [ext_resource type="Script" path="res://Units/wagon.gd" id="1_24qf5"]
-[ext_resource type="Texture2D" uid="uid://j4ufg2rn7fg8" path="res://Assets/Wagon/chicken.png" id="6_pmlj8"]
-[ext_resource type="Texture2D" uid="uid://jimgqrgdkctj" path="res://Assets/Wagon/chicken with silly idle.png" id="7_i2xvl"]
+[ext_resource type="Texture2D" uid="uid://0ip8xd525e8m" path="res://Assets/Wagon/main/main wagons 3.png" id="4_n7iei"]
+[ext_resource type="Texture2D" uid="uid://c0ix5h5hvnyar" path="res://Assets/Wagon/main/main wagons 2.png" id="5_vlthr"]
+[ext_resource type="Texture2D" uid="uid://enyfcua7ri16" path="res://Assets/Wagon/main/main wagons.png" id="6_sv1ig"]
+[ext_resource type="Texture2D" uid="uid://lpx2fpdojlss" path="res://Assets/Wagon/main/main wagons 4.png" id="7_1jinu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kfxd"]
 bg_color = Color(0, 0.658824, 0.854902, 0.227451)
@@ -19,204 +21,40 @@ corner_radius_bottom_left = 5
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1jnf0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agtqq"]
-size = Vector2(34, 32)
+size = Vector2(38.5, 30)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lft6r"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(64, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kqvpv"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(32, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bc8br"]
-atlas = ExtResource("7_i2xvl")
-region = Rect2(0, 17, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pft2a"]
-atlas = ExtResource("7_i2xvl")
-region = Rect2(16, 17, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kgecq"]
-atlas = ExtResource("7_i2xvl")
-region = Rect2(32, 17, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l3bs5"]
-atlas = ExtResource("7_i2xvl")
-region = Rect2(48, 17, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cbgc2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_wuib1"]
 animations = [{
 "frames": [{
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_lft6r")
-}, {
-"duration": 5.0,
-"texture": SubResource("AtlasTexture_kqvpv")
+"duration": 1.0,
+"texture": ExtResource("4_n7iei")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"bottom-left",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bc8br")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pft2a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kgecq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l3bs5")
+"texture": ExtResource("5_vlthr")
 }],
 "loop": true,
-"name": &"moving",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_moceo"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(64, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wl2s2"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(32, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ngsvf"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(0, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_82d3c"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(16, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d2jb4"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(48, 17, 15, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1q2l2"]
-animations = [{
-"frames": [{
-"duration": 3.2,
-"texture": SubResource("AtlasTexture_moceo")
-}, {
-"duration": 3.0,
-"texture": SubResource("AtlasTexture_wl2s2")
-}],
-"loop": true,
-"name": &"idle",
+"name": &"bottom-right",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ngsvf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_82d3c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d2jb4")
+"texture": ExtResource("6_sv1ig")
 }],
 "loop": true,
-"name": &"run",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ys2m1"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(64, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k4b0e"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(32, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0813l"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(0, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_adlha"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(32, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i6543"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(48, 17, 15, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_rnpb8"]
-animations = [{
-"frames": [{
-"duration": 4.0,
-"texture": SubResource("AtlasTexture_ys2m1")
-}, {
-"duration": 4.0,
-"texture": SubResource("AtlasTexture_k4b0e")
-}],
-"loop": true,
-"name": &"idle",
+"name": &"top-left",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0813l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_adlha")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i6543")
+"texture": ExtResource("7_1jinu")
 }],
 "loop": true,
-"name": &"run",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jxlv5"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(64, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_boml0"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(32, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f2pwj"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(0, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dfj7n"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(32, 17, 15, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kn82d"]
-atlas = ExtResource("6_pmlj8")
-region = Rect2(48, 17, 15, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_u6v62"]
-animations = [{
-"frames": [{
-"duration": 3.0,
-"texture": SubResource("AtlasTexture_jxlv5")
-}, {
-"duration": 3.0,
-"texture": SubResource("AtlasTexture_boml0")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f2pwj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dfj7n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kn82d")
-}],
-"loop": true,
-"name": &"run",
+"name": &"top-right",
 "speed": 5.0
 }]
 
@@ -257,39 +95,18 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_1jnf0")
 [node name="WagonCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_agtqq")
 
-[node name="MainWagon" type="AnimatedSprite2D" parent="WagonCollision"]
-visible = false
-self_modulate = Color(0.937255, 0.74902, 0.0156863, 1)
-position = Vector2(4.17233e-07, 0)
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_cbgc2")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.388847
-
-[node name="SwordWagon" type="AnimatedSprite2D" parent="WagonCollision"]
-visible = false
-self_modulate = Color(0.27451, 0.619608, 0.705882, 1)
-sprite_frames = SubResource("SpriteFrames_1q2l2")
-animation = &"run"
-autoplay = "idle"
-frame_progress = 0.530294
-
 [node name="ResourceWagon" type="AnimatedSprite2D" parent="WagonCollision"]
 visible = false
-self_modulate = Color(0.4, 0.2, 0, 1)
-sprite_frames = SubResource("SpriteFrames_rnpb8")
-animation = &"run"
-autoplay = "idle"
-frame_progress = 0.213912
+scale = Vector2(0.45, 0.45)
+sprite_frames = SubResource("SpriteFrames_wuib1")
+animation = &"top-right"
 
-[node name="BowWagon" type="AnimatedSprite2D" parent="WagonCollision"]
+[node name="MainWagon" type="AnimatedSprite2D" parent="WagonCollision"]
 visible = false
-self_modulate = Color(0.133333, 0.54902, 0.133333, 1)
-sprite_frames = SubResource("SpriteFrames_u6v62")
-animation = &"run"
-autoplay = "idle"
-frame_progress = 0.555926
+position = Vector2(-2.84217e-14, 0)
+scale = Vector2(0.45, 0.45)
+sprite_frames = SubResource("SpriteFrames_wuib1")
+animation = &"bottom-left"
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -23.0

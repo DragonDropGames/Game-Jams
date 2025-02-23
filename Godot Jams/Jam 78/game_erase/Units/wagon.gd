@@ -8,13 +8,8 @@ var menuInstance
 var mouseEntered = false
 
 # Wagon Customization Properties
-@onready var bowWagonImage = get_node("WagonCollision/BowWagon")
-@onready var mainWagonImage = get_node("WagonCollision/MainWagon")
-@onready var resourceWagonImage = get_node("WagonCollision/ResourceWagon")
-@onready var swordWagonImage = get_node("WagonCollision/SwordWagon")
-
+var wagon_image: AnimatedSprite2D
 @export var wagon: WAGON_TYPE
-
 
 func _ready():
 	speed = 40
@@ -24,24 +19,43 @@ func _ready():
 		Enums.WAGON_TYPE.MAIN:
 			light_scale = 60
 			light_depletion_rate = 0.1
-			mainWagonImage.visible = true
+			wagon_image = $WagonCollision/MainWagon
 			
 		Enums.WAGON_TYPE.SWORD:
 			light_scale = 40
 			light_depletion_rate = 0.2
-			swordWagonImage.visible = true
+			wagon_image = $WagonCollision/MainWagon
 			
 		Enums.WAGON_TYPE.BOW:
 			light_scale = 40
 			light_depletion_rate = 0.3
-			bowWagonImage.visible = true
+			wagon_image = $WagonCollision/MainWagon
 			
 		Enums.WAGON_TYPE.RESOURCE:
 			light_scale = 50
 			light_depletion_rate = 0.4
-			resourceWagonImage.visible = true
+			wagon_image = $WagonCollision/ResourceWagon
 	
+	wagon_image.visible = true
 	ready_complete()
+
+func _process(delta):
+
+	var left = velocity.x < 0
+	var top = velocity.y < 0
+	var play_position: String
+	
+	if top and left:
+		play_position = "top-left"
+	elif top and not left:
+		play_position = "top-right"
+	elif not top and left:
+		play_position = "bottom-left"
+	else:
+		play_position = "bottom-right"
+	
+	if wagon_image:
+		wagon_image.play(play_position)
 	
 func _on_light_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("ControllableUnits"):
