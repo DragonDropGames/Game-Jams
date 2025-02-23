@@ -12,15 +12,6 @@ func _ready() -> void:
 	load_units()
 	load_enemies()
 	load_resources()
-	music.stop()
-	print(music.playing)
-	music.play()
-	print(music.playing)
-	print(music.volume_db)
-	print(music.stream.resource_path)
-
-	
-	
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

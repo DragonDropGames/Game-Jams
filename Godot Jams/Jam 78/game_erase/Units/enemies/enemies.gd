@@ -36,8 +36,10 @@ var boid := Boid.new()
 
 
 func _ready():
-	add_to_group("Enemies", true)
+	set_collision_mask_value(6, false)
+
 	
+	add_to_group("Enemies", true)
 	match enemy:
 		ENEMY_TYPE.BASIC:
 			speed = 35

@@ -38,6 +38,9 @@ var combat: CombatSystem
 var light_collision: CollisionShape2D
 
 func ready_complete():
+	set_collision_mask_value(6, true)
+
+	
 	var light_area := Area2D.new()
 	add_child(light_area)
 	
@@ -174,7 +177,6 @@ func die(reason: String):
 	remove_from_group('ControlableUnits')
 	light_timer.stop()
 	health_bar.queue_free()
-	collision_shape.disabled = true
 	
 	if attack_area:
 		attack_area.monitoring = false
