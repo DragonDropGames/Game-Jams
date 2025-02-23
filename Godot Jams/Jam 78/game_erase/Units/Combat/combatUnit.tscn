@@ -20,13 +20,14 @@ corner_radius_bottom_left = 1
 [sub_resource type="LabelSettings" id="LabelSettings_o23ut"]
 font_size = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpttx"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2om16"]
+bg_color = Color(0.558482, 0.607113, 0.0988174, 1)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_rfu0e"]
 radius = 71.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_s75a0"]
-radius = 15.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_j8e6j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ygohg"]
 atlas = ExtResource("2_jkbhk")
@@ -216,6 +217,9 @@ animations = [{
 "name": &"run",
 "speed": 5.0
 }]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s75a0"]
+radius = 15.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nphv3"]
 atlas = ExtResource("3_42j01")
@@ -474,27 +478,22 @@ show_percentage = false
 [node name="CombatSystem" parent="." instance=ExtResource("5_0kr32")]
 
 [node name="BowArea" type="Area2D" parent="."]
-visible = false
 
 [node name="BowCollisionShape2D" type="CollisionShape2D" parent="BowArea"]
 shape = SubResource("CircleShape2D_rfu0e")
 
-[node name="SwordArea" type="Area2D" parent="."]
-visible = false
-
-[node name="SwordCollisionShape2D" type="CollisionShape2D" parent="SwordArea"]
-shape = SubResource("CircleShape2D_s75a0")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_j8e6j")
-
-[node name="SwordUnit" type="AnimatedSprite2D" parent="CollisionShape2D"]
+[node name="SwordUnit" type="AnimatedSprite2D" parent="BowArea/BowCollisionShape2D"]
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_tlinn")
 animation = &"die"
 autoplay = "idle"
 
-[node name="BowUnit" type="AnimatedSprite2D" parent="CollisionShape2D"]
+[node name="SwordArea" type="Area2D" parent="."]
+
+[node name="SwordCollisionShape2D" type="CollisionShape2D" parent="SwordArea"]
+shape = SubResource("CircleShape2D_s75a0")
+
+[node name="BowUnit" type="AnimatedSprite2D" parent="SwordArea/SwordCollisionShape2D"]
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_dvt8u")
 animation = &"idle"
