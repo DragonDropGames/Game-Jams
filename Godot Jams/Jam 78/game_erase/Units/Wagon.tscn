@@ -92,16 +92,16 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1jnf0")
 
-[node name="WagonCollision" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_agtqq")
 
-[node name="ResourceWagon" type="AnimatedSprite2D" parent="WagonCollision"]
+[node name="ResourceWagon" type="AnimatedSprite2D" parent="Collision"]
 visible = false
 scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_wuib1")
 animation = &"top-right"
 
-[node name="MainWagon" type="AnimatedSprite2D" parent="WagonCollision"]
+[node name="MainWagon" type="AnimatedSprite2D" parent="Collision"]
 visible = false
 position = Vector2(-2.84217e-14, 0)
 scale = Vector2(0.45, 0.45)

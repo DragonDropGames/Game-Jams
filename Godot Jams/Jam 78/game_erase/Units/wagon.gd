@@ -18,24 +18,30 @@ func _ready():
 	match wagon:
 		Enums.WAGON_TYPE.MAIN:
 			light_scale = 60
-			wagon_image = $WagonCollision/MainWagon
+			wagon_image = $Collision/MainWagon
 			
 		Enums.WAGON_TYPE.SWORD:
 			light_scale = 40
-			wagon_image = $WagonCollision/MainWagon
+			wagon_image = $Collision/MainWagon
 			
 		Enums.WAGON_TYPE.BOW:
 			light_scale = 40
-			wagon_image = $WagonCollision/MainWagon
+			wagon_image = $Collision/MainWagon
 			
 		Enums.WAGON_TYPE.RESOURCE:
 			light_scale = 50
-			wagon_image = $WagonCollision/ResourceWagon
+			wagon_image = $Collision/ResourceWagon
 	
 	wagon_image.visible = true
 	ready_complete()
 
 func _process(delta):
+	
+	if !alive:
+		if is_selected:
+			set_selected(false)
+		if menuInstance != null:
+			menuInstance.queue_free()
 
 	var left = velocity.x < 0
 	var top = velocity.y < 0
@@ -68,7 +74,7 @@ func _on_interaction_panel_mouse_exited() -> void:
 	mouseEntered = false
 
 func _on_interaction_panel_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("LeftClick"):
+	if event.is_action_pressed("LeftClick") and alive:
 		if mouseEntered:
 			if menuInstance == null:
 				set_selected(true)

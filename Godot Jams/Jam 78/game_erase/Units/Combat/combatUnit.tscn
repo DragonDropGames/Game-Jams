@@ -450,17 +450,17 @@ bg_color = Color(0.558482, 0.607113, 0.0988174, 1)
 [node name="CombatUnit" type="CharacterBody2D"]
 script = ExtResource("1_6r518")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_x6w6m")
 
-[node name="BowUnit" type="AnimatedSprite2D" parent="CollisionShape2D"]
+[node name="BowUnit" type="AnimatedSprite2D" parent="Collision"]
 visible = false
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_dvt8u")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="SwordUnit" type="AnimatedSprite2D" parent="CollisionShape2D"]
+[node name="SwordUnit" type="AnimatedSprite2D" parent="Collision"]
 visible = false
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_tlinn")

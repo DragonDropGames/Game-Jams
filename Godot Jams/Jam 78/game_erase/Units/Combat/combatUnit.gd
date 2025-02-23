@@ -2,8 +2,8 @@ extends ControlableUnit
 
 @export var unit: Enums.UNIT_TYPE
 
-@onready var sword_image: AnimatedSprite2D = $CollisionShape2D/SwordUnit
-@onready var bow_image: AnimatedSprite2D = $CollisionShape2D/BowUnit
+@onready var sword_image: AnimatedSprite2D = $Collision/SwordUnit
+@onready var bow_image: AnimatedSprite2D = $Collision/BowUnit
 
 func _ready():
 	light_scale = 5
