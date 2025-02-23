@@ -12,9 +12,43 @@ func updateResource(type: Enums.RESOURCES_TYPE, value: int):
 			wood_label += value
 			pass
 
-func consumeWood():
-	if wood_label > 0:
-		wood_label -= 1
+func add_iron(value: int):
+	iron_label += value
+	
+func add_wood(value: int):
+	wood_label += value
+
+func can_consume_wood(value: int) -> bool:
+	return wood_label < (wood_label - value)
+
+func can_consume_iron(value: int) -> bool:
+	return iron_label < (iron_label - value)
+
+func consume_iron(value: int):
+	if can_consume_iron(value):
+		iron_label += value
 		return true
 	else:
 		return false
+
+func consume_wood(value: int):
+	if can_consume_wood(value):
+		wood_label += value
+		return true
+	else:
+		return false
+	
+func consume_resource(type: Enums.RESOURCES_TYPE, value: int):
+	match type:
+		Enums.RESOURCES_TYPE.IRON:
+			if can_consume_iron(value):
+				iron_label += value
+				return true
+			else:
+				return false
+		Enums.RESOURCES_TYPE.WOOD:
+			if can_consume_wood(value):
+				wood_label += value
+				return true
+			else:
+				return false

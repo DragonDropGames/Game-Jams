@@ -126,7 +126,7 @@ func _input(event):
 
 func _on_light_timer() -> void:
 	if light_depletion_rate > 0.0:
-		var recieved_wood = Game.consumeWood()
+		var recieved_wood = Game.consume_resource(Enums.RESOURCES_TYPE.WOOD, 1)
 		if not recieved_wood:
 			light_scale -= light_depletion_rate
 			scale_lights()

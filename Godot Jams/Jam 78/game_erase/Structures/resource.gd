@@ -3,10 +3,10 @@ extends StaticBody2D
 enum RESOURCE_TYPE { Iron, Wood }
 @export var resourceType: RESOURCE_TYPE
 
-var totalTime = 5
-var currTime
-var units = 0
-var type;
+var total_resources: int
+var current_resources: int
+var units: int = 0
+var type: String;
 
 @onready var bar = $TextureProgressBar
 @onready var timer = $Timer
@@ -16,9 +16,9 @@ var type;
 func _ready() -> void:
 	add_to_group('Resource')
 	setProperties()
-	currTime = totalTime
-	bar.max_value = totalTime
-	bar.value = totalTime
+	current_resources = total_resources
+	bar.max_value = total_resources
+	bar.value = total_resources
 
 func _process(delta: float) -> void:
 	if bar.value <= 0:
@@ -28,10 +28,10 @@ func setProperties() -> void:
 	match resourceType:
 		RESOURCE_TYPE.Iron:
 			type = 'iron'
-			totalTime = 5
+			total_resources = 60
 			pass
 		RESOURCE_TYPE.Wood:
-			totalTime = 60
+			total_resources = 60
 			type = 'wood'
 			pass	
 
