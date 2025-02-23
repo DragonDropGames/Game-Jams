@@ -27,12 +27,10 @@ func _process(delta: float) -> void:
 func setProperties() -> void:
 	match resourceType:
 		RESOURCE_TYPE.Iron:
-			type = 'iron'
 			total_resources = 60
 			pass
 		RESOURCE_TYPE.Wood:
 			total_resources = 60
-			type = 'wood'
 			pass	
 
 func resourceCollected():
@@ -53,8 +51,9 @@ func _on_interaction_area_body_exited(body: Node2D) -> void:
 func _on_timer_timeout() -> void:
 	var chopSpeed = 1 * units
 	bar.value -= chopSpeed
-
-	if type == 'iron':
-		Game.iron_label += 2 * units
-	if type == 'wood':
-		Game.wood_label += 8 * units
+	match resourceType:
+		Enums.RESOURCES_TYPE.IRON:
+			Game.iron_label += 2 * chopSpeed
+		Enums.RESOURCE_TYPE.WOOD:
+			Game.wood_label += 12 * chopSpeed
+		
