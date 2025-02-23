@@ -13,3 +13,7 @@ func _ready():
 	attack_damage = 10
 	attack_frequency = 1
 	ready_complete()
+
+func _process(delta: float) -> void:
+	if alive && health <= 0:
+		get_tree().change_scene_to_file("res://womp_womp.tscn")
