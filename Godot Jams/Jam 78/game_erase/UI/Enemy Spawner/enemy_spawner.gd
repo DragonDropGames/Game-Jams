@@ -3,10 +3,10 @@ extends CharacterBody2D
 @onready var spawn_timer = $Timer
 var rng = RandomNumberGenerator.new()
 
-@export var spawn_radius: float = 50.0
+@export var spawn_radius: float = 30
 @export var min_units: int = 2
 @export var max_units: int = 6
-@export var map_size: Vector2 = Vector2(1000, 1000)
+@export var map_size: Vector2 = Vector2(256,256) * 16
 
 var spawn_budget: int
 

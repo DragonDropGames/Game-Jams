@@ -17,7 +17,7 @@ func process_boid(delta: float, node: Node2D, speed: float, group_name: String) 
 	var center_of_mass = Vector2.ZERO
 
 	for boid in boids:
-		if boid == self or not boid.alive:
+		if boid == node or not boid.alive:
 			continue
 
 		var distance = node.position.distance_to(boid.position)
@@ -43,7 +43,7 @@ func process_boid(delta: float, node: Node2D, speed: float, group_name: String) 
 	var steer = separation_force * 1.8 + alignment_force * 0.8 + cohesion_force * 1.2
 	steer = steer.limit_length(max_force)
 
-	node.velocity += steer * delta
+	node.velocity += steer * 4
 	node.velocity = node.velocity.lerp(Vector2.ZERO, friction * delta)  # Gradually slow down
 	node.velocity = node.velocity.normalized() * speed if node.velocity.length() > 1 else Vector2.ZERO
 
