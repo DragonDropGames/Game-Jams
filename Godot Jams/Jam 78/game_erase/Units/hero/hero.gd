@@ -4,7 +4,7 @@ extends ControlableUnit
 
 func _ready():
 	light_scale = 20
-	light_depletion_rate = 0
+	light_depletion_rate = 0.5
 	speed = 60
 	health = 1200
 	alive = true

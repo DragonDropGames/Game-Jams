@@ -8,8 +8,6 @@ extends ControlableUnit
 func _ready():
 	light_scale = 5
 	health = 100
-	darkness_scaler = .5
-	light_depletion_rate = 1
 	add_to_group("Units")
 	
 	match unit: 

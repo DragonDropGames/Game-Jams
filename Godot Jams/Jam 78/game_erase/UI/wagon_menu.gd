@@ -41,7 +41,7 @@ func _on_sword_gui_input(event: InputEvent) -> void:
 	
 func _on_bow_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("LeftClick"):
-		if Game.can_consume_iron(2010) and Game.can_consume_wood(10):
+		if Game.can_consume_iron(10) and Game.can_consume_wood(10):
 			Game.consume_iron(10)
 			Game.consume_wood(10)
 			SpawnUnits.spawn(Enums.UNIT_TYPE.BOW, waggon_position)
@@ -52,4 +52,9 @@ func _on_main_gui_input(event: InputEvent) -> void:
 	pass # Replace with function body.
 
 func _on_resource_gui_input(event: InputEvent) -> void:
-	pass # Replace with function body.
+	if event.is_action_pressed("LeftClick"):
+		if Game.can_consume_iron(25):
+			Game.consume_iron(25)
+			SpawnUnits.spawn(Enums.UNIT_TYPE.BOW, waggon_position)
+		else:
+			print("not enough resources")

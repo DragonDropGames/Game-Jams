@@ -13,10 +13,8 @@ var gathering_at :Vector2i
 func _ready():
 	speed = 50
 	health = 100
-	darkness_scaler = 0.5
 	sprite = workerSprite
 	light_scale = 5.0
-	light_depletion_rate = 1.0
 	add_to_group("Villagers")
 	
 	# Go to nearest tree area

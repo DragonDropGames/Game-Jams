@@ -18,22 +18,18 @@ func _ready():
 	match wagon:
 		Enums.WAGON_TYPE.MAIN:
 			light_scale = 60
-			light_depletion_rate = 0.1
 			wagon_image = $WagonCollision/MainWagon
 			
 		Enums.WAGON_TYPE.SWORD:
 			light_scale = 40
-			light_depletion_rate = 0.2
 			wagon_image = $WagonCollision/MainWagon
 			
 		Enums.WAGON_TYPE.BOW:
 			light_scale = 40
-			light_depletion_rate = 0.3
 			wagon_image = $WagonCollision/MainWagon
 			
 		Enums.WAGON_TYPE.RESOURCE:
 			light_scale = 50
-			light_depletion_rate = 0.4
 			wagon_image = $WagonCollision/ResourceWagon
 	
 	wagon_image.visible = true
