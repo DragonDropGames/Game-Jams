@@ -6,11 +6,19 @@ var controllable_units: Array[Node] = []
 var enemies: Array[Node] = []
 var resources: Array[Node] = []
 @onready var end_game_timer: Timer = $"End Game Timer"
+@onready var end_game_bar: ProgressBar = $"End Game/ProgressBar"
 
 func _ready() -> void:
+	end_game_bar.max_value = end_game_timer.wait_time
+	end_game_bar.value = end_game_timer.wait_time
+	
 	load_units()
 	load_enemies()
 	load_resources()
+
+func _process(delta):
+	end_game_bar.value = end_game_timer.time_left
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -68,13 +76,17 @@ func load_resources():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is ControlableUnit:
 		if body.is_hero:
-			end_game_timer.start()
+			end_game_bar.visible = true
+			if end_game_timer.paused:
+				end_game_timer.paused = false
+			else:
+				end_game_timer.start()
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is ControlableUnit:
 		if body.is_hero:
-			end_game_timer.stop()
+			end_game_timer.paused = true
 
 
 func _on_end_game_timer_timeout() -> void:
