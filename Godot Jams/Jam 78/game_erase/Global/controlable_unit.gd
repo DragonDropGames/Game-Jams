@@ -38,6 +38,9 @@ var combat: CombatSystem
 var light_collision: CollisionShape2D
 
 func ready_complete():
+	set_collision_mask_value(6, true)
+
+	
 	var light_area := Area2D.new()
 	add_child(light_area)
 	
