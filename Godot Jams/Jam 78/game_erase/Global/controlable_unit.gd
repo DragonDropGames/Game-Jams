@@ -21,6 +21,7 @@ class_name ControlableUnit
 
 @onready var fog = get_node("/root/World/WorldGeneration/Fog_Layer")
 @onready var label = get_node("Label")
+@onready var collisionBox: CollisionShape2D = get_node("Collision")
 @onready var target = position
 @onready var tourch_scn: Resource = preload("res://Global/Tourch Light/PointLight.tscn")
 
@@ -165,6 +166,10 @@ func set_selected(value: bool):
 		is_selected = value
 		if selected_panel:
 			selected_panel.visible = value
+	else:
+		is_selected = false
+		if selected_panel:
+			selected_panel.visible = false
 
 func _on_health_check_timer_timeout() -> void:
 	if health_bar != null:
@@ -198,6 +203,9 @@ func die(reason: String):
 	health_bar.visible = false
 	selected = false
 	selected_panel.visible = false
+	health_bar.queue_free()
+	set_selected(false)
+	collisionBox.disabled = true
 	
 	for child in get_children():
 		if child is CollisionShape2D:
