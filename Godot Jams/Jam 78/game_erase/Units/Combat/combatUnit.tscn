@@ -1,9 +1,11 @@
-[gd_scene load_steps=64 format=3 uid="uid://byf4nkgylxsx8"]
+[gd_scene load_steps=65 format=3 uid="uid://byf4nkgylxsx8"]
 
 [ext_resource type="Script" path="res://Units/Combat/combatUnit.gd" id="1_6r518"]
 [ext_resource type="Texture2D" uid="uid://bjcyv4jvjxl7a" path="res://Assets/Units/MiniSwordMan.png" id="2_jkbhk"]
 [ext_resource type="Texture2D" uid="uid://df88pb8tkgcdq" path="res://Assets/Units/MiniArcherMan.png" id="3_42j01"]
 [ext_resource type="PackedScene" uid="uid://bowehgbjjbx3y" path="res://Units/systems/combat_system.tscn" id="5_0kr32"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xi1ic"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x6w6m"]
 
@@ -447,6 +449,21 @@ bg_color = Color(0.558482, 0.607113, 0.0988174, 1)
 [node name="CombatUnit" type="CharacterBody2D"]
 script = ExtResource("1_6r518")
 
+[node name="InteractionPanel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.0
+offset_top = -17.0
+offset_right = 17.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xi1ic")
+
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_x6w6m")
 
@@ -493,3 +510,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_eymtk")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pkgab")
 value = 100.0
 show_percentage = false
+
+[connection signal="gui_input" from="InteractionPanel" to="." method="_on_interaction_panel_gui_input"]
+[connection signal="mouse_entered" from="InteractionPanel" to="." method="_on_interaction_panel_mouse_entered"]
+[connection signal="mouse_exited" from="InteractionPanel" to="." method="_on_interaction_panel_mouse_exited"]

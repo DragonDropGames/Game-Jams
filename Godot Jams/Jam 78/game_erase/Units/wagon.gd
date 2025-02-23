@@ -1,6 +1,5 @@
 extends ControlableUnit
 
-enum WAGON_TYPE { MAIN, SWORD, BOW, RESOURCE }
 const BASE_LIGHT_DEPLITION_RATE: int = 0.1
 
 var menu = preload("res://UI/wagon_menu.tscn")
@@ -9,7 +8,7 @@ var mouseEntered = false
 
 # Wagon Customization Properties
 var wagon_image: AnimatedSprite2D
-@export var wagon: WAGON_TYPE
+@export var wagon: Enums.WAGON_TYPE
 
 func _ready():
 	speed = 30

@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://enyfcua7ri16" path="res://Assets/Wagon/main/main wagons.png" id="6_sv1ig"]
 [ext_resource type="Texture2D" uid="uid://lpx2fpdojlss" path="res://Assets/Wagon/main/main wagons 4.png" id="7_1jinu"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1jnf0"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2kfxd"]
 bg_color = Color(0, 0.658824, 0.854902, 0.227451)
 border_width_left = 2
@@ -18,8 +20,6 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1jnf0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agtqq"]
 size = Vector2(38.5, 30)
@@ -77,15 +77,6 @@ bg_color = Color(0.558482, 0.607113, 0.0988174, 1)
 input_pickable = true
 script = ExtResource("1_24qf5")
 
-[node name="SelectedPanel" type="Panel" parent="."]
-visible = false
-offset_left = -21.0
-offset_top = -20.0
-offset_right = 21.0
-offset_bottom = 20.0
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_2kfxd")
-
 [node name="InteractionPanel" type="Panel" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -100,6 +91,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1jnf0")
+
+[node name="SelectedPanel" type="Panel" parent="."]
+visible = false
+offset_left = -21.0
+offset_top = -20.0
+offset_right = 21.0
+offset_bottom = 20.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_2kfxd")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_agtqq")

@@ -9,6 +9,7 @@ extends ControlableUnit
 const tree_coords = Vector2i(4, 6)
 var time_since_last_collect: float = 0.0
 var gathering_at :Vector2i
+var mouseEntered = false
 
 func _ready():
 	speed = 50
@@ -80,3 +81,17 @@ func get_closest_tree_tile(search_radius: int) -> Vector2:
 						closest_tile = tile_pos
 
 	return closest_tile
+
+func _on_interaction_panel_mouse_entered() -> void:
+	mouseEntered = true
+
+func _on_interaction_panel_mouse_exited() -> void:
+	mouseEntered = false
+
+func _on_interaction_panel_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("LeftClick") and alive:
+		if mouseEntered:
+			if not is_selected:
+				set_selected(true)
+			else:
+				set_selected(false)
