@@ -26,10 +26,16 @@ func _ready():
 	
 func _process(delta: float) -> void:
 	time_since_last_collect += delta
-	var tree_tiles = get_closest_tree_tile(1)
+	var tree_tiles = get_closest_tree_tile(2)
 	
-	if tree_tiles > Vector2.ZERO:
-		target = tree_tiles
+	var distance = position.distance_to(target)
+	
+	if tree_tiles == Vector2.ZERO:
+		gathering_resources = false
+		return
+	
+	if distance < 40:
+		target = position
 		gathering_resources = true
 		
 		if time_since_last_collect >= collection_interval:

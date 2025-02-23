@@ -91,8 +91,9 @@ func _physics_process(delta: float) -> void:
 		target = get_global_mouse_position()
 	
 	velocity = position.direction_to(target) * speed
+	var dist = position.distance_to(target)
 	
-	if position.distance_to(target) > 20:
+	if dist > 40:
 		fog.clear_fog(light_collision)
 		update_sprit('run')
 		move_and_slide()
