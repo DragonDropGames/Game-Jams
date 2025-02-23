@@ -56,7 +56,7 @@ offset_right = 110.0
 grow_vertical = 0
 text = "Toggle Fog"
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="HeroHealthBar" type="TextureProgressBar" parent="."]
 offset_left = 48.0
 offset_top = 11.0
 offset_right = 88.0
