@@ -76,19 +76,7 @@ parameters/looping = true
 position = Vector2(1870, 3802)
 
 [node name="Wagon Main" parent="Characters" instance=ExtResource("6_d7cx2")]
-position = Vector2(1711.4, 3906.19)
-
-[node name="Wagon Sword" parent="Characters" instance=ExtResource("6_d7cx2")]
-position = Vector2(2127, 3828)
-wagon = 1
-
-[node name="Wagon Resource" parent="Characters" instance=ExtResource("6_d7cx2")]
-position = Vector2(2263, 3804)
-wagon = 3
-
-[node name="Wagon Bow" parent="Characters" instance=ExtResource("6_d7cx2")]
-position = Vector2(1832, 3743)
-wagon = 2
+position = Vector2(1832.32, 3903.21)
 
 [node name="Sword 1" parent="Characters" instance=ExtResource("7_mpoq3")]
 position = Vector2(1683, 3807)
@@ -115,10 +103,10 @@ unit = 1
 position = Vector2(1576, 3770)
 
 [node name="ResourceUnit2" parent="Characters" instance=ExtResource("8_fdbak")]
-position = Vector2(2319, 3778)
+position = Vector2(2044.24, 3861.14)
 
 [node name="ResourceUnit3" parent="Characters" instance=ExtResource("8_fdbak")]
-position = Vector2(2295, 3757)
+position = Vector2(2033.92, 3820.26)
 
 [node name="ResourceUnit4" parent="Characters" instance=ExtResource("8_fdbak")]
 position = Vector2(1608, 3735)
@@ -347,7 +335,7 @@ position = Vector2(2824.82, -3156.32)
 [node name="Iron Nodes" type="Node2D" parent="."]
 
 [node name="Resource" parent="Iron Nodes" instance=ExtResource("11_v2822")]
-position = Vector2(2328, 3733)
+position = Vector2(2114.48, 3820.26)
 
 [node name="Resource22" parent="Iron Nodes" instance=ExtResource("11_v2822")]
 position = Vector2(3706.71, 575.112)

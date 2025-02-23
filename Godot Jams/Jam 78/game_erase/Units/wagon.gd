@@ -13,7 +13,7 @@ var wagon_image: AnimatedSprite2D
 func _ready():
 	speed = 20
 	add_to_group("Wagons")
-	health = 600
+	health = 3000
 	match wagon:
 		Enums.WAGON_TYPE.MAIN:
 			light_scale = 60
