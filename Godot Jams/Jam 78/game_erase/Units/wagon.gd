@@ -36,6 +36,12 @@ func _ready():
 	ready_complete()
 
 func _process(delta):
+	
+	if !alive:
+		if is_selected:
+			set_selected(false)
+		if menuInstance != null:
+			menuInstance.queue_free()
 
 	var left = velocity.x < 0
 	var top = velocity.y < 0
@@ -68,7 +74,7 @@ func _on_interaction_panel_mouse_exited() -> void:
 	mouseEntered = false
 
 func _on_interaction_panel_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("LeftClick"):
+	if event.is_action_pressed("LeftClick") and alive:
 		if mouseEntered:
 			if menuInstance == null:
 				set_selected(true)

@@ -164,6 +164,10 @@ func set_selected(value: bool):
 		is_selected = value
 		if selected_panel:
 			selected_panel.visible = value
+	else:
+		is_selected = false
+		if selected_panel:
+			selected_panel.visible = false
 
 func _on_health_check_timer_timeout() -> void:
 	if health_bar != null:
@@ -195,6 +199,7 @@ func die(reason: String):
 	remove_from_group('ControlableUnits')
 	light_timer.stop()
 	health_bar.queue_free()
+	set_selected(false)
 	
 	if attack_area:
 		attack_area.monitoring = false
