@@ -16,15 +16,18 @@ const attack_group = "ControllableUnits"
 const group_name = "Enemies"
 
 @export var enemy: ENEMY_TYPE
-@export var health = 100
+@export var health: float = 100
 @export var separation_distance: float = 30.0
 @export var neighbor_radius: float = 75.0
 @export var max_force: float = 2.0
 @export var friction: float = 0.9  # Reduces movement over time to settle
 
-@onready var basicEnemyImage = $EnemyCollision/BasicEnemy
-@onready var mediumEnemyImage = $EnemyCollision/MediumEnemy
-@onready var bigBoyImage = $EnemyCollision/BigBoy
+@onready var basicEnemyImage: AnimatedSprite2D = $EnemyCollision/BasicEnemy
+@onready var mediumEnemyImage: AnimatedSprite2D = $EnemyCollision/MediumEnemy
+@onready var bigBoyImage: AnimatedSprite2D = $EnemyCollision/BigBoy
+
+@onready var aggro_range: Area2D = $AggroRange
+@onready var attack_range: Area2D = $AttackRange
 
 var boid := Boid.new()
 
@@ -57,10 +60,10 @@ func _ready():
 		ENEMY_TYPE.BOSS:
 			speed = 10
 	
-	$AgroRange.connect("body_entered", Callable(self, "_on_agro_enter"))
-	$AgroRange.connect("body_exited", Callable(self, "_on_agro_exit"))
-	$AttackRange.connect("body_entered", Callable(self, "_on_attack_range_enter"))
-	$AttackRange.connect("body_exited", Callable(self, "_on_attack_range_exit"))
+	aggro_range.body_entered.connect(_on_agro_enter)
+	aggro_range.body_exited.connect(_on_agro_exit)
+	attack_range.body_entered.connect(_on_attack_range_enter)
+	attack_range.body_exited.connect(_on_attack_range_exit)
 	
 	combat = CombatSystem.new()
 	combat.attack_damage = attack_damage
@@ -72,11 +75,13 @@ func _physics_process(delta: float):
 	if not alive:
 		return
 	
-	if combat.attacking and combat.enemy:
+	var enemy = combat.enemy
+	
+	if combat.attacking and enemy:
 		image.play('attack')
 		combat.attack()
 		
-		var direction = (combat.enemy.global_position - global_position).normalized()
+		var direction = (enemy.global_position - global_position).normalized()
 		velocity = direction * speed
 		
 	elif aggroed and player:
@@ -123,6 +128,12 @@ func die():
 	set_physics_process(false)
 	set_process(false)
 	remove_from_group('ControlableUnits')
+	aggro_range.monitoring = false
+	attack_range.monitoring = false
+	aggro_range.body_entered.disconnect(_on_agro_enter)
+	aggro_range.body_exited.disconnect(_on_agro_exit)
+	attack_range.body_entered.disconnect(_on_attack_range_enter)
+	attack_range.body_exited.disconnect(_on_attack_range_exit)
 	
 func take_damage(damage: float, body: Node2D) -> bool:
 	health -= damage

@@ -477,7 +477,6 @@ animation = &"die"
 autoplay = "idle"
 
 [node name="BowUnit" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_dvt8u")
 animation = &"idle"

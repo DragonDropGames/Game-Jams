@@ -840,9 +840,9 @@ autoplay = "idle"
 wait_time = 2.0
 autostart = true
 
-[node name="AgroRange" type="Area2D" parent="."]
+[node name="AggroRange" type="Area2D" parent="."]
 
-[node name="CollisionAgroRange" type="CollisionShape2D" parent="AgroRange"]
+[node name="CollisionAgroRange" type="CollisionShape2D" parent="AggroRange"]
 shape = SubResource("CircleShape2D_8ifuv")
 
 [node name="AttackRange" type="Area2D" parent="."]
