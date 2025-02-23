@@ -12,7 +12,7 @@ func _ready():
 	alive = true
 	sprite = heroSprite
 	attack_area = $AttackArea
-	attack_damage = 10
+	attack_damage = 30
 	attack_frequency = 1
 	
 	main_health_bar.max_value = health
