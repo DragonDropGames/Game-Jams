@@ -182,12 +182,11 @@ autoplay = true
 parameters/looping = true
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="."]
-visible = false
 layout_mode = 2
 offset_left = 36.0
-offset_top = 357.0
+offset_top = 339.0
 offset_right = 459.0
-offset_bottom = 472.0
+offset_bottom = 615.0
 bbcode_enabled = true
 text = "[color=gold]- Click on wagons to open their unit buying menu
 - Click and drag to select multiple units
@@ -199,7 +198,8 @@ text = "[color=gold]- Click on wagons to open their unit buying menu
 - Wagons cannot be created, so protect them
 - Resource units are used to collect wood and iron
 - All units need wood to keep their lights on
-- Darkness means death"
+- Darkness means death
+- Wagons and Hero produce massive light"
 fit_content = true
 scroll_active = false
 
