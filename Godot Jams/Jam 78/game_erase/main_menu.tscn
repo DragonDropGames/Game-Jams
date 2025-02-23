@@ -96,7 +96,7 @@ text = "Start Game"
 
 [node name="Controls" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Controls"
+text = "How to Play"
 flat = true
 
 [node name="Goal" type="Button" parent="VBoxContainer"]
@@ -165,8 +165,8 @@ scale = Vector2(4.22161, 1.23333)
 texture = ExtResource("6_v8det")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(48, 593)
-scale = Vector2(2, 2)
+position = Vector2(580, 588)
+scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_fm60b")
 autoplay = "default"
 frame_progress = 0.166667
@@ -189,12 +189,17 @@ offset_top = 357.0
 offset_right = 459.0
 offset_bottom = 472.0
 bbcode_enabled = true
-text = "[color=yellow]- Click on wagons to open their unit buying menu
+text = "[color=gold]- Click on wagons to open their unit buying menu
 - Click and drag to select multiple units
 - Right Click to issue move commands to selected units
 - Middle Mouse Click and drag to pan camera 
 - Arrow keys also pan camera
-- Scroll wheel controls zoom level"
+- Scroll wheel controls zoom level
+- Click on wagons to create new units
+- Wagons cannot be created, so protect them
+- Resource units are used to collect wood and iron
+- All units need wood to keep their lights on
+- Darkness means death"
 fit_content = true
 scroll_active = false
 
