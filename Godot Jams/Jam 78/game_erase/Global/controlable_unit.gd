@@ -139,7 +139,7 @@ func scale_lights() -> void:
 	if !light_collision:
 		return
 		
-	light_collision.scale = Vector2(light_scale, light_scale)/2
+	light_collision.scale = Vector2(light_scale, light_scale)
 	point_light.scale = Vector2(light_scale, light_scale)
 
 func update_sprit(name: String) -> void:
