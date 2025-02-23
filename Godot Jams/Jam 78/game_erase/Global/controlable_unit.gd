@@ -18,13 +18,14 @@ class_name ControlableUnit
 @onready var health_bar: TextureProgressBar = get_node("BasicHealthBar")
 @onready var hp_label: Label = $Label
 @onready var point_light: PointLight2D
-
+@onready var light_collision: CollisionShape2D
 @onready var fog = get_node("/root/World/WorldGeneration/Fog_Layer")
 @onready var label = get_node("Label")
 @onready var target = position
 @onready var tourch_scn: Resource = preload("res://Global/Tourch Light/PointLight.tscn")
 
 const group_name = "ControllableUnits"
+var in_light := true
 var alive := true
 var follow_cursor := false
 var is_selected := false
@@ -33,18 +34,13 @@ var selected := false
 
 var boid := Boid.new()
 var combat: CombatSystem
-var light_collision: CollisionShape2D
 
 func ready_complete():
-	var light_area := Area2D.new()
-	add_child(light_area)
-	
 	light_collision = CollisionShape2D.new()
-	var shape = CircleShape2D.new()
-	shape.radius = light_scale
-	light_collision.shape = shape
-	light_collision.scale = Vector2(light_scale, light_scale)
+	
+	var light_area = Area2D.new()
 	light_area.add_child(light_collision)
+	add_child(light_area)
 	
 	point_light = tourch_scn.instantiate()
 	
@@ -62,8 +58,8 @@ func ready_complete():
 	fog.clear_fog(light_collision)
 	
 	if attack_area and attack_damage and attack_frequency:
-		attack_area.body_entered.connect(_on_attack_range_enter)
-		attack_area.body_exited.connect(_on_attack_range_exit)
+		attack_area.connect("body_entered", Callable(self, "_on_attack_range_enter"))
+		attack_area.connect("body_exited", Callable(self, "_on_attack_range_exit"))
 		combat = CombatSystem.new()
 		combat.attack_damage = attack_damage
 		combat.attack_frequency = attack_frequency
@@ -89,16 +85,20 @@ func _physics_process(delta: float) -> void:
 		update_sprit('idle')
 
 func _process(delta: float) -> void:
-	var safe: bool = fog.is_safe(position)
-	
-	if label:
-		label.visible = safe
-	
-	if not safe:
-		die("not in light")
+	if !in_light:
+		die()
+
+		if label:
+			label.visible = false
+
+	elif label:
+		label.visible = true
 
 	health_bar.visible = health_bar.value != health_bar.max_value
 
+	if health_bar.value <= 0:
+		die()
+	
 	boid.process_boid(delta, self, speed, group_name)
 
 func _on_attack_range_enter(body):
@@ -114,18 +114,21 @@ func _input(event):
 		follow_cursor = false
 
 func _on_light_timer() -> void:
-	if light_depletion_rate > 0:
+	if light_scale <= 0.0:
+		die()
+	elif light_depletion_rate > 0:
 		Game.consumeWood()
 		light_scale -= light_depletion_rate
 		scale_lights()
 
-func _on_light_area_entered(body: Node2D) -> void:
-	if body.is_in_group(group_name):
-		body.in_lights.append(self)
+func _on_light_area_body_entered(body: Node2D) -> void:
+	print("[_on_light_area_body_entered]")
+	if body.is_in_group("Units"):
+		body.in_light = true
 
-func _on_light_area_exited(body: Node2D) -> void:
-	if body.is_in_group(group_name):
-		body.in_lights.erase(body)
+func _on_light_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Units"):
+		body.in_light = false
 
 func set_selected(value: bool):
 	is_selected = value
@@ -133,30 +136,26 @@ func set_selected(value: bool):
 
 func _on_health_check_timer_timeout() -> void:
 	if health <= 0 and alive:
-		die("health check")
+		die()
 
 func scale_lights() -> void:
 	if !light_collision:
 		return
 		
-	light_collision.scale = Vector2(light_scale, light_scale)/2
+	light_collision.scale = Vector2(light_scale, light_scale)
 	point_light.scale = Vector2(light_scale, light_scale)
 
 func update_sprit(name: String) -> void:
 	if sprite:
 		sprite.play(name)
 
-func die(reason: String):
-	print("Unit Died from ", reason, " ", self)
+func die():
 	alive = false
 	update_sprit("die")
 	set_physics_process(false)
 	set_process(false)
 	remove_from_group('ControlableUnits')
 	light_timer.stop()
-	
-	if attack_area:
-		attack_area.monitoring = false
 
 func take_damage(damage: float, body: Node2D) -> bool:
 	if not alive:

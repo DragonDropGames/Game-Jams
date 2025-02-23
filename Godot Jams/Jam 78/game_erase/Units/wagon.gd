@@ -18,26 +18,24 @@ var mouseEntered = false
 
 func _ready():
 	speed = 40
-	add_to_group("Wagons")
-	
 	match wagon:
 		Enums.WAGON_TYPE.MAIN:
-			light_scale = 60
+			light_scale = 80
 			light_depletion_rate = 0.1
 			mainWagonImage.visible = true
 			
 		Enums.WAGON_TYPE.SWORD:
-			light_scale = 40
+			light_scale = 50
 			light_depletion_rate = 0.2
 			swordWagonImage.visible = true
 			
 		Enums.WAGON_TYPE.BOW:
-			light_scale = 40
+			light_scale = 50
 			light_depletion_rate = 0.3
 			bowWagonImage.visible = true
 			
 		Enums.WAGON_TYPE.RESOURCE:
-			light_scale = 50
+			light_scale = 60
 			light_depletion_rate = 0.4
 			resourceWagonImage.visible = true
 	
