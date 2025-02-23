@@ -48,6 +48,8 @@ offset_right = 146.0
 offset_bottom = 109.0
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+
+[node name="HeroHealthBar" type="TextureProgressBar" parent="."]
 offset_left = 48.0
 offset_top = 11.0
 offset_right = 88.0

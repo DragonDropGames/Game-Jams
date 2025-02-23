@@ -1,7 +1,7 @@
 extends ControlableUnit
 
 @onready var heroSprite: AnimatedSprite2D = $CollisionShape2D/Hero
-
+@onready var main_health_bar: TextureProgressBar = get_tree().get_root().get_node("World/UI/HeroHealthBar")
 
 func _ready():
 	is_hero = true
@@ -14,8 +14,13 @@ func _ready():
 	attack_area = $AttackArea
 	attack_damage = 30
 	attack_frequency = 1
+	
+	main_health_bar.max_value = health
 	ready_complete()
 
 func _process(delta: float) -> void:
-	if alive && health <= 0:
+	if not alive:
 		get_tree().change_scene_to_file("res://womp_womp.tscn")
+	else:
+		main_health_bar.value = health
+		

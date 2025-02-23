@@ -33,26 +33,11 @@ position = Vector2(0, 1)
 
 [node name="Wagon" parent="Wagons" instance=ExtResource("2_2776d")]
 position = Vector2(683, 363)
-wagon = null
-speed = null
-health = null
-gathering_resources = null
-light_scale = null
-light_depletion_rate = null
-attack_damage = null
-attack_frequency = null
 
 [node name="Wagon2" parent="Wagons" instance=ExtResource("2_2776d")]
 y_sort_enabled = true
 position = Vector2(66, 508)
 wagon = 1
-speed = null
-health = null
-gathering_resources = null
-light_scale = null
-light_depletion_rate = null
-attack_damage = null
-attack_frequency = null
 
 [node name="Resources" type="Node2D" parent="."]
 position = Vector2(0, 1)

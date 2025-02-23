@@ -36,12 +36,13 @@ func _ready():
 	ready_complete()
 
 func _process(delta):
-	
 	if !alive:
+		wagon_image.play("die")
 		if is_selected:
 			set_selected(false)
 		if menuInstance != null:
 			menuInstance.queue_free()
+		return
 
 	var left = velocity.x < 0
 	var top = velocity.y < 0
