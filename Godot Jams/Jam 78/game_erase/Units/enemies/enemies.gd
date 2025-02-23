@@ -22,6 +22,7 @@ const group_name = "Enemies"
 @export var max_force: float = 2.0
 @export var friction: float = 0.9  # Reduces movement over time to settle
 
+@onready var healthBar = $HealthBar
 @onready var basicEnemyImage = $EnemyCollision/BasicEnemy
 @onready var mediumEnemyImage = $EnemyCollision/MediumEnemy
 @onready var bigBoyImage = $EnemyCollision/BigBoy
@@ -76,8 +77,9 @@ func _physics_process(delta: float):
 		image.play('attack')
 		combat.attack()
 		
-		var direction = (combat.enemy.global_position - global_position).normalized()
-		velocity = direction * speed
+		if combat.enemy != null:
+			var direction = (combat.enemy.global_position - global_position).normalized()
+			velocity = direction * speed
 		
 	elif aggroed and player:
 		var direction = (player.global_position - global_position).normalized()
@@ -88,11 +90,12 @@ func _physics_process(delta: float):
 			combat.attack()
 		else:
 			image.play('run')
+		
+		if position.distance_to(player.global_position) > 50:
+			move_and_slide()
 	else:
 		image.play('idle')
 		velocity = Vector2.ZERO
-
-	move_and_slide()
 
 func _on_agro_enter(body):
 	if body.is_in_group(attack_group):
@@ -114,8 +117,10 @@ func _process(delta: float) -> void:
 	boid.process_boid(delta, self, speed, group_name)
 
 func _on_health_check_timer_timeout() -> void:
+	healthBar.value = health
 	if health <= 0 and alive:
 		die()
+	
 
 func die():
 	alive = false

@@ -1,9 +1,8 @@
-[gd_scene load_steps=63 format=3 uid="uid://byf4nkgylxsx8"]
+[gd_scene load_steps=64 format=3 uid="uid://byf4nkgylxsx8"]
 
 [ext_resource type="Script" path="res://Units/Combat/combatUnit.gd" id="1_6r518"]
 [ext_resource type="Texture2D" uid="uid://bjcyv4jvjxl7a" path="res://Assets/Units/MiniSwordMan.png" id="2_jkbhk"]
 [ext_resource type="Texture2D" uid="uid://df88pb8tkgcdq" path="res://Assets/Units/MiniArcherMan.png" id="3_42j01"]
-[ext_resource type="PackedScene" uid="uid://dyewi7ipnw4vu" path="res://Global/Health Bars/BasicHealthBar.tscn" id="4_vx3ww"]
 [ext_resource type="PackedScene" uid="uid://bowehgbjjbx3y" path="res://Units/systems/combat_system.tscn" id="5_0kr32"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4s4rt"]
@@ -20,6 +19,12 @@ corner_radius_bottom_left = 1
 
 [sub_resource type="LabelSettings" id="LabelSettings_o23ut"]
 font_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpttx"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2om16"]
+bg_color = Color(0.558482, 0.607113, 0.0988174, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ygohg"]
 atlas = ExtResource("2_jkbhk")
@@ -446,7 +451,7 @@ script = ExtResource("1_6r518")
 [node name="SelectedPanel" type="Panel" parent="."]
 visible = false
 offset_left = -10.0
-offset_top = -10.0
+offset_top = -5.0
 offset_right = 10.0
 offset_bottom = 10.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_4s4rt")
@@ -460,13 +465,15 @@ offset_bottom = -14.0
 text = "SAFE"
 label_settings = SubResource("LabelSettings_o23ut")
 
-[node name="BasicHealthBar" parent="." instance=ExtResource("4_vx3ww")]
-z_index = 20
-offset_left = -8.0
-offset_top = -9.0
-offset_right = 8.0
-offset_bottom = -7.0
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -23.0
+offset_top = -21.0
+offset_right = 22.0
+offset_bottom = -16.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rpttx")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2om16")
 value = 100.0
+show_percentage = false
 
 [node name="CombatSystem" parent="." instance=ExtResource("5_0kr32")]
 

@@ -4,6 +4,14 @@
 [ext_resource type="Texture2D" uid="uid://d3d57g5awares" path="res://Assets/barRed_horizontalMid.png" id="2_y0aoj"]
 
 [node name="BasicHealthBar" type="TextureProgressBar"]
+offset_left = -139.0
+offset_top = -53.0
+offset_right = 138.0
+offset_bottom = -13.0
 nine_patch_stretch = true
+stretch_margin_left = 5
+stretch_margin_top = 5
+stretch_margin_right = 5
+stretch_margin_bottom = 5
 texture_under = ExtResource("1_6uj73")
 texture_progress = ExtResource("2_y0aoj")
