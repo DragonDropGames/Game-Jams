@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 		gathering_resources = true
 		
 		if time_since_last_collect >= collection_interval:
-			Game.updateResource(Enums.RESOURCES_TYPE.WOOD, 1)
+			Game.updateResource(Enums.RESOURCES_TYPE.WOOD, 10)
 			time_since_last_collect = 0.0
 	else:
 		gathering_resources = false
