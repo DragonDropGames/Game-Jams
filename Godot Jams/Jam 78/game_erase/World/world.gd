@@ -16,6 +16,7 @@ func _ready() -> void:
 	print(music.playing)
 	music.play()
 	print(music.playing)
+	print(music.volume_db)
 	print(music.stream.resource_path)
 
 	
