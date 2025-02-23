@@ -24,6 +24,7 @@ signal start_move_selection
 var dragging: bool = false
 
 func _ready():
+	self.zoom = Vector2(1,1)
 	connect("area_selected", Callable(get_parent(), "_on_area_selected"))
 
 func _process(delta:float) -> void:
