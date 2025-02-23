@@ -515,11 +515,10 @@ var unit_past_positions: Array[Vector2i] = []
 var unit_collision_shapes: Array[CollisionShape2D] = []
 var fog_timer = Timer.new()
 
-
 func _ready() -> void:
 	for x in range(map_size.x):
 		for y in range(map_size.y):
-			set_cell(Vector2i(x, y), tile_source_id, black_tile_atlas_coords)
+			_fill_cell(Vector2i(x, y))
 
 	fog_timer.wait_time = 10.0
 	fog_timer.one_shot = false
@@ -531,7 +530,7 @@ func clear_fog(light_collision: CollisionShape2D, force = false) -> void:
 	if !light_collision: 
 		return
 		
-	var pos: Vector2 = light_collision.global_position
+	var pos := light_collision.global_position
 	var center_tile := local_to_map(pos)
 	
 	if light_collision not in unit_collision_shapes:
@@ -542,20 +541,20 @@ func clear_fog(light_collision: CollisionShape2D, force = false) -> void:
 	
 	unit_past_positions.append(center_tile)
 
-	var resized = (light_collision.scale.x * 5)
+	var resized = light_collision.scale.x * 5
 	
 	for x in range(center_tile.x - resized, center_tile.x + resized + 1):
 		for y in range(center_tile.y - resized, center_tile.y + resized + 1):
 			var tile_pos := Vector2i(x, y)
 			var world_pos := map_to_local(tile_pos)
 			if pos.distance_to(world_pos) <= resized:
-				erase_cell(tile_pos)
+				_clear_cell(tile_pos)
 
 func close_fog() -> void:
 	var cells_to_close := get_empty_tiles_adjacent_to_non_empty()
 	
 	for cell in cells_to_close:
-		set_cell(cell, tile_source_id, black_tile_atlas_coords)
+		_fill_cell(cell)
 	
 	for unit in unit_collision_shapes:
 		clear_fog(unit, true)
@@ -594,8 +593,16 @@ func on_fog_toggle(checked: bool) -> void:
 	else:
 		visible = true
 
-func is_safe(position: Vector2i) -> bool:
-	return get_cell_source_id(position) == -1
+func _clear_cell(tile_pos: Vector2i) -> void:
+	erase_cell(tile_pos)
+
+func _fill_cell(tile_pos: Vector2i) -> void:
+	set_cell(tile_pos, tile_source_id, black_tile_atlas_coords)
+	pass
+
+func is_safe(global_position: Vector2i) -> bool:
+	var local_pos := local_to_map(global_position)
+	return get_cell_source_id(local_pos) == -1
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pewge"]
