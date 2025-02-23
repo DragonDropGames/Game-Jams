@@ -4,10 +4,9 @@ class_name ControlableUnit
 
 @export var speed: float = 10
 @export var health: float = 10
-@export var darkness_scaler: float = 0
 @export var gathering_resources: bool = false
 @export var light_scale: float
-@export var light_depletion_rate: int = 0
+@export var light_depletion_rate: float = 1
 @export var sprite: AnimatedSprite2D
 # COMBAT
 @export var attack_area: Area2D
@@ -31,6 +30,7 @@ var is_selected := false
 var light_timer := Timer.new()
 var health_check_timer := Timer.new()
 var selected := false
+var original_light_scale: float
 
 
 var boid := Boid.new()
@@ -39,7 +39,8 @@ var light_collision: CollisionShape2D
 
 func ready_complete():
 	set_collision_mask_value(6, true)
-
+	
+	original_light_scale = light_scale
 	
 	var light_area := Area2D.new()
 	add_child(light_area)
@@ -48,7 +49,7 @@ func ready_complete():
 	var shape = CircleShape2D.new()
 	shape.radius = light_scale
 	light_collision.shape = shape
-	light_collision.scale = Vector2(light_scale, light_scale)
+	light_collision.scale = Vector2.ONE * light_scale
 	light_area.add_child(light_collision)
 	
 	point_light = tourch_scn.instantiate()
@@ -128,11 +129,27 @@ func _input(event):
 		follow_cursor = false
 
 func _on_light_timer() -> void:
-	if light_depletion_rate > 0.0:
-		var recieved_wood = Game.consume_resource(Enums.RESOURCES_TYPE.WOOD, 1)
-		if not recieved_wood:
-			light_scale -= light_depletion_rate
-			scale_lights()
+	light_scale -= light_depletion_rate
+	
+	var diff = original_light_scale - light_scale
+	
+	if Game.can_consume_wood(diff):
+		Game.consume_wood(diff)
+		light_scale = original_light_scale
+		return
+	
+	var recieved_wood = false
+	
+	for w in range(diff):
+		recieved_wood = Game.consume_wood(1)
+		if recieved_wood == false:
+			break
+		else:
+			light_scale += 1
+	
+	if not recieved_wood:
+		light_scale -= light_depletion_rate
+		scale_lights()
 
 func _on_light_area_entered(body: Node2D) -> void:
 	if body.is_in_group(group_name):
@@ -145,7 +162,8 @@ func _on_light_area_exited(body: Node2D) -> void:
 func set_selected(value: bool):
 	if alive:
 		is_selected = value
-		selected_panel.visible = value
+		if selected_panel:
+			selected_panel.visible = value
 
 func _on_health_check_timer_timeout() -> void:
 	if health_bar != null:

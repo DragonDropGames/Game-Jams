@@ -174,7 +174,7 @@ offset_bottom = 51.0
 position = Vector2(22, 6)
 scale = Vector2(2.03125, 1.82812)
 sprite_frames = SubResource("SpriteFrames_x0qcy")
-animation = &"hit"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="Bow" type="Panel" parent="Panel/Buildable"]

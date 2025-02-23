@@ -23,8 +23,5 @@ func spawnEnemy(type: Enums.ENEMY_TYPE, position: Vector2) -> void:
 	unit.enemy = type
 	unit.position = position
 
-	print(unit)
-	print(unit.enemy)
-
 	enemies_path.add_child(unit)
 	world.load_enemies()
