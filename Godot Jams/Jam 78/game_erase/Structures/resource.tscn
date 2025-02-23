@@ -1,71 +1,44 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgp5eivo4vtgt"]
+[gd_scene load_steps=7 format=3 uid="uid://cgp5eivo4vtgt"]
 
 [ext_resource type="Script" path="res://Structures/resource.gd" id="1_8pkao"]
-[ext_resource type="Texture2D" uid="uid://snn5ox85y7tv" path="res://Assets/Resources/Iron.png" id="1_dls75"]
-[ext_resource type="Texture2D" uid="uid://cdamu3tgot6ie" path="res://Assets/Resources/Food.png" id="2_2hr4o"]
-[ext_resource type="Texture2D" uid="uid://cwe4l0ontje83" path="res://Assets/Resources/Wood.png" id="3_a10wp"]
+[ext_resource type="Texture2D" uid="uid://c05gqfsyxbdv8" path="res://Assets/Resources/iron rock.png" id="2_bjcn1"]
+[ext_resource type="Texture2D" uid="uid://mm66mxqop7cf" path="res://Assets/buttonLong_blue.png" id="3_13pvu"]
+[ext_resource type="Texture2D" uid="uid://d3d57g5awares" path="res://Assets/barRed_horizontalMid.png" id="4_ojtdj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ji682"]
-size = Vector2(95, 73)
+size = Vector2(42, 58)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_482wa"]
-radius = 85.0059
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5f3l"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikjdm"]
-bg_color = Color(0.793007, 0.706038, 0.258018, 1)
+radius = 41.1096
 
 [node name="Resource" type="StaticBody2D"]
 script = ExtResource("1_8pkao")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-0.5, 5.5)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ji682")
 
 [node name="Iron" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("1_dls75")
-
-[node name="Food" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_2hr4o")
-
-[node name="Wood" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("3_a10wp")
+self_modulate = Color(0.923602, 0.684692, 0.622538, 1)
+texture = ExtResource("2_bjcn1")
 
 [node name="InteractionArea" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-visible = false
 shape = SubResource("CircleShape2D_482wa")
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-visible = false
-offset_left = -48.0
-offset_top = -59.0
-offset_right = 47.0
-offset_bottom = -46.0
-theme_override_styles/background = SubResource("StyleBoxFlat_r5f3l")
-theme_override_styles/fill = SubResource("StyleBoxFlat_ikjdm")
-value = 50.0
-show_percentage = false
-
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_left = -60.0
-offset_top = -59.0
-offset_right = 60.0
-offset_bottom = 59.0
+offset_left = -21.0
+offset_top = -34.0
+offset_right = 20.0
+offset_bottom = -30.0
 step = 0.01
-fill_mode = 3
+value = 100.0
 nine_patch_stretch = true
-texture_progress = ExtResource("1_dls75")
+texture_under = ExtResource("3_13pvu")
+texture_progress = ExtResource("4_ojtdj")
 tint_under = Color(1, 1, 1, 0.0784314)
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_body_entered"]

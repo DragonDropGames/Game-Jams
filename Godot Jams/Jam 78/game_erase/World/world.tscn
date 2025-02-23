@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bj68p12cthhye"]
+[gd_scene load_steps=12 format=3 uid="uid://bj68p12cthhye"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_37q7v"]
 [ext_resource type="PackedScene" uid="uid://vys72xs8cl6y" path="res://UI/ui.tscn" id="2_aawxf"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cd2syih2mid6q" path="res://Units/Resource Collectors/resourceUnit.tscn" id="8_fdbak"]
 [ext_resource type="PackedScene" uid="uid://ckmkx8imypqy7" path="res://Units/enemies/enemy.tscn" id="8_yodkv"]
 [ext_resource type="PackedScene" uid="uid://d1sb7mq2miv8n" path="res://UI/Enemy Spawner/enemy_spawner.tscn" id="10_lybhf"]
+[ext_resource type="PackedScene" uid="uid://cgp5eivo4vtgt" path="res://Structures/resource.tscn" id="11_v2822"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_37q7v")
@@ -41,7 +42,7 @@ position = Vector2(2173.75, 3974.7)
 wagon = 1
 
 [node name="Wagon Resource" parent="Characters" instance=ExtResource("6_d7cx2")]
-position = Vector2(2236.75, 3787.61)
+position = Vector2(2263, 3804)
 wagon = 3
 
 [node name="Wagon Bow" parent="Characters" instance=ExtResource("6_d7cx2")]
@@ -58,12 +59,15 @@ position = Vector2(2087.16, 3727.96)
 position = Vector2(2009.38, 3899.79)
 
 [node name="Bow 1" parent="Characters" instance=ExtResource("7_mpoq3")]
+position = Vector2(2050, 3608)
 unit = 1
 
 [node name="Bow 2" parent="Characters" instance=ExtResource("7_mpoq3")]
+position = Vector2(1764, 3642)
 unit = 1
 
 [node name="Bow 3" parent="Characters" instance=ExtResource("7_mpoq3")]
+position = Vector2(1874, 3665)
 unit = 1
 
 [node name="ResourceUnit" parent="Characters" instance=ExtResource("8_fdbak")]
@@ -73,7 +77,7 @@ position = Vector2(1805, 3954)
 position = Vector2(1873, 3971)
 
 [node name="ResourceUnit3" parent="Characters" instance=ExtResource("8_fdbak")]
-position = Vector2(1972, 3967)
+position = Vector2(2305, 3791)
 
 [node name="ResourceUnit4" parent="Characters" instance=ExtResource("8_fdbak")]
 position = Vector2(1824, 4003)
@@ -161,6 +165,18 @@ rotation = -0.000189473
 position = Vector2(1675.28, -350.538)
 rotation = 0.000189473
 
+[node name="Spawner11" parent="Spawners" instance=ExtResource("10_lybhf")]
+position = Vector2(-786.113, -30.5183)
+rotation = 0.000189473
+
+[node name="Spawner10" parent="Spawners" instance=ExtResource("10_lybhf")]
+position = Vector2(-767.783, 41.5664)
+rotation = 0.000189473
+
+[node name="Spawner9" parent="Spawners" instance=ExtResource("10_lybhf")]
+position = Vector2(-705.862, -25.0928)
+rotation = 0.000189473
+
 [node name="Spawner2" parent="Spawners" instance=ExtResource("10_lybhf")]
 position = Vector2(-203.615, -884.894)
 rotation = 0.000189473
@@ -187,3 +203,26 @@ rotation = 0.000189473
 
 [node name="Spawner8" parent="Spawners" instance=ExtResource("10_lybhf")]
 position = Vector2(2824.82, -3156.32)
+
+[node name="Iron Nodes" type="Node2D" parent="."]
+
+[node name="Resource" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(2328, 3733)
+
+[node name="Resource6" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(154, 2744)
+
+[node name="Resource7" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(356, 4038)
+
+[node name="Resource4" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(3910, 3392)
+
+[node name="Resource5" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(2791, 1445)
+
+[node name="Resource3" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(3909, 3298)
+
+[node name="Resource2" parent="Iron Nodes" instance=ExtResource("11_v2822")]
+position = Vector2(2499, 3917)

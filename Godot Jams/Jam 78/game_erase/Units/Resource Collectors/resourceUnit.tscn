@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Units/Resource Collectors/resourceUnit.gd" id="1_mn5vq"]
 [ext_resource type="Texture2D" uid="uid://b85d8h7sh07el" path="res://Assets/Units/MiniWorker.png" id="3_6jy8g"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iy3cv"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_bbivw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_da6jh"]
 atlas = ExtResource("3_6jy8g")
@@ -111,7 +111,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_we42o")
 }],
-"loop": true,
+"loop": false,
 "name": &"collect",
 "speed": 5.0
 }, {
@@ -215,12 +215,12 @@ radius = 17.0
 script = ExtResource("1_mn5vq")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_iy3cv")
+shape = SubResource("CircleShape2D_bbivw")
 
 [node name="ResourceUnit" type="AnimatedSprite2D" parent="Collision"]
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_ma63x")
-animation = &"die"
+animation = &"collect"
 autoplay = "idle"
 
 [node name="SelectedPanel" type="Panel" parent="."]
@@ -254,3 +254,6 @@ show_percentage = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GatherRange"]
 shape = SubResource("CircleShape2D_75iq3")
+
+[connection signal="body_entered" from="GatherRange" to="." method="_on_gather_range_body_entered"]
+[connection signal="body_exited" from="GatherRange" to="." method="_on_gather_range_body_exited"]

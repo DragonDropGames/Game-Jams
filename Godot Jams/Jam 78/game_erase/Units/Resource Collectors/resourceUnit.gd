@@ -17,10 +17,9 @@ func _ready():
 func _on_gather_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group('Resource'):
 		gathering_resources = true
-	pass # Replace with function body.
-
+		sprite.play('collect')
 
 func _on_gather_range_body_exited(body: Node2D) -> void:
 	if body.is_in_group('Resource'):
 		gathering_resources = false
-	pass # Replace with function body.
+		sprite.play('idle')

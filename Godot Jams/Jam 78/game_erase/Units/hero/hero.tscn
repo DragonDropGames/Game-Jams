@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Units/hero/hero.gd" id="1_vckm5"]
 [ext_resource type="Texture2D" uid="uid://bbtqkp2vkvi37" path="res://Assets/Units/MiniPrinceMan.png" id="2_y5ok5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hylxi"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ronpe"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_inmi8"]
 atlas = ExtResource("2_y5ok5")
@@ -235,7 +235,7 @@ radius = 67.1193
 script = ExtResource("1_vckm5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_hylxi")
+shape = SubResource("CircleShape2D_ronpe")
 
 [node name="Hero" type="AnimatedSprite2D" parent="CollisionShape2D"]
 position = Vector2(0, -21)
