@@ -27,6 +27,11 @@ limit_right = 4112
 limit_bottom = 4112
 script = ExtResource("2_js0y7")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Camera2D"]
+position = Vector2(97.46, -85.6499)
+stream = ExtResource("12_752jm")
+autoplay = true
+
 [node name="WorldGeneration" parent="." instance=ExtResource("4_v0mnd")]
 
 [node name="Characters" type="Node2D" parent="."]
