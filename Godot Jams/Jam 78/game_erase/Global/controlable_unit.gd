@@ -196,7 +196,6 @@ func die(reason: String):
 	alive = false
 	update_sprit("die")
 	set_physics_process(false)
-	set_process(false)
 	remove_from_group('ControlableUnits')
 	light_timer.stop()
 	health_bar.visible = false
@@ -210,6 +209,9 @@ func die(reason: String):
 			
 	if attack_area:
 		attack_area.monitoring = false
+		
+	await get_tree().create_timer(0.1).timeout
+	set_process(false)
 
 func take_damage(damage: float, body: Node2D) -> bool:
 	if not alive:

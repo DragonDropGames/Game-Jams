@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy7232f5xniil"]
+[gd_scene load_steps=13 format=3 uid="uid://cy7232f5xniil"]
 
 [ext_resource type="Script" path="res://Units/wagon.gd" id="1_24qf5"]
 [ext_resource type="Texture2D" uid="uid://0ip8xd525e8m" path="res://Assets/Wagon/main/main wagons 3.png" id="4_n7iei"]
+[ext_resource type="Texture2D" uid="uid://oerykgo56kmg" path="res://Assets/Wagon/boken_wagon.png" id="4_poypl"]
 [ext_resource type="Texture2D" uid="uid://c0ix5h5hvnyar" path="res://Assets/Wagon/main/main wagons 2.png" id="5_vlthr"]
 [ext_resource type="Texture2D" uid="uid://enyfcua7ri16" path="res://Assets/Wagon/main/main wagons.png" id="6_sv1ig"]
 [ext_resource type="Texture2D" uid="uid://lpx2fpdojlss" path="res://Assets/Wagon/main/main wagons 4.png" id="7_1jinu"]
@@ -39,6 +40,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"bottom-right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_poypl")
+}],
+"loop": true,
+"name": &"die",
 "speed": 5.0
 }, {
 "frames": [{
@@ -97,16 +106,17 @@ shape = SubResource("RectangleShape2D_agtqq")
 
 [node name="ResourceWagon" type="AnimatedSprite2D" parent="Collision"]
 visible = false
-scale = Vector2(0.45, 0.45)
+position = Vector2(0, -4.76837e-07)
+scale = Vector2(0.791667, 0.909091)
 sprite_frames = SubResource("SpriteFrames_wuib1")
-animation = &"top-right"
+animation = &"die"
 
 [node name="MainWagon" type="AnimatedSprite2D" parent="Collision"]
 visible = false
 position = Vector2(-2.84217e-14, 0)
 scale = Vector2(0.45, 0.45)
 sprite_frames = SubResource("SpriteFrames_wuib1")
-animation = &"bottom-left"
+animation = &"die"
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -23.0
