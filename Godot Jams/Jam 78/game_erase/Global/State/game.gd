@@ -3,7 +3,7 @@ extends Node
 static var iron_label: int = 10;
 static var wood_label: int = 100;
 
-func updateResource(type: Enums.RESOURCES_TYPE,value):
+func updateResource(type: Enums.RESOURCES_TYPE, value: int):
 	match type:
 		Enums.RESOURCES_TYPE.IRON:
 			iron_label += value

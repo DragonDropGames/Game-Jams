@@ -6,8 +6,6 @@ var controllable_units: Array[Node] = []
 var enemies: Array[Node] = []
 var resources: Array[Node] = []
 
-@onready var music:AudioStreamPlayer2D = $AudioStreamPlayer2D
-
 func _ready() -> void:
 	load_units()
 	load_enemies()

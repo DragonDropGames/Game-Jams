@@ -1,15 +1,17 @@
 extends ControlableUnit
 
+@export var collection_interval: float = 2.0
+
 @onready var workerSprite = $Collision/ResourceUnit
 @onready var range = $GatherRange
 @onready var tile_map: TileMapLayer = get_node("/root/World/WorldGeneration/Collision Layer")
 
 const tree_coords = Vector2i(4, 6)
-@export var search_radius: int = 15
-@export var layer_index: int = 0
+var time_since_last_collect: float = 0.0
+var gathering_at :Vector2i
 
 func _ready():
-	speed = 10
+	speed = 50
 	health = 100
 	darkness_scaler = 0.5
 	sprite = workerSprite
@@ -24,6 +26,20 @@ func _ready():
 	
 	ready_complete()
 	
+func _process(delta: float) -> void:
+	time_since_last_collect += delta
+	var tree_tiles = get_closest_tree_tile(1)
+	
+	if tree_tiles > Vector2.ZERO:
+		target = tree_tiles
+		gathering_resources = true
+		
+		if time_since_last_collect >= collection_interval:
+			Game.updateResource(Enums.RESOURCES_TYPE.WOOD, 1)
+			time_since_last_collect = 0.0
+	else:
+		gathering_resources = false
+	
 func _on_gather_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group('Resource'):
 		gathering_resources = true
@@ -34,7 +50,10 @@ func _on_gather_range_body_exited(body: Node2D) -> void:
 		gathering_resources = false
 		sprite.play('idle')
 
-func get_closest_tree_tile() -> Vector2:
+func get_closest_tree_tile(search_radius: int) -> Vector2:
+	if not tile_map:
+		return Vector2.ZERO
+		
 	var player_tile: Vector2 = tile_map.local_to_map(position)
 	var x_radius = range(player_tile.x)
 	var y_radius = range(player_tile.y)
