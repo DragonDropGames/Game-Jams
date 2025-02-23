@@ -10,20 +10,26 @@ func _ready():
 	health = 100
 	add_to_group("Units")
 	
-	match unit: 
-		Enums.UNIT_TYPE.SWORD:
-			attack_area = $SwordArea
-			attack_damage = 10
-			attack_frequency = 1
-			speed = 15
-			sprite = sword_image
-			sword_image.visible = true
-		Enums.UNIT_TYPE.BOW:
-			attack_area = $BowArea
-			attack_damage = 25
-			attack_frequency = 5
-			sprite = bow_image
-			bow_image.visible = true
-			speed = 10 
+	speed = 38
+	attack_area = $SwordArea
+	attack_damage = 10
+	attack_frequency = 1
+	sprite = sword_image
+	sword_image.visible = true
+
+
+	#match unit: 
+		#Enums.UNIT_TYPE.SWORD:
+			#attack_area = $SwordArea
+			#attack_damage = 10
+			#attack_frequency = 1
+			#sprite = sword_image
+			#sword_image.visible = true
+		#Enums.UNIT_TYPE.BOW:
+			#attack_area = $BowArea
+			#attack_damage = 25
+			#attack_frequency = 5
+			#sprite = bow_image
+			#bow_image.visible = true
 	
 	ready_complete()

@@ -20,7 +20,6 @@ class_name ControlableUnit
 
 @onready var fog = get_node("/root/World/WorldGeneration/Fog_Layer")
 @onready var label = get_node("Label")
-@onready var collisionBox: CollisionShape2D = get_node("Collision")
 @onready var target = position
 @onready var tourch_scn: Resource = preload("res://Global/Tourch Light/PointLight.tscn")
 
@@ -199,10 +198,15 @@ func die(reason: String):
 	set_process(false)
 	remove_from_group('ControlableUnits')
 	light_timer.stop()
-	health_bar.queue_free()
+	health_bar.visible = false
+	selected = false
+	selected_panel.visible = false
 	set_selected(false)
-	collisionBox.disabled = true
 	
+	for child in get_children():
+		if child is CollisionShape2D:
+			child.disabled = true
+			
 	if attack_area:
 		attack_area.monitoring = false
 
