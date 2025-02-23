@@ -204,7 +204,7 @@ script = ExtResource("1_qm4lx")
 [node name="Panel" type="Panel" parent="."]
 light_mask = 0
 visibility_layer = 512
-z_as_relative = false
+z_index = 100
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

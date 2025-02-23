@@ -173,6 +173,7 @@ func die(reason: String):
 	remove_from_group('ControlableUnits')
 	light_timer.stop()
 	health_bar.queue_free()
+	collision_shape.disabled = true
 	
 	if attack_area:
 		attack_area.monitoring = false
@@ -182,7 +183,6 @@ func take_damage(damage: float, body: Node2D) -> bool:
 		return not alive 
 
 	health -= damage
-	print("[controllable unit] taking damage", damage, " remaining health ", health)
 	
 	_on_health_check_timer_timeout()
 	

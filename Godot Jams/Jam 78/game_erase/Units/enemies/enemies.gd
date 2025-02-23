@@ -22,6 +22,8 @@ const group_name = "Enemies"
 @export var max_force: float = 2.0
 @export var friction: float = 0.9  # Reduces movement over time to settle
 
+@onready var collision_shape: CollisionShape2D = $EnemyCollision
+
 @onready var basicEnemyImage: AnimatedSprite2D = $EnemyCollision/BasicEnemy
 @onready var mediumEnemyImage: AnimatedSprite2D = $EnemyCollision/MediumEnemy
 @onready var bigBoyImage: AnimatedSprite2D = $EnemyCollision/BigBoy
@@ -124,7 +126,7 @@ func _process(delta: float) -> void:
 func die():
 	alive = false
 	image.play('die')
-	health_bar.queue_free()
+	health_bar.visible = false
 	set_physics_process(false)
 	set_process(false)
 	remove_from_group('ControlableUnits')
@@ -134,12 +136,11 @@ func die():
 	aggro_range.body_exited.disconnect(_on_agro_exit)
 	attack_range.body_entered.disconnect(_on_attack_range_enter)
 	attack_range.body_exited.disconnect(_on_attack_range_exit)
+	collision_shape.disabled = true
 	
 func take_damage(damage: float, body: Node2D) -> bool:
 	health -= damage
 	health_bar.value = health
-	
-	print("[enemy unit] taking damage", damage, " remaining health ", health)
 	
 	if health <= 0:
 		die()
