@@ -636,7 +636,7 @@ offset_right = 50.0
 offset_bottom = 46.0
 
 [node name="SwordUnit" type="AnimatedSprite2D" parent="Panel/Buildable/Sword"]
-position = Vector2(19, 2)
+position = Vector2(20, 8)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_a4ygd")
 animation = &"idle"
@@ -651,6 +651,15 @@ text = "20 Iron"
 label_settings = SubResource("LabelSettings_5mp10")
 horizontal_alignment = 1
 
+[node name="Label2" type="Label" parent="Panel/Buildable/Sword"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 40.0
+offset_bottom = 12.0
+text = "Sword"
+label_settings = SubResource("LabelSettings_5mp10")
+horizontal_alignment = 1
+
 [node name="Bow" type="Panel" parent="Panel/Buildable"]
 offset_left = 66.0
 offset_top = 6.0
@@ -658,7 +667,7 @@ offset_right = 106.0
 offset_bottom = 46.0
 
 [node name="BowUnit" type="AnimatedSprite2D" parent="Panel/Buildable/Bow"]
-position = Vector2(19, 4)
+position = Vector2(19, 8)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_lv6ft")
 animation = &"idle"
@@ -682,6 +691,15 @@ text = "10 Wood"
 label_settings = SubResource("LabelSettings_5mp10")
 horizontal_alignment = 1
 
+[node name="Label3" type="Label" parent="Panel/Buildable/Bow"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 40.0
+offset_bottom = 12.0
+text = "Bow"
+label_settings = SubResource("LabelSettings_5mp10")
+horizontal_alignment = 1
+
 [node name="Resource" type="Panel" parent="Panel/Buildable"]
 offset_left = 122.0
 offset_top = 6.0
@@ -689,7 +707,7 @@ offset_right = 162.0
 offset_bottom = 46.0
 
 [node name="ResourceUnit" type="AnimatedSprite2D" parent="Panel/Buildable/Resource"]
-position = Vector2(20, 2)
+position = Vector2(20, 7)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_e1oef")
 animation = &"collect"
@@ -701,6 +719,15 @@ offset_top = 38.0
 offset_right = 40.0
 offset_bottom = 52.0
 text = "25 Iron"
+label_settings = SubResource("LabelSettings_5mp10")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel/Buildable/Resource"]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 40.0
+offset_bottom = 12.0
+text = "Gather"
 label_settings = SubResource("LabelSettings_5mp10")
 horizontal_alignment = 1
 
