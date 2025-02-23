@@ -19,10 +19,10 @@ func add_wood(value: int):
 	wood_label += value
 
 func can_consume_wood(value: int) -> bool:
-	return wood_label - value > 0
+	return wood_label - value >= 0
 
 func can_consume_iron(value: int) -> bool:
-	return iron_label - value > 0
+	return iron_label - value >= 0
 
 func consume_iron(value: int):
 	if can_consume_iron(value):
