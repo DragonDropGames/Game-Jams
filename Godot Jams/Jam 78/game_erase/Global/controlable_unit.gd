@@ -100,7 +100,6 @@ func _physics_process(delta: float) -> void:
 	elif gathering_resources:
 		update_sprit('collect')
 	elif combat and combat.attacking:
-		print("is attacking")
 		update_sprit('attack')
 		combat.attack()
 	else:
