@@ -193,7 +193,8 @@ text = "[color=yellow]- Click on wagons to open their unit buying menu
 - Click and drag to select multiple units
 - Right Click to issue move commands to selected units
 - Middle Mouse Click and drag to pan camera 
-- Arrow keys also pan camera"
+- Arrow keys also pan camera
+- Scroll wheel controls zoom level"
 fit_content = true
 scroll_active = false
 
